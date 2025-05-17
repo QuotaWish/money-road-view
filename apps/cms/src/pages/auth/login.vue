@@ -7,7 +7,7 @@ import Logo from '~/components/display/Logo.vue'
     <div class="Login-Background" />
 
     <div class="Login-Form fake-background">
-      <h1 text-3xl font-bold>
+      <h1 text-3xl font-bold text-left w-full>
         登录账号
       </h1>
 
