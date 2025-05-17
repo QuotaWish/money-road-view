@@ -90,7 +90,7 @@ type Alova2Method<
     : never;
 
 declare global {
-  interface Apis {
+  interface EndApis {
     App: {
       /**
        * ---
@@ -131,5 +131,5 @@ declare global {
     };
   }
 
-  var Apis: Apis;
+  var EndApis: EndApis;
 }

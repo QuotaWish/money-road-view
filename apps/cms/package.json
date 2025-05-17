@@ -14,10 +14,13 @@
   "dependencies": {
     "@arco-design/web-vue": "^2.57.0",
     "@vueuse/core": "catalog:frontend",
+    "alova": "^3.2.11",
+    "pinia": "^3.0.2",
     "vue": "catalog:frontend",
     "vue-router": "catalog:frontend"
   },
   "devDependencies": {
+    "@alova/wormhole": "^1.0.6",
     "@antfu/eslint-config": "catalog:dev",
     "@iconify-json/carbon": "catalog:build",
     "@types/node": "catalog:dev",
