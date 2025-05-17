@@ -2,9 +2,8 @@
 import Logo from '~/components/display/Logo.vue'
 
 const router = useRouter()
-
 function handleClick() {
-  router.push('/auth/register')
+  router.push('/auth/login')
 }
 </script>
 
@@ -14,11 +13,12 @@ function handleClick() {
 
     <div class="Login-Form fake-background">
       <h1 text-3xl font-bold>
-        登录账号
+        注册账号
       </h1>
 
       <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear />
       <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear />
+      <a-input class="w-[80%]" size="large" placeholder="重复密码" allow-clear />
       <p>
         继续操作即代表您同意接受
         <a-link href="link">
@@ -31,14 +31,14 @@ function handleClick() {
       </p>
 
       <a-button size="large" type="primary" class="Login-Button w-full">
-        登录
+        注册
       </a-button>
       <div class="Login-Button-Second">
         <a-button type="text">
           忘记密码
         </a-button>
         <a-button type="text" @click="handleClick()">
-          立即注册
+          立即登录
         </a-button>
       </div>
 
@@ -47,10 +47,10 @@ function handleClick() {
       </a-divider>
 
       <a-button size="large" type="outline" class="Login-Button w-full">
-        谷歌登录
+        谷歌注册
       </a-button>
       <a-button size="large" type="outline" class="Login-Button w-full">
-        SSO登录
+        SSO注册
       </a-button>
     </div>
 
