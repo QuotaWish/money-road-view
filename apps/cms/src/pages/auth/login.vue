@@ -98,9 +98,7 @@ import Logo from '~/components/display/Logo.vue'
 
   width: 20%;
   min-width: 480px;
-  height: 60%;
-  min-height: 600px;
-  max-height: 800px;
+  height: 600px;
 
   display: flex;
   flex-direction: column;
@@ -145,7 +143,6 @@ import Logo from '~/components/display/Logo.vue'
   width: 100%;
 }
 
-// 如果页面宽度小于 1280
 @media (max-width: 1280px) {
   .Login-Form {
     height: 80%;
@@ -159,7 +156,6 @@ import Logo from '~/components/display/Logo.vue'
 
     width: 100%;
     height: 100%;
-    max-height: 100%;
 
     transform: none;
     border-radius: 0;
