@@ -1,5 +1,9 @@
+<script lang="ts" setup>
+import { ContainerLayout } from '~/modules/core'
+</script>
+
 <template>
-  <main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
+  <ContainerLayout>
     <RouterView />
-  </main>
+  </ContainerLayout>
 </template>
