@@ -144,6 +144,32 @@ import Logo from '~/components/display/Logo.vue'
   justify-content: space-between;
   width: 100%;
 }
+
+// 如果页面宽度小于 1280
+@media (max-width: 1280px) {
+  .Login-Form {
+    height: 80%;
+  }
+}
+
+@media (max-width: 720px) {
+  .Login-Form {
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    transform: none;
+    border-radius: 0;
+  }
+
+  .Login-Copyright {
+    font-size: 10px;
+    bottom: 0.25rem;
+  }
+}
 </style>
 
 <route lang="yaml">

@@ -48,3 +48,7 @@ span.arco-input-wrapper{
 input.arco-input.arco-input-size-large {
   height: 48px;
 }
+
+.transition-cubic {
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
