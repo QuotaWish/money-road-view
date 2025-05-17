@@ -28,6 +28,7 @@
     "eslint": "catalog:dev",
     "eslint-plugin-format": "catalog:dev",
     "jsdom": "catalog:build",
+    "less": "^4.3.0",
     "lint-staged": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
     "taze": "catalog:dev",

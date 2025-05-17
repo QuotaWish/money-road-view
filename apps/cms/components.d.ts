@@ -11,7 +11,6 @@ declare module 'vue' {
     AButton: typeof import('@arco-design/web-vue')['Button']
     ALayout: typeof import('@arco-design/web-vue')['Layout']
     ALayoutContent: typeof import('@arco-design/web-vue')['LayoutContent']
-    ALayoutFooter: typeof import('@arco-design/web-vue')['LayoutFooter']
     ALayoutHeader: typeof import('@arco-design/web-vue')['LayoutHeader']
     ALayoutSider: typeof import('@arco-design/web-vue')['LayoutSider']
     AMenu: typeof import('@arco-design/web-vue')['Menu']
@@ -21,8 +20,5 @@ declare module 'vue' {
     Logo: typeof import('./src/components/display/Logo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheCounter: typeof import('./src/components/TheCounter.vue')['default']
-    TheFooter: typeof import('./src/components/TheFooter.vue')['default']
-    TheInput: typeof import('./src/components/TheInput.vue')['default']
   }
 }
