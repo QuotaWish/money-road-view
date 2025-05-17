@@ -14,11 +14,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "postinstall": "npx prisma generate --schema ./prisma-common-database/schema.prisma && npx prisma generate --schema ./prisma-meta-database/schema.prisma --no-engine",
-    "generate": "npx prisma generate --schema ./prisma-common-database/schema.prisma && npx prisma generate --schema ./prisma-meta-database/schema.prisma --no-engine",
-    "migrate": "npx prisma migrate dev --schema ./prisma-common-database/schema.prisma && npx prisma migrate dev --schema ./prisma-meta-database/schema.prisma",
-    "deploy": "npx prisma migrate deploy --schema ./prisma-common-database/schema.prisma && npx prisma migrate deploy --schema ./prisma-meta-database/schema.prisma",
-    "studio": "npx prisma studio --schema ./prisma-common-database/schema.prisma --port 5555 & npx prisma studio --schema ./prisma-meta-database/schema.prisma --port 5556"
+    "postinstall": "npx prisma generate --schema ./prisma/schema.prisma --no-engine",
+    "generate": "npx prisma generate --schema ./prisma/schema.prisma --no-engine",
+    "migrate": "npx prisma migrate dev --schema ./prisma/schema.prisma",
+    "deploy": "npx prisma migrate deploy --schema ./prisma/schema.prisma",
+    "studio": "npx prisma studio --schema ./prisma/schema.prisma --port 5555"
   },
   "dependencies": {
     "@cozeloop/ai": "^0.0.4",
