@@ -30,3 +30,21 @@ html.dark {
 span.arco-divider-text {
   background-color: #0000;
 }
+
+button.arco-btn {
+  border-radius: 12px;
+}
+
+button.arco-btn.arco-btn-size-large {
+  height: 48px;
+}
+
+span.arco-input-wrapper{
+  border-radius: 12px;
+
+  border: 1px solid var(--color-neutral-4);
+}
+
+input.arco-input.arco-input-size-large {
+  height: 48px;
+}

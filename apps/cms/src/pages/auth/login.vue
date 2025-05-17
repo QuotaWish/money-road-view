@@ -24,7 +24,7 @@ import Logo from '~/components/display/Logo.vue'
         </a-link>
       </p>
 
-      <a-button type="primary" class="Login-Button w-full">
+      <a-button size="large" type="primary" class="Login-Button w-full">
         登录
       </a-button>
       <div class="Login-Button-Second">
@@ -40,10 +40,10 @@ import Logo from '~/components/display/Logo.vue'
         或者
       </a-divider>
 
-      <a-button class="Login-Button w-full">
+      <a-button size="large" type="outline" class="Login-Button w-full">
         谷歌登录
       </a-button>
-      <a-button class="Login-Button w-full">
+      <a-button size="large" type="outline" class="Login-Button w-full">
         SSO登录
       </a-button>
     </div>
@@ -99,7 +99,8 @@ import Logo from '~/components/display/Logo.vue'
   width: 20%;
   min-width: 480px;
   height: 60%;
-  min-height: 600px;
+  min-height: 400px;
+  max-height: 600px;
 
   display: flex;
   flex-direction: column;
