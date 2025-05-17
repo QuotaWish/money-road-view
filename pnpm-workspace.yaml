@@ -36,3 +36,6 @@ onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks
   - unrs-resolver
+catalog:
+  "@arco-design/web-vue": ^2.57.0
+  less: ^4.3.0

@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // const username = ref("")
 // const password = ref("")
 // function handleClick() {
@@ -20,25 +20,35 @@
       <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear />
       <p>
         继续操作即代表您同意接受
-        <a-link href="link">《服务条款》</a-link>
+        <a-link href="link">
+          《服务条款》
+        </a-link>
         和
-        <a-link href="link">《隐私政策》</a-link>
+        <a-link href="link">
+          《隐私政策》
+        </a-link>
       </p>
 
-      <a-button type="primary" class="w-full Login-Button">
+      <a-button type="primary" class="Login-Button w-full">
         登录
       </a-button>
       <div class="Login-Button-Second">
-        <a-button type="text">忘记密码</a-button>
-        <a-button type="text">立即注册</a-button>
+        <a-button type="text">
+          忘记密码
+        </a-button>
+        <a-button type="text">
+          立即注册
+        </a-button>
       </div>
 
-      <a-divider orientation="center">或者</a-divider>
+      <a-divider orientation="center">
+        或者
+      </a-divider>
 
-      <a-button class="w-full Login-Button">
+      <a-button class="Login-Button w-full">
         谷歌登录
       </a-button>
-      <a-button class="w-full Login-Button">
+      <a-button class="Login-Button w-full">
         SSO登录
       </a-button>
     </div>
@@ -57,7 +67,6 @@
 
     width: 100%;
     height: 100%;
-
   }
 
   position: absolute;
@@ -108,3 +117,9 @@
   width: 100%;
 }
 </style>
+
+<route lang="yaml">
+meta:
+  needAuth: false
+  layout: fullscreen
+</route>
