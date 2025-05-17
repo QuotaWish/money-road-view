@@ -10,7 +10,10 @@
     show-collapse-button
   >
     <a-menu-item key="0_0_0" data-obj="1">
-      Menu 1
+      <div flex gap-2 items-center>
+        <div i-carbon-dashboard />
+        仪表盘
+      </div>
     </a-menu-item>
     <a-sub-menu key="0">
       <template #icon>
