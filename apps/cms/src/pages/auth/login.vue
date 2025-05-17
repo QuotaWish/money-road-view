@@ -99,8 +99,8 @@ import Logo from '~/components/display/Logo.vue'
   width: 20%;
   min-width: 480px;
   height: 60%;
-  min-height: 400px;
-  max-height: 600px;
+  min-height: 600px;
+  max-height: 800px;
 
   display: flex;
   flex-direction: column;
