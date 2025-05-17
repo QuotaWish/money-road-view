@@ -12,6 +12,7 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "@arco-design/web-vue": "^2.57.0",
     "@vueuse/core": "catalog:frontend",
     "vue": "catalog:frontend",
     "vue-router": "catalog:frontend"
