@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+import { HttpExceptionFilter } from './filter/http-exception/http-exception.filter';
+import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
 
 // @ts-ignore
 BigInt.prototype.toJSON = function () {
@@ -9,6 +12,10 @@ BigInt.prototype.toJSON = function () {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalInterceptors(new TransformInterceptor())
 
   const config = new DocumentBuilder()
     .setTitle('Gather Ends')

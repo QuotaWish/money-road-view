@@ -7,10 +7,16 @@ const userStore = useUserStore()
 const router = useRouter()
 
 router.beforeEach((to, from, next) => {
-  if (to.meta?.needAuth !== false && !userStore.isLogin.value) {
+  if (to.meta?.needAuth !== false && !userStore.isLogin) {
     next({ path: '/auth/login' })
   } else {
+    if (to.meta?.needAuth === false && userStore.isLogin) {
+    next({ path: '/' })
+  } else {
+
     next()
+  }
+
   }
 })
 </script>
