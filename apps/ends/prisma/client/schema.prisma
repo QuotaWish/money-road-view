@@ -6,50 +6,80 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../prisma-meta-database/meta-database-client-types"
+  output   = "../prisma/client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("META_DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
-// 2. 玩家表（扩展游戏场景）
-model Player {
-  playerId  BigInt        @id @default(autoincrement())
-  userId    BigInt        @unique
-  nickname  String?
-  createdAt DateTime      @default(now())
-  // user      AuthUser      @relation(fields: [userId], references: [userId], onDelete: Cascade)
-  sessions  GameSession[]
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
 
-  @@index([userId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-// 3. 游戏类型表
-model Game {
-  gameId    Int           @id @default(autoincrement())
-  code      String        @unique
-  name      String
-  config    Json?
-  createdAt DateTime      @default(now())
-  sessions  GameSession[]
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
 }
 
-// 4. 对局记录表
-model GameSession {
-  sessionId BigInt   @id @default(autoincrement())
-  playerId  BigInt
-  gameId    Int
-  score     Int
-  duration  Int
-  extra     Json?
-  playedAt  DateTime @default(now())
-  player    Player   @relation(fields: [playerId], references: [playerId], onDelete: Cascade)
-  game      Game     @relation(fields: [gameId], references: [gameId])
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([playerId])
-  @@index([gameId])
-  @@index([score])
-  @@index([duration])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
 }

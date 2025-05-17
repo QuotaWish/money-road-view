@@ -14,20 +14,30 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Player
+ * Model User
  * 
  */
-export type Player = $Result.DefaultSelection<Prisma.$PlayerPayload>
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model Game
+ * Model Account
  * 
  */
-export type Game = $Result.DefaultSelection<Prisma.$GamePayload>
+export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
 /**
- * Model GameSession
+ * Model Session
  * 
  */
-export type GameSession = $Result.DefaultSelection<Prisma.$GameSessionPayload>
+export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
+/**
+ * Model VerificationToken
+ * 
+ */
+export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
+/**
+ * Model Authenticator
+ * 
+ */
+export type Authenticator = $Result.DefaultSelection<Prisma.$AuthenticatorPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -36,8 +46,8 @@ export type GameSession = $Result.DefaultSelection<Prisma.$GameSessionPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Players
- * const players = await prisma.player.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  *
  *
@@ -57,8 +67,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Players
-   * const players = await prisma.player.findMany()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
    * ```
    *
    *
@@ -155,34 +165,54 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.player`: Exposes CRUD operations for the **Player** model.
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Players
-    * const players = await prisma.player.findMany()
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
     * ```
     */
-  get player(): Prisma.PlayerDelegate<ExtArgs, ClientOptions>;
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.game`: Exposes CRUD operations for the **Game** model.
+   * `prisma.account`: Exposes CRUD operations for the **Account** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Games
-    * const games = await prisma.game.findMany()
+    * // Fetch zero or more Accounts
+    * const accounts = await prisma.account.findMany()
     * ```
     */
-  get game(): Prisma.GameDelegate<ExtArgs, ClientOptions>;
+  get account(): Prisma.AccountDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.gameSession`: Exposes CRUD operations for the **GameSession** model.
+   * `prisma.session`: Exposes CRUD operations for the **Session** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more GameSessions
-    * const gameSessions = await prisma.gameSession.findMany()
+    * // Fetch zero or more Sessions
+    * const sessions = await prisma.session.findMany()
     * ```
     */
-  get gameSession(): Prisma.GameSessionDelegate<ExtArgs, ClientOptions>;
+  get session(): Prisma.SessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.verificationToken`: Exposes CRUD operations for the **VerificationToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VerificationTokens
+    * const verificationTokens = await prisma.verificationToken.findMany()
+    * ```
+    */
+  get verificationToken(): Prisma.VerificationTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.authenticator`: Exposes CRUD operations for the **Authenticator** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Authenticators
+    * const authenticators = await prisma.authenticator.findMany()
+    * ```
+    */
+  get authenticator(): Prisma.AuthenticatorDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -623,9 +653,11 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Player: 'Player',
-    Game: 'Game',
-    GameSession: 'GameSession'
+    User: 'User',
+    Account: 'Account',
+    Session: 'Session',
+    VerificationToken: 'VerificationToken',
+    Authenticator: 'Authenticator'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,229 +676,377 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "player" | "game" | "gameSession"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Player: {
-        payload: Prisma.$PlayerPayload<ExtArgs>
-        fields: Prisma.PlayerFieldRefs
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.PlayerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload> | null
+            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.PlayerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findFirst: {
-            args: Prisma.PlayerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload> | null
+            args: Prisma.UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.PlayerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           findMany: {
-            args: Prisma.PlayerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>[]
+            args: Prisma.UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           create: {
-            args: Prisma.PlayerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
+            args: Prisma.UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           createMany: {
-            args: Prisma.PlayerCreateManyArgs<ExtArgs>
+            args: Prisma.UserCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.PlayerCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>[]
+            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           delete: {
-            args: Prisma.PlayerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
+            args: Prisma.UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           update: {
-            args: Prisma.PlayerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
+            args: Prisma.UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           deleteMany: {
-            args: Prisma.PlayerDeleteManyArgs<ExtArgs>
+            args: Prisma.UserDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.PlayerUpdateManyArgs<ExtArgs>
+            args: Prisma.UserUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.PlayerUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>[]
+            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           upsert: {
-            args: Prisma.PlayerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlayerPayload>
+            args: Prisma.UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
           }
           aggregate: {
-            args: Prisma.PlayerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePlayer>
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
           }
           groupBy: {
-            args: Prisma.PlayerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PlayerGroupByOutputType>[]
+            args: Prisma.UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
           }
           count: {
-            args: Prisma.PlayerCountArgs<ExtArgs>
-            result: $Utils.Optional<PlayerCountAggregateOutputType> | number
+            args: Prisma.UserCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
       }
-      Game: {
-        payload: Prisma.$GamePayload<ExtArgs>
-        fields: Prisma.GameFieldRefs
+      Account: {
+        payload: Prisma.$AccountPayload<ExtArgs>
+        fields: Prisma.AccountFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.GameFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload> | null
+            args: Prisma.AccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.GameFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>
+            args: Prisma.AccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           findFirst: {
-            args: Prisma.GameFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload> | null
+            args: Prisma.AccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.GameFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>
+            args: Prisma.AccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           findMany: {
-            args: Prisma.GameFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>[]
+            args: Prisma.AccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
           }
           create: {
-            args: Prisma.GameCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>
+            args: Prisma.AccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           createMany: {
-            args: Prisma.GameCreateManyArgs<ExtArgs>
+            args: Prisma.AccountCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.GameCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>[]
+            args: Prisma.AccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
           }
           delete: {
-            args: Prisma.GameDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>
+            args: Prisma.AccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           update: {
-            args: Prisma.GameUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>
+            args: Prisma.AccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           deleteMany: {
-            args: Prisma.GameDeleteManyArgs<ExtArgs>
+            args: Prisma.AccountDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.GameUpdateManyArgs<ExtArgs>
+            args: Prisma.AccountUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.GameUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>[]
+            args: Prisma.AccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>[]
           }
           upsert: {
-            args: Prisma.GameUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GamePayload>
+            args: Prisma.AccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccountPayload>
           }
           aggregate: {
-            args: Prisma.GameAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateGame>
+            args: Prisma.AccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccount>
           }
           groupBy: {
-            args: Prisma.GameGroupByArgs<ExtArgs>
-            result: $Utils.Optional<GameGroupByOutputType>[]
+            args: Prisma.AccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AccountGroupByOutputType>[]
           }
           count: {
-            args: Prisma.GameCountArgs<ExtArgs>
-            result: $Utils.Optional<GameCountAggregateOutputType> | number
+            args: Prisma.AccountCountArgs<ExtArgs>
+            result: $Utils.Optional<AccountCountAggregateOutputType> | number
           }
         }
       }
-      GameSession: {
-        payload: Prisma.$GameSessionPayload<ExtArgs>
-        fields: Prisma.GameSessionFieldRefs
+      Session: {
+        payload: Prisma.$SessionPayload<ExtArgs>
+        fields: Prisma.SessionFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.GameSessionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload> | null
+            args: Prisma.SessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.GameSessionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>
+            args: Prisma.SessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           findFirst: {
-            args: Prisma.GameSessionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload> | null
+            args: Prisma.SessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.GameSessionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>
+            args: Prisma.SessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           findMany: {
-            args: Prisma.GameSessionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>[]
+            args: Prisma.SessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           create: {
-            args: Prisma.GameSessionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>
+            args: Prisma.SessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           createMany: {
-            args: Prisma.GameSessionCreateManyArgs<ExtArgs>
+            args: Prisma.SessionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.GameSessionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>[]
+            args: Prisma.SessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           delete: {
-            args: Prisma.GameSessionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>
+            args: Prisma.SessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           update: {
-            args: Prisma.GameSessionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>
+            args: Prisma.SessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           deleteMany: {
-            args: Prisma.GameSessionDeleteManyArgs<ExtArgs>
+            args: Prisma.SessionDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.GameSessionUpdateManyArgs<ExtArgs>
+            args: Prisma.SessionUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.GameSessionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>[]
+            args: Prisma.SessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>[]
           }
           upsert: {
-            args: Prisma.GameSessionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$GameSessionPayload>
+            args: Prisma.SessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessionPayload>
           }
           aggregate: {
-            args: Prisma.GameSessionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateGameSession>
+            args: Prisma.SessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSession>
           }
           groupBy: {
-            args: Prisma.GameSessionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<GameSessionGroupByOutputType>[]
+            args: Prisma.SessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SessionGroupByOutputType>[]
           }
           count: {
-            args: Prisma.GameSessionCountArgs<ExtArgs>
-            result: $Utils.Optional<GameSessionCountAggregateOutputType> | number
+            args: Prisma.SessionCountArgs<ExtArgs>
+            result: $Utils.Optional<SessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      VerificationToken: {
+        payload: Prisma.$VerificationTokenPayload<ExtArgs>
+        fields: Prisma.VerificationTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VerificationTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VerificationTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.VerificationTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VerificationTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          findMany: {
+            args: Prisma.VerificationTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          create: {
+            args: Prisma.VerificationTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          createMany: {
+            args: Prisma.VerificationTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VerificationTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.VerificationTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          update: {
+            args: Prisma.VerificationTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.VerificationTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VerificationTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VerificationTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.VerificationTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.VerificationTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVerificationToken>
+          }
+          groupBy: {
+            args: Prisma.VerificationTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VerificationTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VerificationTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<VerificationTokenCountAggregateOutputType> | number
+          }
+        }
+      }
+      Authenticator: {
+        payload: Prisma.$AuthenticatorPayload<ExtArgs>
+        fields: Prisma.AuthenticatorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AuthenticatorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AuthenticatorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
+          }
+          findFirst: {
+            args: Prisma.AuthenticatorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AuthenticatorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
+          }
+          findMany: {
+            args: Prisma.AuthenticatorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>[]
+          }
+          create: {
+            args: Prisma.AuthenticatorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
+          }
+          createMany: {
+            args: Prisma.AuthenticatorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AuthenticatorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>[]
+          }
+          delete: {
+            args: Prisma.AuthenticatorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
+          }
+          update: {
+            args: Prisma.AuthenticatorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
+          }
+          deleteMany: {
+            args: Prisma.AuthenticatorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AuthenticatorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AuthenticatorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>[]
+          }
+          upsert: {
+            args: Prisma.AuthenticatorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthenticatorPayload>
+          }
+          aggregate: {
+            args: Prisma.AuthenticatorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAuthenticator>
+          }
+          groupBy: {
+            args: Prisma.AuthenticatorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AuthenticatorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AuthenticatorCountArgs<ExtArgs>
+            result: $Utils.Optional<AuthenticatorCountAggregateOutputType> | number
           }
         }
       }
@@ -954,9 +1134,11 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    player?: PlayerOmit
-    game?: GameOmit
-    gameSession?: GameSessionOmit
+    user?: UserOmit
+    account?: AccountOmit
+    session?: SessionOmit
+    verificationToken?: VerificationTokenOmit
+    authenticator?: AuthenticatorOmit
   }
 
   /* Types for Logging */
@@ -1047,64 +1229,51 @@ export namespace Prisma {
 
 
   /**
-   * Count Type PlayerCountOutputType
+   * Count Type UserCountOutputType
    */
 
-  export type PlayerCountOutputType = {
+  export type UserCountOutputType = {
+    accounts: number
     sessions: number
+    Authenticator: number
   }
 
-  export type PlayerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | PlayerCountOutputTypeCountSessionsArgs
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accounts?: boolean | UserCountOutputTypeCountAccountsArgs
+    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+    Authenticator?: boolean | UserCountOutputTypeCountAuthenticatorArgs
   }
 
   // Custom InputTypes
   /**
-   * PlayerCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type PlayerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PlayerCountOutputType
+     * Select specific fields to fetch from the UserCountOutputType
      */
-    select?: PlayerCountOutputTypeSelect<ExtArgs> | null
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * PlayerCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type PlayerCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GameSessionWhereInput
-  }
-
-
-  /**
-   * Count Type GameCountOutputType
-   */
-
-  export type GameCountOutputType = {
-    sessions: number
-  }
-
-  export type GameCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | GameCountOutputTypeCountSessionsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * GameCountOutputType without action
-   */
-  export type GameCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameCountOutputType
-     */
-    select?: GameCountOutputTypeSelect<ExtArgs> | null
+  export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
   }
 
   /**
-   * GameCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type GameCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GameSessionWhereInput
+  export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAuthenticatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuthenticatorWhereInput
   }
 
 
@@ -1113,1472 +1282,377 @@ export namespace Prisma {
    */
 
   /**
-   * Model Player
+   * Model User
    */
 
-  export type AggregatePlayer = {
-    _count: PlayerCountAggregateOutputType | null
-    _avg: PlayerAvgAggregateOutputType | null
-    _sum: PlayerSumAggregateOutputType | null
-    _min: PlayerMinAggregateOutputType | null
-    _max: PlayerMaxAggregateOutputType | null
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
   }
 
-  export type PlayerAvgAggregateOutputType = {
-    playerId: number | null
-    userId: number | null
-  }
-
-  export type PlayerSumAggregateOutputType = {
-    playerId: bigint | null
-    userId: bigint | null
-  }
-
-  export type PlayerMinAggregateOutputType = {
-    playerId: bigint | null
-    userId: bigint | null
-    nickname: string | null
-    createdAt: Date | null
-  }
-
-  export type PlayerMaxAggregateOutputType = {
-    playerId: bigint | null
-    userId: bigint | null
-    nickname: string | null
-    createdAt: Date | null
-  }
-
-  export type PlayerCountAggregateOutputType = {
-    playerId: number
-    userId: number
-    nickname: number
-    createdAt: number
-    _all: number
-  }
-
-
-  export type PlayerAvgAggregateInputType = {
-    playerId?: true
-    userId?: true
-  }
-
-  export type PlayerSumAggregateInputType = {
-    playerId?: true
-    userId?: true
-  }
-
-  export type PlayerMinAggregateInputType = {
-    playerId?: true
-    userId?: true
-    nickname?: true
-    createdAt?: true
-  }
-
-  export type PlayerMaxAggregateInputType = {
-    playerId?: true
-    userId?: true
-    nickname?: true
-    createdAt?: true
-  }
-
-  export type PlayerCountAggregateInputType = {
-    playerId?: true
-    userId?: true
-    nickname?: true
-    createdAt?: true
-    _all?: true
-  }
-
-  export type PlayerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Player to aggregate.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Players
-    **/
-    _count?: true | PlayerCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PlayerAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PlayerSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PlayerMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PlayerMaxAggregateInputType
-  }
-
-  export type GetPlayerAggregateType<T extends PlayerAggregateArgs> = {
-        [P in keyof T & keyof AggregatePlayer]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePlayer[P]>
-      : GetScalarType<T[P], AggregatePlayer[P]>
-  }
-
-
-
-
-  export type PlayerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlayerWhereInput
-    orderBy?: PlayerOrderByWithAggregationInput | PlayerOrderByWithAggregationInput[]
-    by: PlayerScalarFieldEnum[] | PlayerScalarFieldEnum
-    having?: PlayerScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PlayerCountAggregateInputType | true
-    _avg?: PlayerAvgAggregateInputType
-    _sum?: PlayerSumAggregateInputType
-    _min?: PlayerMinAggregateInputType
-    _max?: PlayerMaxAggregateInputType
-  }
-
-  export type PlayerGroupByOutputType = {
-    playerId: bigint
-    userId: bigint
-    nickname: string | null
-    createdAt: Date
-    _count: PlayerCountAggregateOutputType | null
-    _avg: PlayerAvgAggregateOutputType | null
-    _sum: PlayerSumAggregateOutputType | null
-    _min: PlayerMinAggregateOutputType | null
-    _max: PlayerMaxAggregateOutputType | null
-  }
-
-  type GetPlayerGroupByPayload<T extends PlayerGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PlayerGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PlayerGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PlayerGroupByOutputType[P]>
-            : GetScalarType<T[P], PlayerGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PlayerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    playerId?: boolean
-    userId?: boolean
-    nickname?: boolean
-    createdAt?: boolean
-    sessions?: boolean | Player$sessionsArgs<ExtArgs>
-    _count?: boolean | PlayerCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["player"]>
-
-  export type PlayerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    playerId?: boolean
-    userId?: boolean
-    nickname?: boolean
-    createdAt?: boolean
-  }, ExtArgs["result"]["player"]>
-
-  export type PlayerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    playerId?: boolean
-    userId?: boolean
-    nickname?: boolean
-    createdAt?: boolean
-  }, ExtArgs["result"]["player"]>
-
-  export type PlayerSelectScalar = {
-    playerId?: boolean
-    userId?: boolean
-    nickname?: boolean
-    createdAt?: boolean
-  }
-
-  export type PlayerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"playerId" | "userId" | "nickname" | "createdAt", ExtArgs["result"]["player"]>
-  export type PlayerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | Player$sessionsArgs<ExtArgs>
-    _count?: boolean | PlayerCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type PlayerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type PlayerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $PlayerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Player"
-    objects: {
-      sessions: Prisma.$GameSessionPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      playerId: bigint
-      userId: bigint
-      nickname: string | null
-      createdAt: Date
-    }, ExtArgs["result"]["player"]>
-    composites: {}
-  }
-
-  type PlayerGetPayload<S extends boolean | null | undefined | PlayerDefaultArgs> = $Result.GetResult<Prisma.$PlayerPayload, S>
-
-  type PlayerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PlayerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PlayerCountAggregateInputType | true
-    }
-
-  export interface PlayerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Player'], meta: { name: 'Player' } }
-    /**
-     * Find zero or one Player that matches the filter.
-     * @param {PlayerFindUniqueArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PlayerFindUniqueArgs>(args: SelectSubset<T, PlayerFindUniqueArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Player that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PlayerFindUniqueOrThrowArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PlayerFindUniqueOrThrowArgs>(args: SelectSubset<T, PlayerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Player that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerFindFirstArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PlayerFindFirstArgs>(args?: SelectSubset<T, PlayerFindFirstArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Player that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerFindFirstOrThrowArgs} args - Arguments to find a Player
-     * @example
-     * // Get one Player
-     * const player = await prisma.player.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PlayerFindFirstOrThrowArgs>(args?: SelectSubset<T, PlayerFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Players that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Players
-     * const players = await prisma.player.findMany()
-     * 
-     * // Get first 10 Players
-     * const players = await prisma.player.findMany({ take: 10 })
-     * 
-     * // Only select the `playerId`
-     * const playerWithPlayerIdOnly = await prisma.player.findMany({ select: { playerId: true } })
-     * 
-     */
-    findMany<T extends PlayerFindManyArgs>(args?: SelectSubset<T, PlayerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Player.
-     * @param {PlayerCreateArgs} args - Arguments to create a Player.
-     * @example
-     * // Create one Player
-     * const Player = await prisma.player.create({
-     *   data: {
-     *     // ... data to create a Player
-     *   }
-     * })
-     * 
-     */
-    create<T extends PlayerCreateArgs>(args: SelectSubset<T, PlayerCreateArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Players.
-     * @param {PlayerCreateManyArgs} args - Arguments to create many Players.
-     * @example
-     * // Create many Players
-     * const player = await prisma.player.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PlayerCreateManyArgs>(args?: SelectSubset<T, PlayerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Players and returns the data saved in the database.
-     * @param {PlayerCreateManyAndReturnArgs} args - Arguments to create many Players.
-     * @example
-     * // Create many Players
-     * const player = await prisma.player.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Players and only return the `playerId`
-     * const playerWithPlayerIdOnly = await prisma.player.createManyAndReturn({
-     *   select: { playerId: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PlayerCreateManyAndReturnArgs>(args?: SelectSubset<T, PlayerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Player.
-     * @param {PlayerDeleteArgs} args - Arguments to delete one Player.
-     * @example
-     * // Delete one Player
-     * const Player = await prisma.player.delete({
-     *   where: {
-     *     // ... filter to delete one Player
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PlayerDeleteArgs>(args: SelectSubset<T, PlayerDeleteArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Player.
-     * @param {PlayerUpdateArgs} args - Arguments to update one Player.
-     * @example
-     * // Update one Player
-     * const player = await prisma.player.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PlayerUpdateArgs>(args: SelectSubset<T, PlayerUpdateArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Players.
-     * @param {PlayerDeleteManyArgs} args - Arguments to filter Players to delete.
-     * @example
-     * // Delete a few Players
-     * const { count } = await prisma.player.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PlayerDeleteManyArgs>(args?: SelectSubset<T, PlayerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Players.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Players
-     * const player = await prisma.player.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PlayerUpdateManyArgs>(args: SelectSubset<T, PlayerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Players and returns the data updated in the database.
-     * @param {PlayerUpdateManyAndReturnArgs} args - Arguments to update many Players.
-     * @example
-     * // Update many Players
-     * const player = await prisma.player.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Players and only return the `playerId`
-     * const playerWithPlayerIdOnly = await prisma.player.updateManyAndReturn({
-     *   select: { playerId: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PlayerUpdateManyAndReturnArgs>(args: SelectSubset<T, PlayerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Player.
-     * @param {PlayerUpsertArgs} args - Arguments to update or create a Player.
-     * @example
-     * // Update or create a Player
-     * const player = await prisma.player.upsert({
-     *   create: {
-     *     // ... data to create a Player
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Player we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PlayerUpsertArgs>(args: SelectSubset<T, PlayerUpsertArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Players.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerCountArgs} args - Arguments to filter Players to count.
-     * @example
-     * // Count the number of Players
-     * const count = await prisma.player.count({
-     *   where: {
-     *     // ... the filter for the Players we want to count
-     *   }
-     * })
-    **/
-    count<T extends PlayerCountArgs>(
-      args?: Subset<T, PlayerCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PlayerCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Player.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PlayerAggregateArgs>(args: Subset<T, PlayerAggregateArgs>): Prisma.PrismaPromise<GetPlayerAggregateType<T>>
-
-    /**
-     * Group by Player.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlayerGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PlayerGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PlayerGroupByArgs['orderBy'] }
-        : { orderBy?: PlayerGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PlayerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlayerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Player model
-   */
-  readonly fields: PlayerFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Player.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PlayerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends Player$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, Player$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Player model
-   */
-  interface PlayerFieldRefs {
-    readonly playerId: FieldRef<"Player", 'BigInt'>
-    readonly userId: FieldRef<"Player", 'BigInt'>
-    readonly nickname: FieldRef<"Player", 'String'>
-    readonly createdAt: FieldRef<"Player", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Player findUnique
-   */
-  export type PlayerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player findUniqueOrThrow
-   */
-  export type PlayerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player findFirst
-   */
-  export type PlayerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Players.
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Players.
-     */
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Player findFirstOrThrow
-   */
-  export type PlayerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Player to fetch.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Players.
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Players.
-     */
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Player findMany
-   */
-  export type PlayerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter, which Players to fetch.
-     */
-    where?: PlayerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Players to fetch.
-     */
-    orderBy?: PlayerOrderByWithRelationInput | PlayerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Players.
-     */
-    cursor?: PlayerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Players from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Players.
-     */
-    skip?: number
-    distinct?: PlayerScalarFieldEnum | PlayerScalarFieldEnum[]
-  }
-
-  /**
-   * Player create
-   */
-  export type PlayerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Player.
-     */
-    data: XOR<PlayerCreateInput, PlayerUncheckedCreateInput>
-  }
-
-  /**
-   * Player createMany
-   */
-  export type PlayerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Players.
-     */
-    data: PlayerCreateManyInput | PlayerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Player createManyAndReturn
-   */
-  export type PlayerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * The data used to create many Players.
-     */
-    data: PlayerCreateManyInput | PlayerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Player update
-   */
-  export type PlayerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Player.
-     */
-    data: XOR<PlayerUpdateInput, PlayerUncheckedUpdateInput>
-    /**
-     * Choose, which Player to update.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player updateMany
-   */
-  export type PlayerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Players.
-     */
-    data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput>
-    /**
-     * Filter which Players to update
-     */
-    where?: PlayerWhereInput
-    /**
-     * Limit how many Players to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Player updateManyAndReturn
-   */
-  export type PlayerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * The data used to update Players.
-     */
-    data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput>
-    /**
-     * Filter which Players to update
-     */
-    where?: PlayerWhereInput
-    /**
-     * Limit how many Players to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Player upsert
-   */
-  export type PlayerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Player to update in case it exists.
-     */
-    where: PlayerWhereUniqueInput
-    /**
-     * In case the Player found by the `where` argument doesn't exist, create a new Player with this data.
-     */
-    create: XOR<PlayerCreateInput, PlayerUncheckedCreateInput>
-    /**
-     * In case the Player was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PlayerUpdateInput, PlayerUncheckedUpdateInput>
-  }
-
-  /**
-   * Player delete
-   */
-  export type PlayerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-    /**
-     * Filter which Player to delete.
-     */
-    where: PlayerWhereUniqueInput
-  }
-
-  /**
-   * Player deleteMany
-   */
-  export type PlayerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Players to delete
-     */
-    where?: PlayerWhereInput
-    /**
-     * Limit how many Players to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Player.sessions
-   */
-  export type Player$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GameSession
-     */
-    select?: GameSessionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GameSession
-     */
-    omit?: GameSessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GameSessionInclude<ExtArgs> | null
-    where?: GameSessionWhereInput
-    orderBy?: GameSessionOrderByWithRelationInput | GameSessionOrderByWithRelationInput[]
-    cursor?: GameSessionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: GameSessionScalarFieldEnum | GameSessionScalarFieldEnum[]
-  }
-
-  /**
-   * Player without action
-   */
-  export type PlayerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Player
-     */
-    select?: PlayerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Player
-     */
-    omit?: PlayerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlayerInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Game
-   */
-
-  export type AggregateGame = {
-    _count: GameCountAggregateOutputType | null
-    _avg: GameAvgAggregateOutputType | null
-    _sum: GameSumAggregateOutputType | null
-    _min: GameMinAggregateOutputType | null
-    _max: GameMaxAggregateOutputType | null
-  }
-
-  export type GameAvgAggregateOutputType = {
-    gameId: number | null
-  }
-
-  export type GameSumAggregateOutputType = {
-    gameId: number | null
-  }
-
-  export type GameMinAggregateOutputType = {
-    gameId: number | null
-    code: string | null
+  export type UserMinAggregateOutputType = {
+    id: string | null
     name: string | null
+    email: string | null
+    emailVerified: Date | null
+    image: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type GameMaxAggregateOutputType = {
-    gameId: number | null
-    code: string | null
+  export type UserMaxAggregateOutputType = {
+    id: string | null
     name: string | null
+    email: string | null
+    emailVerified: Date | null
+    image: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type GameCountAggregateOutputType = {
-    gameId: number
-    code: number
+  export type UserCountAggregateOutputType = {
+    id: number
     name: number
-    config: number
+    email: number
+    emailVerified: number
+    image: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
-  export type GameAvgAggregateInputType = {
-    gameId?: true
-  }
-
-  export type GameSumAggregateInputType = {
-    gameId?: true
-  }
-
-  export type GameMinAggregateInputType = {
-    gameId?: true
-    code?: true
+  export type UserMinAggregateInputType = {
+    id?: true
     name?: true
+    email?: true
+    emailVerified?: true
+    image?: true
     createdAt?: true
+    updatedAt?: true
   }
 
-  export type GameMaxAggregateInputType = {
-    gameId?: true
-    code?: true
+  export type UserMaxAggregateInputType = {
+    id?: true
     name?: true
+    email?: true
+    emailVerified?: true
+    image?: true
     createdAt?: true
+    updatedAt?: true
   }
 
-  export type GameCountAggregateInputType = {
-    gameId?: true
-    code?: true
+  export type UserCountAggregateInputType = {
+    id?: true
     name?: true
-    config?: true
+    email?: true
+    emailVerified?: true
+    image?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
-  export type GameAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Game to aggregate.
+     * Filter which User to aggregate.
      */
-    where?: GameWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Games to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: GameOrderByWithRelationInput | GameOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: GameWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Games from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Games.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Games
+     * Count returned Users
     **/
-    _count?: true | GameCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: GameAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: GameSumAggregateInputType
+    _count?: true | UserCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: GameMinAggregateInputType
+    _min?: UserMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: GameMaxAggregateInputType
+    _max?: UserMaxAggregateInputType
   }
 
-  export type GetGameAggregateType<T extends GameAggregateArgs> = {
-        [P in keyof T & keyof AggregateGame]: P extends '_count' | 'count'
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateGame[P]>
-      : GetScalarType<T[P], AggregateGame[P]>
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
   }
 
 
 
 
-  export type GameGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GameWhereInput
-    orderBy?: GameOrderByWithAggregationInput | GameOrderByWithAggregationInput[]
-    by: GameScalarFieldEnum[] | GameScalarFieldEnum
-    having?: GameScalarWhereWithAggregatesInput
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: GameCountAggregateInputType | true
-    _avg?: GameAvgAggregateInputType
-    _sum?: GameSumAggregateInputType
-    _min?: GameMinAggregateInputType
-    _max?: GameMaxAggregateInputType
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
   }
 
-  export type GameGroupByOutputType = {
-    gameId: number
-    code: string
-    name: string
-    config: JsonValue | null
+  export type UserGroupByOutputType = {
+    id: string
+    name: string | null
+    email: string
+    emailVerified: Date | null
+    image: string | null
     createdAt: Date
-    _count: GameCountAggregateOutputType | null
-    _avg: GameAvgAggregateOutputType | null
-    _sum: GameSumAggregateOutputType | null
-    _min: GameMinAggregateOutputType | null
-    _max: GameMaxAggregateOutputType | null
+    updatedAt: Date
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
   }
 
-  type GetGameGroupByPayload<T extends GameGroupByArgs> = Prisma.PrismaPromise<
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<GameGroupByOutputType, T['by']> &
+      PickEnumerable<UserGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof GameGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], GameGroupByOutputType[P]>
-            : GetScalarType<T[P], GameGroupByOutputType[P]>
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type GameSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    gameId?: boolean
-    code?: boolean
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     name?: boolean
-    config?: boolean
+    email?: boolean
+    emailVerified?: boolean
+    image?: boolean
     createdAt?: boolean
-    sessions?: boolean | Game$sessionsArgs<ExtArgs>
-    _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["game"]>
+    updatedAt?: boolean
+    accounts?: boolean | User$accountsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
+    Authenticator?: boolean | User$AuthenticatorArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
 
-  export type GameSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    gameId?: boolean
-    code?: boolean
+  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     name?: boolean
-    config?: boolean
+    email?: boolean
+    emailVerified?: boolean
+    image?: boolean
     createdAt?: boolean
-  }, ExtArgs["result"]["game"]>
+    updatedAt?: boolean
+  }, ExtArgs["result"]["user"]>
 
-  export type GameSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    gameId?: boolean
-    code?: boolean
+  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     name?: boolean
-    config?: boolean
+    email?: boolean
+    emailVerified?: boolean
+    image?: boolean
     createdAt?: boolean
-  }, ExtArgs["result"]["game"]>
+    updatedAt?: boolean
+  }, ExtArgs["result"]["user"]>
 
-  export type GameSelectScalar = {
-    gameId?: boolean
-    code?: boolean
+  export type UserSelectScalar = {
+    id?: boolean
     name?: boolean
-    config?: boolean
+    email?: boolean
+    emailVerified?: boolean
+    image?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type GameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"gameId" | "code" | "name" | "config" | "createdAt", ExtArgs["result"]["game"]>
-  export type GameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | Game$sessionsArgs<ExtArgs>
-    _count?: boolean | GameCountOutputTypeDefaultArgs<ExtArgs>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    accounts?: boolean | User$accountsArgs<ExtArgs>
+    sessions?: boolean | User$sessionsArgs<ExtArgs>
+    Authenticator?: boolean | User$AuthenticatorArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type GameIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type GameIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $GamePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Game"
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
     objects: {
-      sessions: Prisma.$GameSessionPayload<ExtArgs>[]
+      accounts: Prisma.$AccountPayload<ExtArgs>[]
+      sessions: Prisma.$SessionPayload<ExtArgs>[]
+      Authenticator: Prisma.$AuthenticatorPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      gameId: number
-      code: string
-      name: string
-      config: Prisma.JsonValue | null
+      id: string
+      name: string | null
+      email: string
+      emailVerified: Date | null
+      image: string | null
       createdAt: Date
-    }, ExtArgs["result"]["game"]>
+      updatedAt: Date
+    }, ExtArgs["result"]["user"]>
     composites: {}
   }
 
-  type GameGetPayload<S extends boolean | null | undefined | GameDefaultArgs> = $Result.GetResult<Prisma.$GamePayload, S>
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
-  type GameCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<GameFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: GameCountAggregateInputType | true
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserCountAggregateInputType | true
     }
 
-  export interface GameDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Game'], meta: { name: 'Game' } }
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
-     * Find zero or one Game that matches the filter.
-     * @param {GameFindUniqueArgs} args - Arguments to find a Game
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
      * @example
-     * // Get one Game
-     * const game = await prisma.game.findUnique({
+     * // Get one User
+     * const user = await prisma.user.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends GameFindUniqueArgs>(args: SelectSubset<T, GameFindUniqueArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Game that matches the filter or throw an error with `error.code='P2025'`
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {GameFindUniqueOrThrowArgs} args - Arguments to find a Game
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
      * @example
-     * // Get one Game
-     * const game = await prisma.game.findUniqueOrThrow({
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends GameFindUniqueOrThrowArgs>(args: SelectSubset<T, GameFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Game that matches the filter.
+     * Find the first User that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameFindFirstArgs} args - Arguments to find a Game
+     * @param {UserFindFirstArgs} args - Arguments to find a User
      * @example
-     * // Get one Game
-     * const game = await prisma.game.findFirst({
+     * // Get one User
+     * const user = await prisma.user.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends GameFindFirstArgs>(args?: SelectSubset<T, GameFindFirstArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Game that matches the filter or
+     * Find the first User that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameFindFirstOrThrowArgs} args - Arguments to find a Game
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
      * @example
-     * // Get one Game
-     * const game = await prisma.game.findFirstOrThrow({
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends GameFindFirstOrThrowArgs>(args?: SelectSubset<T, GameFindFirstOrThrowArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Games that matches the filter.
+     * Find zero or more Users that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Games
-     * const games = await prisma.game.findMany()
+     * // Get all Users
+     * const users = await prisma.user.findMany()
      * 
-     * // Get first 10 Games
-     * const games = await prisma.game.findMany({ take: 10 })
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
      * 
-     * // Only select the `gameId`
-     * const gameWithGameIdOnly = await prisma.game.findMany({ select: { gameId: true } })
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends GameFindManyArgs>(args?: SelectSubset<T, GameFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Game.
-     * @param {GameCreateArgs} args - Arguments to create a Game.
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
      * @example
-     * // Create one Game
-     * const Game = await prisma.game.create({
+     * // Create one User
+     * const User = await prisma.user.create({
      *   data: {
-     *     // ... data to create a Game
+     *     // ... data to create a User
      *   }
      * })
      * 
      */
-    create<T extends GameCreateArgs>(args: SelectSubset<T, GameCreateArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Games.
-     * @param {GameCreateManyArgs} args - Arguments to create many Games.
+     * Create many Users.
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
      * @example
-     * // Create many Games
-     * const game = await prisma.game.createMany({
+     * // Create many Users
+     * const user = await prisma.user.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends GameCreateManyArgs>(args?: SelectSubset<T, GameCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Games and returns the data saved in the database.
-     * @param {GameCreateManyAndReturnArgs} args - Arguments to create many Games.
+     * Create many Users and returns the data saved in the database.
+     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
      * @example
-     * // Create many Games
-     * const game = await prisma.game.createManyAndReturn({
+     * // Create many Users
+     * const user = await prisma.user.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Games and only return the `gameId`
-     * const gameWithGameIdOnly = await prisma.game.createManyAndReturn({
-     *   select: { gameId: true },
+     * // Create many Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -2587,28 +1661,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends GameCreateManyAndReturnArgs>(args?: SelectSubset<T, GameCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Game.
-     * @param {GameDeleteArgs} args - Arguments to delete one Game.
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
      * @example
-     * // Delete one Game
-     * const Game = await prisma.game.delete({
+     * // Delete one User
+     * const User = await prisma.user.delete({
      *   where: {
-     *     // ... filter to delete one Game
+     *     // ... filter to delete one User
      *   }
      * })
      * 
      */
-    delete<T extends GameDeleteArgs>(args: SelectSubset<T, GameDeleteArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Game.
-     * @param {GameUpdateArgs} args - Arguments to update one Game.
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
      * @example
-     * // Update one Game
-     * const game = await prisma.game.update({
+     * // Update one User
+     * const user = await prisma.user.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2618,30 +1692,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends GameUpdateArgs>(args: SelectSubset<T, GameUpdateArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Games.
-     * @param {GameDeleteManyArgs} args - Arguments to filter Games to delete.
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
      * @example
-     * // Delete a few Games
-     * const { count } = await prisma.game.deleteMany({
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends GameDeleteManyArgs>(args?: SelectSubset<T, GameDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Games.
+     * Update zero or more Users.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Games
-     * const game = await prisma.game.updateMany({
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2651,14 +1725,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends GameUpdateManyArgs>(args: SelectSubset<T, GameUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Games and returns the data updated in the database.
-     * @param {GameUpdateManyAndReturnArgs} args - Arguments to update many Games.
+     * Update zero or more Users and returns the data updated in the database.
+     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
      * @example
-     * // Update many Games
-     * const game = await prisma.game.updateManyAndReturn({
+     * // Update many Users
+     * const user = await prisma.user.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2667,9 +1741,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Games and only return the `gameId`
-     * const gameWithGameIdOnly = await prisma.game.updateManyAndReturn({
-     *   select: { gameId: true },
+     * // Update zero or more Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2681,56 +1755,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends GameUpdateManyAndReturnArgs>(args: SelectSubset<T, GameUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Game.
-     * @param {GameUpsertArgs} args - Arguments to update or create a Game.
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
      * @example
-     * // Update or create a Game
-     * const game = await prisma.game.upsert({
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
      *   create: {
-     *     // ... data to create a Game
+     *     // ... data to create a User
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Game we want to update
+     *     // ... the filter for the User we want to update
      *   }
      * })
      */
-    upsert<T extends GameUpsertArgs>(args: SelectSubset<T, GameUpsertArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Games.
+     * Count the number of Users.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameCountArgs} args - Arguments to filter Games to count.
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
      * @example
-     * // Count the number of Games
-     * const count = await prisma.game.count({
+     * // Count the number of Users
+     * const count = await prisma.user.count({
      *   where: {
-     *     // ... the filter for the Games we want to count
+     *     // ... the filter for the Users we want to count
      *   }
      * })
     **/
-    count<T extends GameCountArgs>(
-      args?: Subset<T, GameCountArgs>,
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], GameCountAggregateOutputType>
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Game.
+     * Allows you to perform aggregations operations on a User.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2750,13 +1824,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends GameAggregateArgs>(args: Subset<T, GameAggregateArgs>): Prisma.PrismaPromise<GetGameAggregateType<T>>
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
 
     /**
-     * Group by Game.
+     * Group by User.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameGroupByArgs} args - Group by arguments.
+     * @param {UserGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2771,14 +1845,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends GameGroupByArgs,
+      T extends UserGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: GameGroupByArgs['orderBy'] }
-        : { orderBy?: GameGroupByArgs['orderBy'] },
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2827,22 +1901,24 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, GameGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGameGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Game model
+   * Fields of the User model
    */
-  readonly fields: GameFieldRefs;
+  readonly fields: UserFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Game.
+   * The delegate class that acts as a "Promise-like" for User.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__GameClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends Game$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, Game$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Authenticator<T extends User$AuthenticatorArgs<ExtArgs> = {}>(args?: Subset<T, User$AuthenticatorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2869,867 +1945,970 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Game model
+   * Fields of the User model
    */
-  interface GameFieldRefs {
-    readonly gameId: FieldRef<"Game", 'Int'>
-    readonly code: FieldRef<"Game", 'String'>
-    readonly name: FieldRef<"Game", 'String'>
-    readonly config: FieldRef<"Game", 'Json'>
-    readonly createdAt: FieldRef<"Game", 'DateTime'>
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly emailVerified: FieldRef<"User", 'DateTime'>
+    readonly image: FieldRef<"User", 'String'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Game findUnique
+   * User findUnique
    */
-  export type GameFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * Filter, which Game to fetch.
+     * Filter, which User to fetch.
      */
-    where: GameWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Game findUniqueOrThrow
+   * User findUniqueOrThrow
    */
-  export type GameFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * Filter, which Game to fetch.
+     * Filter, which User to fetch.
      */
-    where: GameWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Game findFirst
+   * User findFirst
    */
-  export type GameFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * Filter, which Game to fetch.
+     * Filter, which User to fetch.
      */
-    where?: GameWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Games to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: GameOrderByWithRelationInput | GameOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Games.
+     * Sets the position for searching for Users.
      */
-    cursor?: GameWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Games from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Games.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Games.
+     * Filter by unique combinations of Users.
      */
-    distinct?: GameScalarFieldEnum | GameScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
-   * Game findFirstOrThrow
+   * User findFirstOrThrow
    */
-  export type GameFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * Filter, which Game to fetch.
+     * Filter, which User to fetch.
      */
-    where?: GameWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Games to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: GameOrderByWithRelationInput | GameOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Games.
+     * Sets the position for searching for Users.
      */
-    cursor?: GameWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Games from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Games.
+     * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Games.
+     * Filter by unique combinations of Users.
      */
-    distinct?: GameScalarFieldEnum | GameScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
-   * Game findMany
+   * User findMany
    */
-  export type GameFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * Filter, which Games to fetch.
+     * Filter, which Users to fetch.
      */
-    where?: GameWhereInput
+    where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Games to fetch.
+     * Determine the order of Users to fetch.
      */
-    orderBy?: GameOrderByWithRelationInput | GameOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Games.
+     * Sets the position for listing Users.
      */
-    cursor?: GameWhereUniqueInput
+    cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Games from the position of the cursor.
+     * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Games.
+     * Skip the first `n` Users.
      */
     skip?: number
-    distinct?: GameScalarFieldEnum | GameScalarFieldEnum[]
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
-   * Game create
+   * User create
    */
-  export type GameCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * The data needed to create a Game.
+     * The data needed to create a User.
      */
-    data: XOR<GameCreateInput, GameUncheckedCreateInput>
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
 
   /**
-   * Game createMany
+   * User createMany
    */
-  export type GameCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Games.
+     * The data used to create many Users.
      */
-    data: GameCreateManyInput | GameCreateManyInput[]
+    data: UserCreateManyInput | UserCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Game createManyAndReturn
+   * User createManyAndReturn
    */
-  export type GameCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelectCreateManyAndReturn<ExtArgs> | null
+    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * The data used to create many Games.
+     * The data used to create many Users.
      */
-    data: GameCreateManyInput | GameCreateManyInput[]
+    data: UserCreateManyInput | UserCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Game update
+   * User update
    */
-  export type GameUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * The data needed to update a Game.
+     * The data needed to update a User.
      */
-    data: XOR<GameUpdateInput, GameUncheckedUpdateInput>
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
     /**
-     * Choose, which Game to update.
+     * Choose, which User to update.
      */
-    where: GameWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Game updateMany
+   * User updateMany
    */
-  export type GameUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Games.
+     * The data used to update Users.
      */
-    data: XOR<GameUpdateManyMutationInput, GameUncheckedUpdateManyInput>
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
     /**
-     * Filter which Games to update
+     * Filter which Users to update
      */
-    where?: GameWhereInput
+    where?: UserWhereInput
     /**
-     * Limit how many Games to update.
+     * Limit how many Users to update.
      */
     limit?: number
   }
 
   /**
-   * Game updateManyAndReturn
+   * User updateManyAndReturn
    */
-  export type GameUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
-     * The data used to update Games.
+     * The data used to update Users.
      */
-    data: XOR<GameUpdateManyMutationInput, GameUncheckedUpdateManyInput>
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
     /**
-     * Filter which Games to update
+     * Filter which Users to update
      */
-    where?: GameWhereInput
+    where?: UserWhereInput
     /**
-     * Limit how many Games to update.
+     * Limit how many Users to update.
      */
     limit?: number
   }
 
   /**
-   * Game upsert
+   * User upsert
    */
-  export type GameUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * The filter to search for the Game to update in case it exists.
+     * The filter to search for the User to update in case it exists.
      */
-    where: GameWhereUniqueInput
+    where: UserWhereUniqueInput
     /**
-     * In case the Game found by the `where` argument doesn't exist, create a new Game with this data.
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
      */
-    create: XOR<GameCreateInput, GameUncheckedCreateInput>
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
     /**
-     * In case the Game was found with the provided `where` argument, update it with this data.
+     * In case the User was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<GameUpdateInput, GameUncheckedUpdateInput>
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
   }
 
   /**
-   * Game delete
+   * User delete
    */
-  export type GameDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the User
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: UserSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the User
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: UserInclude<ExtArgs> | null
     /**
-     * Filter which Game to delete.
+     * Filter which User to delete.
      */
-    where: GameWhereUniqueInput
+    where: UserWhereUniqueInput
   }
 
   /**
-   * Game deleteMany
+   * User deleteMany
    */
-  export type GameDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Games to delete
+     * Filter which Users to delete
      */
-    where?: GameWhereInput
+    where?: UserWhereInput
     /**
-     * Limit how many Games to delete.
+     * Limit how many Users to delete.
      */
     limit?: number
   }
 
   /**
-   * Game.sessions
+   * User.accounts
    */
-  export type Game$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
-    where?: GameSessionWhereInput
-    orderBy?: GameSessionOrderByWithRelationInput | GameSessionOrderByWithRelationInput[]
-    cursor?: GameSessionWhereUniqueInput
+    include?: AccountInclude<ExtArgs> | null
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
+    cursor?: AccountWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: GameSessionScalarFieldEnum | GameSessionScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
   /**
-   * Game without action
+   * User.sessions
    */
-  export type GameDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Game
+     * Select specific fields to fetch from the Session
      */
-    select?: GameSelect<ExtArgs> | null
+    select?: SessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Game
+     * Omit specific fields from the Session
      */
-    omit?: GameOmit<ExtArgs> | null
+    omit?: SessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameInclude<ExtArgs> | null
+    include?: SessionInclude<ExtArgs> | null
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    cursor?: SessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * User.Authenticator
+   */
+  export type User$AuthenticatorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    where?: AuthenticatorWhereInput
+    orderBy?: AuthenticatorOrderByWithRelationInput | AuthenticatorOrderByWithRelationInput[]
+    cursor?: AuthenticatorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AuthenticatorScalarFieldEnum | AuthenticatorScalarFieldEnum[]
+  }
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
   /**
-   * Model GameSession
+   * Model Account
    */
 
-  export type AggregateGameSession = {
-    _count: GameSessionCountAggregateOutputType | null
-    _avg: GameSessionAvgAggregateOutputType | null
-    _sum: GameSessionSumAggregateOutputType | null
-    _min: GameSessionMinAggregateOutputType | null
-    _max: GameSessionMaxAggregateOutputType | null
+  export type AggregateAccount = {
+    _count: AccountCountAggregateOutputType | null
+    _avg: AccountAvgAggregateOutputType | null
+    _sum: AccountSumAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
   }
 
-  export type GameSessionAvgAggregateOutputType = {
-    sessionId: number | null
-    playerId: number | null
-    gameId: number | null
-    score: number | null
-    duration: number | null
+  export type AccountAvgAggregateOutputType = {
+    expires_at: number | null
   }
 
-  export type GameSessionSumAggregateOutputType = {
-    sessionId: bigint | null
-    playerId: bigint | null
-    gameId: number | null
-    score: number | null
-    duration: number | null
+  export type AccountSumAggregateOutputType = {
+    expires_at: number | null
   }
 
-  export type GameSessionMinAggregateOutputType = {
-    sessionId: bigint | null
-    playerId: bigint | null
-    gameId: number | null
-    score: number | null
-    duration: number | null
-    playedAt: Date | null
+  export type AccountMinAggregateOutputType = {
+    userId: string | null
+    type: string | null
+    provider: string | null
+    providerAccountId: string | null
+    refresh_token: string | null
+    access_token: string | null
+    expires_at: number | null
+    token_type: string | null
+    scope: string | null
+    id_token: string | null
+    session_state: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type GameSessionMaxAggregateOutputType = {
-    sessionId: bigint | null
-    playerId: bigint | null
-    gameId: number | null
-    score: number | null
-    duration: number | null
-    playedAt: Date | null
+  export type AccountMaxAggregateOutputType = {
+    userId: string | null
+    type: string | null
+    provider: string | null
+    providerAccountId: string | null
+    refresh_token: string | null
+    access_token: string | null
+    expires_at: number | null
+    token_type: string | null
+    scope: string | null
+    id_token: string | null
+    session_state: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type GameSessionCountAggregateOutputType = {
-    sessionId: number
-    playerId: number
-    gameId: number
-    score: number
-    duration: number
-    extra: number
-    playedAt: number
+  export type AccountCountAggregateOutputType = {
+    userId: number
+    type: number
+    provider: number
+    providerAccountId: number
+    refresh_token: number
+    access_token: number
+    expires_at: number
+    token_type: number
+    scope: number
+    id_token: number
+    session_state: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
-  export type GameSessionAvgAggregateInputType = {
-    sessionId?: true
-    playerId?: true
-    gameId?: true
-    score?: true
-    duration?: true
+  export type AccountAvgAggregateInputType = {
+    expires_at?: true
   }
 
-  export type GameSessionSumAggregateInputType = {
-    sessionId?: true
-    playerId?: true
-    gameId?: true
-    score?: true
-    duration?: true
+  export type AccountSumAggregateInputType = {
+    expires_at?: true
   }
 
-  export type GameSessionMinAggregateInputType = {
-    sessionId?: true
-    playerId?: true
-    gameId?: true
-    score?: true
-    duration?: true
-    playedAt?: true
+  export type AccountMinAggregateInputType = {
+    userId?: true
+    type?: true
+    provider?: true
+    providerAccountId?: true
+    refresh_token?: true
+    access_token?: true
+    expires_at?: true
+    token_type?: true
+    scope?: true
+    id_token?: true
+    session_state?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type GameSessionMaxAggregateInputType = {
-    sessionId?: true
-    playerId?: true
-    gameId?: true
-    score?: true
-    duration?: true
-    playedAt?: true
+  export type AccountMaxAggregateInputType = {
+    userId?: true
+    type?: true
+    provider?: true
+    providerAccountId?: true
+    refresh_token?: true
+    access_token?: true
+    expires_at?: true
+    token_type?: true
+    scope?: true
+    id_token?: true
+    session_state?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
-  export type GameSessionCountAggregateInputType = {
-    sessionId?: true
-    playerId?: true
-    gameId?: true
-    score?: true
-    duration?: true
-    extra?: true
-    playedAt?: true
+  export type AccountCountAggregateInputType = {
+    userId?: true
+    type?: true
+    provider?: true
+    providerAccountId?: true
+    refresh_token?: true
+    access_token?: true
+    expires_at?: true
+    token_type?: true
+    scope?: true
+    id_token?: true
+    session_state?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
-  export type GameSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which GameSession to aggregate.
+     * Filter which Account to aggregate.
      */
-    where?: GameSessionWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of GameSessions to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: GameSessionOrderByWithRelationInput | GameSessionOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: GameSessionWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` GameSessions from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` GameSessions.
+     * Skip the first `n` Accounts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned GameSessions
+     * Count returned Accounts
     **/
-    _count?: true | GameSessionCountAggregateInputType
+    _count?: true | AccountCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: GameSessionAvgAggregateInputType
+    _avg?: AccountAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: GameSessionSumAggregateInputType
+    _sum?: AccountSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: GameSessionMinAggregateInputType
+    _min?: AccountMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: GameSessionMaxAggregateInputType
+    _max?: AccountMaxAggregateInputType
   }
 
-  export type GetGameSessionAggregateType<T extends GameSessionAggregateArgs> = {
-        [P in keyof T & keyof AggregateGameSession]: P extends '_count' | 'count'
+  export type GetAccountAggregateType<T extends AccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccount]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateGameSession[P]>
-      : GetScalarType<T[P], AggregateGameSession[P]>
+        : GetScalarType<T[P], AggregateAccount[P]>
+      : GetScalarType<T[P], AggregateAccount[P]>
   }
 
 
 
 
-  export type GameSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GameSessionWhereInput
-    orderBy?: GameSessionOrderByWithAggregationInput | GameSessionOrderByWithAggregationInput[]
-    by: GameSessionScalarFieldEnum[] | GameSessionScalarFieldEnum
-    having?: GameSessionScalarWhereWithAggregatesInput
+  export type AccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccountWhereInput
+    orderBy?: AccountOrderByWithAggregationInput | AccountOrderByWithAggregationInput[]
+    by: AccountScalarFieldEnum[] | AccountScalarFieldEnum
+    having?: AccountScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: GameSessionCountAggregateInputType | true
-    _avg?: GameSessionAvgAggregateInputType
-    _sum?: GameSessionSumAggregateInputType
-    _min?: GameSessionMinAggregateInputType
-    _max?: GameSessionMaxAggregateInputType
+    _count?: AccountCountAggregateInputType | true
+    _avg?: AccountAvgAggregateInputType
+    _sum?: AccountSumAggregateInputType
+    _min?: AccountMinAggregateInputType
+    _max?: AccountMaxAggregateInputType
   }
 
-  export type GameSessionGroupByOutputType = {
-    sessionId: bigint
-    playerId: bigint
-    gameId: number
-    score: number
-    duration: number
-    extra: JsonValue | null
-    playedAt: Date
-    _count: GameSessionCountAggregateOutputType | null
-    _avg: GameSessionAvgAggregateOutputType | null
-    _sum: GameSessionSumAggregateOutputType | null
-    _min: GameSessionMinAggregateOutputType | null
-    _max: GameSessionMaxAggregateOutputType | null
+  export type AccountGroupByOutputType = {
+    userId: string
+    type: string
+    provider: string
+    providerAccountId: string
+    refresh_token: string | null
+    access_token: string | null
+    expires_at: number | null
+    token_type: string | null
+    scope: string | null
+    id_token: string | null
+    session_state: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: AccountCountAggregateOutputType | null
+    _avg: AccountAvgAggregateOutputType | null
+    _sum: AccountSumAggregateOutputType | null
+    _min: AccountMinAggregateOutputType | null
+    _max: AccountMaxAggregateOutputType | null
   }
 
-  type GetGameSessionGroupByPayload<T extends GameSessionGroupByArgs> = Prisma.PrismaPromise<
+  type GetAccountGroupByPayload<T extends AccountGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<GameSessionGroupByOutputType, T['by']> &
+      PickEnumerable<AccountGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof GameSessionGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof AccountGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], GameSessionGroupByOutputType[P]>
-            : GetScalarType<T[P], GameSessionGroupByOutputType[P]>
+              : GetScalarType<T[P], AccountGroupByOutputType[P]>
+            : GetScalarType<T[P], AccountGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type GameSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    sessionId?: boolean
-    playerId?: boolean
-    gameId?: boolean
-    score?: boolean
-    duration?: boolean
-    extra?: boolean
-    playedAt?: boolean
-    player?: boolean | PlayerDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["gameSession"]>
+  export type AccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    type?: boolean
+    provider?: boolean
+    providerAccountId?: boolean
+    refresh_token?: boolean
+    access_token?: boolean
+    expires_at?: boolean
+    token_type?: boolean
+    scope?: boolean
+    id_token?: boolean
+    session_state?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
 
-  export type GameSessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    sessionId?: boolean
-    playerId?: boolean
-    gameId?: boolean
-    score?: boolean
-    duration?: boolean
-    extra?: boolean
-    playedAt?: boolean
-    player?: boolean | PlayerDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["gameSession"]>
+  export type AccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    type?: boolean
+    provider?: boolean
+    providerAccountId?: boolean
+    refresh_token?: boolean
+    access_token?: boolean
+    expires_at?: boolean
+    token_type?: boolean
+    scope?: boolean
+    id_token?: boolean
+    session_state?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
 
-  export type GameSessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    sessionId?: boolean
-    playerId?: boolean
-    gameId?: boolean
-    score?: boolean
-    duration?: boolean
-    extra?: boolean
-    playedAt?: boolean
-    player?: boolean | PlayerDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["gameSession"]>
+  export type AccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    type?: boolean
+    provider?: boolean
+    providerAccountId?: boolean
+    refresh_token?: boolean
+    access_token?: boolean
+    expires_at?: boolean
+    token_type?: boolean
+    scope?: boolean
+    id_token?: boolean
+    session_state?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["account"]>
 
-  export type GameSessionSelectScalar = {
-    sessionId?: boolean
-    playerId?: boolean
-    gameId?: boolean
-    score?: boolean
-    duration?: boolean
-    extra?: boolean
-    playedAt?: boolean
+  export type AccountSelectScalar = {
+    userId?: boolean
+    type?: boolean
+    provider?: boolean
+    providerAccountId?: boolean
+    refresh_token?: boolean
+    access_token?: boolean
+    expires_at?: boolean
+    token_type?: boolean
+    scope?: boolean
+    id_token?: boolean
+    session_state?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type GameSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"sessionId" | "playerId" | "gameId" | "score" | "duration" | "extra" | "playedAt", ExtArgs["result"]["gameSession"]>
-  export type GameSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    player?: boolean | PlayerDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
+  export type AccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "type" | "provider" | "providerAccountId" | "refresh_token" | "access_token" | "expires_at" | "token_type" | "scope" | "id_token" | "session_state" | "createdAt" | "updatedAt", ExtArgs["result"]["account"]>
+  export type AccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type GameSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    player?: boolean | PlayerDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
+  export type AccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type GameSessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    player?: boolean | PlayerDefaultArgs<ExtArgs>
-    game?: boolean | GameDefaultArgs<ExtArgs>
+  export type AccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $GameSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "GameSession"
+  export type $AccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Account"
     objects: {
-      player: Prisma.$PlayerPayload<ExtArgs>
-      game: Prisma.$GamePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      sessionId: bigint
-      playerId: bigint
-      gameId: number
-      score: number
-      duration: number
-      extra: Prisma.JsonValue | null
-      playedAt: Date
-    }, ExtArgs["result"]["gameSession"]>
+      userId: string
+      type: string
+      provider: string
+      providerAccountId: string
+      refresh_token: string | null
+      access_token: string | null
+      expires_at: number | null
+      token_type: string | null
+      scope: string | null
+      id_token: string | null
+      session_state: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["account"]>
     composites: {}
   }
 
-  type GameSessionGetPayload<S extends boolean | null | undefined | GameSessionDefaultArgs> = $Result.GetResult<Prisma.$GameSessionPayload, S>
+  type AccountGetPayload<S extends boolean | null | undefined | AccountDefaultArgs> = $Result.GetResult<Prisma.$AccountPayload, S>
 
-  type GameSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<GameSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: GameSessionCountAggregateInputType | true
+  type AccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AccountCountAggregateInputType | true
     }
 
-  export interface GameSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GameSession'], meta: { name: 'GameSession' } }
+  export interface AccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Account'], meta: { name: 'Account' } }
     /**
-     * Find zero or one GameSession that matches the filter.
-     * @param {GameSessionFindUniqueArgs} args - Arguments to find a GameSession
+     * Find zero or one Account that matches the filter.
+     * @param {AccountFindUniqueArgs} args - Arguments to find a Account
      * @example
-     * // Get one GameSession
-     * const gameSession = await prisma.gameSession.findUnique({
+     * // Get one Account
+     * const account = await prisma.account.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends GameSessionFindUniqueArgs>(args: SelectSubset<T, GameSessionFindUniqueArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends AccountFindUniqueArgs>(args: SelectSubset<T, AccountFindUniqueArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one GameSession that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Account that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {GameSessionFindUniqueOrThrowArgs} args - Arguments to find a GameSession
+     * @param {AccountFindUniqueOrThrowArgs} args - Arguments to find a Account
      * @example
-     * // Get one GameSession
-     * const gameSession = await prisma.gameSession.findUniqueOrThrow({
+     * // Get one Account
+     * const account = await prisma.account.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends GameSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, GameSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends AccountFindUniqueOrThrowArgs>(args: SelectSubset<T, AccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first GameSession that matches the filter.
+     * Find the first Account that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameSessionFindFirstArgs} args - Arguments to find a GameSession
+     * @param {AccountFindFirstArgs} args - Arguments to find a Account
      * @example
-     * // Get one GameSession
-     * const gameSession = await prisma.gameSession.findFirst({
+     * // Get one Account
+     * const account = await prisma.account.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends GameSessionFindFirstArgs>(args?: SelectSubset<T, GameSessionFindFirstArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends AccountFindFirstArgs>(args?: SelectSubset<T, AccountFindFirstArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first GameSession that matches the filter or
+     * Find the first Account that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameSessionFindFirstOrThrowArgs} args - Arguments to find a GameSession
+     * @param {AccountFindFirstOrThrowArgs} args - Arguments to find a Account
      * @example
-     * // Get one GameSession
-     * const gameSession = await prisma.gameSession.findFirstOrThrow({
+     * // Get one Account
+     * const account = await prisma.account.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends GameSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, GameSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends AccountFindFirstOrThrowArgs>(args?: SelectSubset<T, AccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more GameSessions that matches the filter.
+     * Find zero or more Accounts that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameSessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {AccountFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all GameSessions
-     * const gameSessions = await prisma.gameSession.findMany()
+     * // Get all Accounts
+     * const accounts = await prisma.account.findMany()
      * 
-     * // Get first 10 GameSessions
-     * const gameSessions = await prisma.gameSession.findMany({ take: 10 })
+     * // Get first 10 Accounts
+     * const accounts = await prisma.account.findMany({ take: 10 })
      * 
-     * // Only select the `sessionId`
-     * const gameSessionWithSessionIdOnly = await prisma.gameSession.findMany({ select: { sessionId: true } })
+     * // Only select the `userId`
+     * const accountWithUserIdOnly = await prisma.account.findMany({ select: { userId: true } })
      * 
      */
-    findMany<T extends GameSessionFindManyArgs>(args?: SelectSubset<T, GameSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends AccountFindManyArgs>(args?: SelectSubset<T, AccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a GameSession.
-     * @param {GameSessionCreateArgs} args - Arguments to create a GameSession.
+     * Create a Account.
+     * @param {AccountCreateArgs} args - Arguments to create a Account.
      * @example
-     * // Create one GameSession
-     * const GameSession = await prisma.gameSession.create({
+     * // Create one Account
+     * const Account = await prisma.account.create({
      *   data: {
-     *     // ... data to create a GameSession
+     *     // ... data to create a Account
      *   }
      * })
      * 
      */
-    create<T extends GameSessionCreateArgs>(args: SelectSubset<T, GameSessionCreateArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends AccountCreateArgs>(args: SelectSubset<T, AccountCreateArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many GameSessions.
-     * @param {GameSessionCreateManyArgs} args - Arguments to create many GameSessions.
+     * Create many Accounts.
+     * @param {AccountCreateManyArgs} args - Arguments to create many Accounts.
      * @example
-     * // Create many GameSessions
-     * const gameSession = await prisma.gameSession.createMany({
+     * // Create many Accounts
+     * const account = await prisma.account.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends GameSessionCreateManyArgs>(args?: SelectSubset<T, GameSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends AccountCreateManyArgs>(args?: SelectSubset<T, AccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many GameSessions and returns the data saved in the database.
-     * @param {GameSessionCreateManyAndReturnArgs} args - Arguments to create many GameSessions.
+     * Create many Accounts and returns the data saved in the database.
+     * @param {AccountCreateManyAndReturnArgs} args - Arguments to create many Accounts.
      * @example
-     * // Create many GameSessions
-     * const gameSession = await prisma.gameSession.createManyAndReturn({
+     * // Create many Accounts
+     * const account = await prisma.account.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many GameSessions and only return the `sessionId`
-     * const gameSessionWithSessionIdOnly = await prisma.gameSession.createManyAndReturn({
-     *   select: { sessionId: true },
+     * // Create many Accounts and only return the `userId`
+     * const accountWithUserIdOnly = await prisma.account.createManyAndReturn({
+     *   select: { userId: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -3738,28 +2917,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends GameSessionCreateManyAndReturnArgs>(args?: SelectSubset<T, GameSessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends AccountCreateManyAndReturnArgs>(args?: SelectSubset<T, AccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a GameSession.
-     * @param {GameSessionDeleteArgs} args - Arguments to delete one GameSession.
+     * Delete a Account.
+     * @param {AccountDeleteArgs} args - Arguments to delete one Account.
      * @example
-     * // Delete one GameSession
-     * const GameSession = await prisma.gameSession.delete({
+     * // Delete one Account
+     * const Account = await prisma.account.delete({
      *   where: {
-     *     // ... filter to delete one GameSession
+     *     // ... filter to delete one Account
      *   }
      * })
      * 
      */
-    delete<T extends GameSessionDeleteArgs>(args: SelectSubset<T, GameSessionDeleteArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends AccountDeleteArgs>(args: SelectSubset<T, AccountDeleteArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one GameSession.
-     * @param {GameSessionUpdateArgs} args - Arguments to update one GameSession.
+     * Update one Account.
+     * @param {AccountUpdateArgs} args - Arguments to update one Account.
      * @example
-     * // Update one GameSession
-     * const gameSession = await prisma.gameSession.update({
+     * // Update one Account
+     * const account = await prisma.account.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3769,30 +2948,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends GameSessionUpdateArgs>(args: SelectSubset<T, GameSessionUpdateArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends AccountUpdateArgs>(args: SelectSubset<T, AccountUpdateArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more GameSessions.
-     * @param {GameSessionDeleteManyArgs} args - Arguments to filter GameSessions to delete.
+     * Delete zero or more Accounts.
+     * @param {AccountDeleteManyArgs} args - Arguments to filter Accounts to delete.
      * @example
-     * // Delete a few GameSessions
-     * const { count } = await prisma.gameSession.deleteMany({
+     * // Delete a few Accounts
+     * const { count } = await prisma.account.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends GameSessionDeleteManyArgs>(args?: SelectSubset<T, GameSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends AccountDeleteManyArgs>(args?: SelectSubset<T, AccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more GameSessions.
+     * Update zero or more Accounts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameSessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {AccountUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many GameSessions
-     * const gameSession = await prisma.gameSession.updateMany({
+     * // Update many Accounts
+     * const account = await prisma.account.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3802,14 +2981,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends GameSessionUpdateManyArgs>(args: SelectSubset<T, GameSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends AccountUpdateManyArgs>(args: SelectSubset<T, AccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more GameSessions and returns the data updated in the database.
-     * @param {GameSessionUpdateManyAndReturnArgs} args - Arguments to update many GameSessions.
+     * Update zero or more Accounts and returns the data updated in the database.
+     * @param {AccountUpdateManyAndReturnArgs} args - Arguments to update many Accounts.
      * @example
-     * // Update many GameSessions
-     * const gameSession = await prisma.gameSession.updateManyAndReturn({
+     * // Update many Accounts
+     * const account = await prisma.account.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3818,9 +2997,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more GameSessions and only return the `sessionId`
-     * const gameSessionWithSessionIdOnly = await prisma.gameSession.updateManyAndReturn({
-     *   select: { sessionId: true },
+     * // Update zero or more Accounts and only return the `userId`
+     * const accountWithUserIdOnly = await prisma.account.updateManyAndReturn({
+     *   select: { userId: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3832,56 +3011,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends GameSessionUpdateManyAndReturnArgs>(args: SelectSubset<T, GameSessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends AccountUpdateManyAndReturnArgs>(args: SelectSubset<T, AccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one GameSession.
-     * @param {GameSessionUpsertArgs} args - Arguments to update or create a GameSession.
+     * Create or update one Account.
+     * @param {AccountUpsertArgs} args - Arguments to update or create a Account.
      * @example
-     * // Update or create a GameSession
-     * const gameSession = await prisma.gameSession.upsert({
+     * // Update or create a Account
+     * const account = await prisma.account.upsert({
      *   create: {
-     *     // ... data to create a GameSession
+     *     // ... data to create a Account
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the GameSession we want to update
+     *     // ... the filter for the Account we want to update
      *   }
      * })
      */
-    upsert<T extends GameSessionUpsertArgs>(args: SelectSubset<T, GameSessionUpsertArgs<ExtArgs>>): Prisma__GameSessionClient<$Result.GetResult<Prisma.$GameSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends AccountUpsertArgs>(args: SelectSubset<T, AccountUpsertArgs<ExtArgs>>): Prisma__AccountClient<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of GameSessions.
+     * Count the number of Accounts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameSessionCountArgs} args - Arguments to filter GameSessions to count.
+     * @param {AccountCountArgs} args - Arguments to filter Accounts to count.
      * @example
-     * // Count the number of GameSessions
-     * const count = await prisma.gameSession.count({
+     * // Count the number of Accounts
+     * const count = await prisma.account.count({
      *   where: {
-     *     // ... the filter for the GameSessions we want to count
+     *     // ... the filter for the Accounts we want to count
      *   }
      * })
     **/
-    count<T extends GameSessionCountArgs>(
-      args?: Subset<T, GameSessionCountArgs>,
+    count<T extends AccountCountArgs>(
+      args?: Subset<T, AccountCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], GameSessionCountAggregateOutputType>
+          : GetScalarType<T['select'], AccountCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a GameSession.
+     * Allows you to perform aggregations operations on a Account.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {AccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3901,13 +3080,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends GameSessionAggregateArgs>(args: Subset<T, GameSessionAggregateArgs>): Prisma.PrismaPromise<GetGameSessionAggregateType<T>>
+    aggregate<T extends AccountAggregateArgs>(args: Subset<T, AccountAggregateArgs>): Prisma.PrismaPromise<GetAccountAggregateType<T>>
 
     /**
-     * Group by GameSession.
+     * Group by Account.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GameSessionGroupByArgs} args - Group by arguments.
+     * @param {AccountGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3922,14 +3101,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends GameSessionGroupByArgs,
+      T extends AccountGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: GameSessionGroupByArgs['orderBy'] }
-        : { orderBy?: GameSessionGroupByArgs['orderBy'] },
+        ? { orderBy: AccountGroupByArgs['orderBy'] }
+        : { orderBy?: AccountGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3978,23 +3157,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, GameSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGameSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, AccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the GameSession model
+   * Fields of the Account model
    */
-  readonly fields: GameSessionFieldRefs;
+  readonly fields: AccountFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for GameSession.
+   * The delegate class that acts as a "Promise-like" for Account.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__GameSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__AccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    player<T extends PlayerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlayerDefaultArgs<ExtArgs>>): Prisma__PlayerClient<$Result.GetResult<Prisma.$PlayerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    game<T extends GameDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GameDefaultArgs<ExtArgs>>): Prisma__GameClient<$Result.GetResult<Prisma.$GamePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4021,427 +3199,3591 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the GameSession model
+   * Fields of the Account model
    */
-  interface GameSessionFieldRefs {
-    readonly sessionId: FieldRef<"GameSession", 'BigInt'>
-    readonly playerId: FieldRef<"GameSession", 'BigInt'>
-    readonly gameId: FieldRef<"GameSession", 'Int'>
-    readonly score: FieldRef<"GameSession", 'Int'>
-    readonly duration: FieldRef<"GameSession", 'Int'>
-    readonly extra: FieldRef<"GameSession", 'Json'>
-    readonly playedAt: FieldRef<"GameSession", 'DateTime'>
+  interface AccountFieldRefs {
+    readonly userId: FieldRef<"Account", 'String'>
+    readonly type: FieldRef<"Account", 'String'>
+    readonly provider: FieldRef<"Account", 'String'>
+    readonly providerAccountId: FieldRef<"Account", 'String'>
+    readonly refresh_token: FieldRef<"Account", 'String'>
+    readonly access_token: FieldRef<"Account", 'String'>
+    readonly expires_at: FieldRef<"Account", 'Int'>
+    readonly token_type: FieldRef<"Account", 'String'>
+    readonly scope: FieldRef<"Account", 'String'>
+    readonly id_token: FieldRef<"Account", 'String'>
+    readonly session_state: FieldRef<"Account", 'String'>
+    readonly createdAt: FieldRef<"Account", 'DateTime'>
+    readonly updatedAt: FieldRef<"Account", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * GameSession findUnique
+   * Account findUnique
    */
-  export type GameSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which GameSession to fetch.
+     * Filter, which Account to fetch.
      */
-    where: GameSessionWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
   /**
-   * GameSession findUniqueOrThrow
+   * Account findUniqueOrThrow
    */
-  export type GameSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which GameSession to fetch.
+     * Filter, which Account to fetch.
      */
-    where: GameSessionWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
   /**
-   * GameSession findFirst
+   * Account findFirst
    */
-  export type GameSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which GameSession to fetch.
+     * Filter, which Account to fetch.
      */
-    where?: GameSessionWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of GameSessions to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: GameSessionOrderByWithRelationInput | GameSessionOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for GameSessions.
+     * Sets the position for searching for Accounts.
      */
-    cursor?: GameSessionWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` GameSessions from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` GameSessions.
+     * Skip the first `n` Accounts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of GameSessions.
+     * Filter by unique combinations of Accounts.
      */
-    distinct?: GameSessionScalarFieldEnum | GameSessionScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
   /**
-   * GameSession findFirstOrThrow
+   * Account findFirstOrThrow
    */
-  export type GameSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which GameSession to fetch.
+     * Filter, which Account to fetch.
      */
-    where?: GameSessionWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of GameSessions to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: GameSessionOrderByWithRelationInput | GameSessionOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for GameSessions.
+     * Sets the position for searching for Accounts.
      */
-    cursor?: GameSessionWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` GameSessions from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` GameSessions.
+     * Skip the first `n` Accounts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of GameSessions.
+     * Filter by unique combinations of Accounts.
      */
-    distinct?: GameSessionScalarFieldEnum | GameSessionScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
   /**
-   * GameSession findMany
+   * Account findMany
    */
-  export type GameSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter, which GameSessions to fetch.
+     * Filter, which Accounts to fetch.
      */
-    where?: GameSessionWhereInput
+    where?: AccountWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of GameSessions to fetch.
+     * Determine the order of Accounts to fetch.
      */
-    orderBy?: GameSessionOrderByWithRelationInput | GameSessionOrderByWithRelationInput[]
+    orderBy?: AccountOrderByWithRelationInput | AccountOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing GameSessions.
+     * Sets the position for listing Accounts.
      */
-    cursor?: GameSessionWhereUniqueInput
+    cursor?: AccountWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` GameSessions from the position of the cursor.
+     * Take `±n` Accounts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` GameSessions.
+     * Skip the first `n` Accounts.
      */
     skip?: number
-    distinct?: GameSessionScalarFieldEnum | GameSessionScalarFieldEnum[]
+    distinct?: AccountScalarFieldEnum | AccountScalarFieldEnum[]
   }
 
   /**
-   * GameSession create
+   * Account create
    */
-  export type GameSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * The data needed to create a GameSession.
+     * The data needed to create a Account.
      */
-    data: XOR<GameSessionCreateInput, GameSessionUncheckedCreateInput>
+    data: XOR<AccountCreateInput, AccountUncheckedCreateInput>
   }
 
   /**
-   * GameSession createMany
+   * Account createMany
    */
-  export type GameSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many GameSessions.
+     * The data used to create many Accounts.
      */
-    data: GameSessionCreateManyInput | GameSessionCreateManyInput[]
+    data: AccountCreateManyInput | AccountCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * GameSession createManyAndReturn
+   * Account createManyAndReturn
    */
-  export type GameSessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelectCreateManyAndReturn<ExtArgs> | null
+    select?: AccountSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
-     * The data used to create many GameSessions.
+     * The data used to create many Accounts.
      */
-    data: GameSessionCreateManyInput | GameSessionCreateManyInput[]
+    data: AccountCreateManyInput | AccountCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: AccountIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * GameSession update
+   * Account update
    */
-  export type GameSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * The data needed to update a GameSession.
+     * The data needed to update a Account.
      */
-    data: XOR<GameSessionUpdateInput, GameSessionUncheckedUpdateInput>
+    data: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
     /**
-     * Choose, which GameSession to update.
+     * Choose, which Account to update.
      */
-    where: GameSessionWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
   /**
-   * GameSession updateMany
+   * Account updateMany
    */
-  export type GameSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update GameSessions.
+     * The data used to update Accounts.
      */
-    data: XOR<GameSessionUpdateManyMutationInput, GameSessionUncheckedUpdateManyInput>
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
     /**
-     * Filter which GameSessions to update
+     * Filter which Accounts to update
      */
-    where?: GameSessionWhereInput
+    where?: AccountWhereInput
     /**
-     * Limit how many GameSessions to update.
+     * Limit how many Accounts to update.
      */
     limit?: number
   }
 
   /**
-   * GameSession updateManyAndReturn
+   * Account updateManyAndReturn
    */
-  export type GameSessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: AccountSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
-     * The data used to update GameSessions.
+     * The data used to update Accounts.
      */
-    data: XOR<GameSessionUpdateManyMutationInput, GameSessionUncheckedUpdateManyInput>
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyInput>
     /**
-     * Filter which GameSessions to update
+     * Filter which Accounts to update
      */
-    where?: GameSessionWhereInput
+    where?: AccountWhereInput
     /**
-     * Limit how many GameSessions to update.
+     * Limit how many Accounts to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: AccountIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * GameSession upsert
+   * Account upsert
    */
-  export type GameSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * The filter to search for the GameSession to update in case it exists.
+     * The filter to search for the Account to update in case it exists.
      */
-    where: GameSessionWhereUniqueInput
+    where: AccountWhereUniqueInput
     /**
-     * In case the GameSession found by the `where` argument doesn't exist, create a new GameSession with this data.
+     * In case the Account found by the `where` argument doesn't exist, create a new Account with this data.
      */
-    create: XOR<GameSessionCreateInput, GameSessionUncheckedCreateInput>
+    create: XOR<AccountCreateInput, AccountUncheckedCreateInput>
     /**
-     * In case the GameSession was found with the provided `where` argument, update it with this data.
+     * In case the Account was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<GameSessionUpdateInput, GameSessionUncheckedUpdateInput>
+    update: XOR<AccountUpdateInput, AccountUncheckedUpdateInput>
   }
 
   /**
-   * GameSession delete
+   * Account delete
    */
-  export type GameSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
     /**
-     * Filter which GameSession to delete.
+     * Filter which Account to delete.
      */
-    where: GameSessionWhereUniqueInput
+    where: AccountWhereUniqueInput
   }
 
   /**
-   * GameSession deleteMany
+   * Account deleteMany
    */
-  export type GameSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which GameSessions to delete
+     * Filter which Accounts to delete
      */
-    where?: GameSessionWhereInput
+    where?: AccountWhereInput
     /**
-     * Limit how many GameSessions to delete.
+     * Limit how many Accounts to delete.
      */
     limit?: number
   }
 
   /**
-   * GameSession without action
+   * Account without action
    */
-  export type GameSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type AccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GameSession
+     * Select specific fields to fetch from the Account
      */
-    select?: GameSessionSelect<ExtArgs> | null
+    select?: AccountSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GameSession
+     * Omit specific fields from the Account
      */
-    omit?: GameSessionOmit<ExtArgs> | null
+    omit?: AccountOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GameSessionInclude<ExtArgs> | null
+    include?: AccountInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Session
+   */
+
+  export type AggregateSession = {
+    _count: SessionCountAggregateOutputType | null
+    _min: SessionMinAggregateOutputType | null
+    _max: SessionMaxAggregateOutputType | null
+  }
+
+  export type SessionMinAggregateOutputType = {
+    sessionToken: string | null
+    userId: string | null
+    expires: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SessionMaxAggregateOutputType = {
+    sessionToken: string | null
+    userId: string | null
+    expires: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SessionCountAggregateOutputType = {
+    sessionToken: number
+    userId: number
+    expires: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SessionMinAggregateInputType = {
+    sessionToken?: true
+    userId?: true
+    expires?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SessionMaxAggregateInputType = {
+    sessionToken?: true
+    userId?: true
+    expires?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SessionCountAggregateInputType = {
+    sessionToken?: true
+    userId?: true
+    expires?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Session to aggregate.
+     */
+    where?: SessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sessions to fetch.
+     */
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Sessions
+    **/
+    _count?: true | SessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SessionMaxAggregateInputType
+  }
+
+  export type GetSessionAggregateType<T extends SessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSession[P]>
+      : GetScalarType<T[P], AggregateSession[P]>
+  }
+
+
+
+
+  export type SessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionWhereInput
+    orderBy?: SessionOrderByWithAggregationInput | SessionOrderByWithAggregationInput[]
+    by: SessionScalarFieldEnum[] | SessionScalarFieldEnum
+    having?: SessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SessionCountAggregateInputType | true
+    _min?: SessionMinAggregateInputType
+    _max?: SessionMaxAggregateInputType
+  }
+
+  export type SessionGroupByOutputType = {
+    sessionToken: string
+    userId: string
+    expires: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: SessionCountAggregateOutputType | null
+    _min: SessionMinAggregateOutputType | null
+    _max: SessionMaxAggregateOutputType | null
+  }
+
+  type GetSessionGroupByPayload<T extends SessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SessionGroupByOutputType[P]>
+            : GetScalarType<T[P], SessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    sessionToken?: boolean
+    userId?: boolean
+    expires?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
+
+  export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    sessionToken?: boolean
+    userId?: boolean
+    expires?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
+
+  export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    sessionToken?: boolean
+    userId?: boolean
+    expires?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["session"]>
+
+  export type SessionSelectScalar = {
+    sessionToken?: boolean
+    userId?: boolean
+    expires?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"sessionToken" | "userId" | "expires" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
+  export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type SessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $SessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Session"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      sessionToken: string
+      userId: string
+      expires: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["session"]>
+    composites: {}
+  }
+
+  type SessionGetPayload<S extends boolean | null | undefined | SessionDefaultArgs> = $Result.GetResult<Prisma.$SessionPayload, S>
+
+  type SessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SessionCountAggregateInputType | true
+    }
+
+  export interface SessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Session'], meta: { name: 'Session' } }
+    /**
+     * Find zero or one Session that matches the filter.
+     * @param {SessionFindUniqueArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SessionFindUniqueArgs>(args: SelectSubset<T, SessionFindUniqueArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Session that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SessionFindUniqueOrThrowArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SessionFindUniqueOrThrowArgs>(args: SelectSubset<T, SessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Session that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionFindFirstArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SessionFindFirstArgs>(args?: SelectSubset<T, SessionFindFirstArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Session that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionFindFirstOrThrowArgs} args - Arguments to find a Session
+     * @example
+     * // Get one Session
+     * const session = await prisma.session.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SessionFindFirstOrThrowArgs>(args?: SelectSubset<T, SessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sessions
+     * const sessions = await prisma.session.findMany()
+     * 
+     * // Get first 10 Sessions
+     * const sessions = await prisma.session.findMany({ take: 10 })
+     * 
+     * // Only select the `sessionToken`
+     * const sessionWithSessionTokenOnly = await prisma.session.findMany({ select: { sessionToken: true } })
+     * 
+     */
+    findMany<T extends SessionFindManyArgs>(args?: SelectSubset<T, SessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Session.
+     * @param {SessionCreateArgs} args - Arguments to create a Session.
+     * @example
+     * // Create one Session
+     * const Session = await prisma.session.create({
+     *   data: {
+     *     // ... data to create a Session
+     *   }
+     * })
+     * 
+     */
+    create<T extends SessionCreateArgs>(args: SelectSubset<T, SessionCreateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sessions.
+     * @param {SessionCreateManyArgs} args - Arguments to create many Sessions.
+     * @example
+     * // Create many Sessions
+     * const session = await prisma.session.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SessionCreateManyArgs>(args?: SelectSubset<T, SessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Sessions and returns the data saved in the database.
+     * @param {SessionCreateManyAndReturnArgs} args - Arguments to create many Sessions.
+     * @example
+     * // Create many Sessions
+     * const session = await prisma.session.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Sessions and only return the `sessionToken`
+     * const sessionWithSessionTokenOnly = await prisma.session.createManyAndReturn({
+     *   select: { sessionToken: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SessionCreateManyAndReturnArgs>(args?: SelectSubset<T, SessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Session.
+     * @param {SessionDeleteArgs} args - Arguments to delete one Session.
+     * @example
+     * // Delete one Session
+     * const Session = await prisma.session.delete({
+     *   where: {
+     *     // ... filter to delete one Session
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SessionDeleteArgs>(args: SelectSubset<T, SessionDeleteArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Session.
+     * @param {SessionUpdateArgs} args - Arguments to update one Session.
+     * @example
+     * // Update one Session
+     * const session = await prisma.session.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SessionUpdateArgs>(args: SelectSubset<T, SessionUpdateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sessions.
+     * @param {SessionDeleteManyArgs} args - Arguments to filter Sessions to delete.
+     * @example
+     * // Delete a few Sessions
+     * const { count } = await prisma.session.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SessionDeleteManyArgs>(args?: SelectSubset<T, SessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sessions
+     * const session = await prisma.session.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SessionUpdateManyArgs>(args: SelectSubset<T, SessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sessions and returns the data updated in the database.
+     * @param {SessionUpdateManyAndReturnArgs} args - Arguments to update many Sessions.
+     * @example
+     * // Update many Sessions
+     * const session = await prisma.session.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Sessions and only return the `sessionToken`
+     * const sessionWithSessionTokenOnly = await prisma.session.updateManyAndReturn({
+     *   select: { sessionToken: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SessionUpdateManyAndReturnArgs>(args: SelectSubset<T, SessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Session.
+     * @param {SessionUpsertArgs} args - Arguments to update or create a Session.
+     * @example
+     * // Update or create a Session
+     * const session = await prisma.session.upsert({
+     *   create: {
+     *     // ... data to create a Session
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Session we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SessionUpsertArgs>(args: SelectSubset<T, SessionUpsertArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionCountArgs} args - Arguments to filter Sessions to count.
+     * @example
+     * // Count the number of Sessions
+     * const count = await prisma.session.count({
+     *   where: {
+     *     // ... the filter for the Sessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SessionCountArgs>(
+      args?: Subset<T, SessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Session.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SessionAggregateArgs>(args: Subset<T, SessionAggregateArgs>): Prisma.PrismaPromise<GetSessionAggregateType<T>>
+
+    /**
+     * Group by Session.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SessionGroupByArgs['orderBy'] }
+        : { orderBy?: SessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Session model
+   */
+  readonly fields: SessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Session.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Session model
+   */
+  interface SessionFieldRefs {
+    readonly sessionToken: FieldRef<"Session", 'String'>
+    readonly userId: FieldRef<"Session", 'String'>
+    readonly expires: FieldRef<"Session", 'DateTime'>
+    readonly createdAt: FieldRef<"Session", 'DateTime'>
+    readonly updatedAt: FieldRef<"Session", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Session findUnique
+   */
+  export type SessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where: SessionWhereUniqueInput
+  }
+
+  /**
+   * Session findUniqueOrThrow
+   */
+  export type SessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where: SessionWhereUniqueInput
+  }
+
+  /**
+   * Session findFirst
+   */
+  export type SessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where?: SessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sessions to fetch.
+     */
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sessions.
+     */
+    cursor?: SessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sessions.
+     */
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * Session findFirstOrThrow
+   */
+  export type SessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Session to fetch.
+     */
+    where?: SessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sessions to fetch.
+     */
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sessions.
+     */
+    cursor?: SessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sessions.
+     */
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * Session findMany
+   */
+  export type SessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter, which Sessions to fetch.
+     */
+    where?: SessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sessions to fetch.
+     */
+    orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Sessions.
+     */
+    cursor?: SessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sessions.
+     */
+    skip?: number
+    distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * Session create
+   */
+  export type SessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Session.
+     */
+    data: XOR<SessionCreateInput, SessionUncheckedCreateInput>
+  }
+
+  /**
+   * Session createMany
+   */
+  export type SessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Sessions.
+     */
+    data: SessionCreateManyInput | SessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Session createManyAndReturn
+   */
+  export type SessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Sessions.
+     */
+    data: SessionCreateManyInput | SessionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Session update
+   */
+  export type SessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Session.
+     */
+    data: XOR<SessionUpdateInput, SessionUncheckedUpdateInput>
+    /**
+     * Choose, which Session to update.
+     */
+    where: SessionWhereUniqueInput
+  }
+
+  /**
+   * Session updateMany
+   */
+  export type SessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Sessions.
+     */
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyInput>
+    /**
+     * Filter which Sessions to update
+     */
+    where?: SessionWhereInput
+    /**
+     * Limit how many Sessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Session updateManyAndReturn
+   */
+  export type SessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * The data used to update Sessions.
+     */
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyInput>
+    /**
+     * Filter which Sessions to update
+     */
+    where?: SessionWhereInput
+    /**
+     * Limit how many Sessions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Session upsert
+   */
+  export type SessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Session to update in case it exists.
+     */
+    where: SessionWhereUniqueInput
+    /**
+     * In case the Session found by the `where` argument doesn't exist, create a new Session with this data.
+     */
+    create: XOR<SessionCreateInput, SessionUncheckedCreateInput>
+    /**
+     * In case the Session was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SessionUpdateInput, SessionUncheckedUpdateInput>
+  }
+
+  /**
+   * Session delete
+   */
+  export type SessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+    /**
+     * Filter which Session to delete.
+     */
+    where: SessionWhereUniqueInput
+  }
+
+  /**
+   * Session deleteMany
+   */
+  export type SessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sessions to delete
+     */
+    where?: SessionWhereInput
+    /**
+     * Limit how many Sessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Session without action
+   */
+  export type SessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Session
+     */
+    select?: SessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Session
+     */
+    omit?: SessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model VerificationToken
+   */
+
+  export type AggregateVerificationToken = {
+    _count: VerificationTokenCountAggregateOutputType | null
+    _min: VerificationTokenMinAggregateOutputType | null
+    _max: VerificationTokenMaxAggregateOutputType | null
+  }
+
+  export type VerificationTokenMinAggregateOutputType = {
+    identifier: string | null
+    token: string | null
+    expires: Date | null
+  }
+
+  export type VerificationTokenMaxAggregateOutputType = {
+    identifier: string | null
+    token: string | null
+    expires: Date | null
+  }
+
+  export type VerificationTokenCountAggregateOutputType = {
+    identifier: number
+    token: number
+    expires: number
+    _all: number
+  }
+
+
+  export type VerificationTokenMinAggregateInputType = {
+    identifier?: true
+    token?: true
+    expires?: true
+  }
+
+  export type VerificationTokenMaxAggregateInputType = {
+    identifier?: true
+    token?: true
+    expires?: true
+  }
+
+  export type VerificationTokenCountAggregateInputType = {
+    identifier?: true
+    token?: true
+    expires?: true
+    _all?: true
+  }
+
+  export type VerificationTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VerificationToken to aggregate.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VerificationTokens
+    **/
+    _count?: true | VerificationTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VerificationTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VerificationTokenMaxAggregateInputType
+  }
+
+  export type GetVerificationTokenAggregateType<T extends VerificationTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateVerificationToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVerificationToken[P]>
+      : GetScalarType<T[P], AggregateVerificationToken[P]>
+  }
+
+
+
+
+  export type VerificationTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VerificationTokenWhereInput
+    orderBy?: VerificationTokenOrderByWithAggregationInput | VerificationTokenOrderByWithAggregationInput[]
+    by: VerificationTokenScalarFieldEnum[] | VerificationTokenScalarFieldEnum
+    having?: VerificationTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VerificationTokenCountAggregateInputType | true
+    _min?: VerificationTokenMinAggregateInputType
+    _max?: VerificationTokenMaxAggregateInputType
+  }
+
+  export type VerificationTokenGroupByOutputType = {
+    identifier: string
+    token: string
+    expires: Date
+    _count: VerificationTokenCountAggregateOutputType | null
+    _min: VerificationTokenMinAggregateOutputType | null
+    _max: VerificationTokenMaxAggregateOutputType | null
+  }
+
+  type GetVerificationTokenGroupByPayload<T extends VerificationTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VerificationTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VerificationTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VerificationTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], VerificationTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VerificationTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    identifier?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    identifier?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    identifier?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectScalar = {
+    identifier?: boolean
+    token?: boolean
+    expires?: boolean
+  }
+
+  export type VerificationTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"identifier" | "token" | "expires", ExtArgs["result"]["verificationToken"]>
+
+  export type $VerificationTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VerificationToken"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      identifier: string
+      token: string
+      expires: Date
+    }, ExtArgs["result"]["verificationToken"]>
+    composites: {}
+  }
+
+  type VerificationTokenGetPayload<S extends boolean | null | undefined | VerificationTokenDefaultArgs> = $Result.GetResult<Prisma.$VerificationTokenPayload, S>
+
+  type VerificationTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VerificationTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VerificationTokenCountAggregateInputType | true
+    }
+
+  export interface VerificationTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VerificationToken'], meta: { name: 'VerificationToken' } }
+    /**
+     * Find zero or one VerificationToken that matches the filter.
+     * @param {VerificationTokenFindUniqueArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VerificationTokenFindUniqueArgs>(args: SelectSubset<T, VerificationTokenFindUniqueArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VerificationToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VerificationTokenFindUniqueOrThrowArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VerificationTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, VerificationTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VerificationToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindFirstArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VerificationTokenFindFirstArgs>(args?: SelectSubset<T, VerificationTokenFindFirstArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VerificationToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindFirstOrThrowArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VerificationTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, VerificationTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VerificationTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VerificationTokens
+     * const verificationTokens = await prisma.verificationToken.findMany()
+     * 
+     * // Get first 10 VerificationTokens
+     * const verificationTokens = await prisma.verificationToken.findMany({ take: 10 })
+     * 
+     * // Only select the `identifier`
+     * const verificationTokenWithIdentifierOnly = await prisma.verificationToken.findMany({ select: { identifier: true } })
+     * 
+     */
+    findMany<T extends VerificationTokenFindManyArgs>(args?: SelectSubset<T, VerificationTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VerificationToken.
+     * @param {VerificationTokenCreateArgs} args - Arguments to create a VerificationToken.
+     * @example
+     * // Create one VerificationToken
+     * const VerificationToken = await prisma.verificationToken.create({
+     *   data: {
+     *     // ... data to create a VerificationToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends VerificationTokenCreateArgs>(args: SelectSubset<T, VerificationTokenCreateArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VerificationTokens.
+     * @param {VerificationTokenCreateManyArgs} args - Arguments to create many VerificationTokens.
+     * @example
+     * // Create many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VerificationTokenCreateManyArgs>(args?: SelectSubset<T, VerificationTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VerificationTokens and returns the data saved in the database.
+     * @param {VerificationTokenCreateManyAndReturnArgs} args - Arguments to create many VerificationTokens.
+     * @example
+     * // Create many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VerificationTokens and only return the `identifier`
+     * const verificationTokenWithIdentifierOnly = await prisma.verificationToken.createManyAndReturn({
+     *   select: { identifier: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VerificationTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, VerificationTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VerificationToken.
+     * @param {VerificationTokenDeleteArgs} args - Arguments to delete one VerificationToken.
+     * @example
+     * // Delete one VerificationToken
+     * const VerificationToken = await prisma.verificationToken.delete({
+     *   where: {
+     *     // ... filter to delete one VerificationToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VerificationTokenDeleteArgs>(args: SelectSubset<T, VerificationTokenDeleteArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VerificationToken.
+     * @param {VerificationTokenUpdateArgs} args - Arguments to update one VerificationToken.
+     * @example
+     * // Update one VerificationToken
+     * const verificationToken = await prisma.verificationToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VerificationTokenUpdateArgs>(args: SelectSubset<T, VerificationTokenUpdateArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VerificationTokens.
+     * @param {VerificationTokenDeleteManyArgs} args - Arguments to filter VerificationTokens to delete.
+     * @example
+     * // Delete a few VerificationTokens
+     * const { count } = await prisma.verificationToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VerificationTokenDeleteManyArgs>(args?: SelectSubset<T, VerificationTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VerificationTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VerificationTokenUpdateManyArgs>(args: SelectSubset<T, VerificationTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VerificationTokens and returns the data updated in the database.
+     * @param {VerificationTokenUpdateManyAndReturnArgs} args - Arguments to update many VerificationTokens.
+     * @example
+     * // Update many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VerificationTokens and only return the `identifier`
+     * const verificationTokenWithIdentifierOnly = await prisma.verificationToken.updateManyAndReturn({
+     *   select: { identifier: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VerificationTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, VerificationTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VerificationToken.
+     * @param {VerificationTokenUpsertArgs} args - Arguments to update or create a VerificationToken.
+     * @example
+     * // Update or create a VerificationToken
+     * const verificationToken = await prisma.verificationToken.upsert({
+     *   create: {
+     *     // ... data to create a VerificationToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VerificationToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VerificationTokenUpsertArgs>(args: SelectSubset<T, VerificationTokenUpsertArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VerificationTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenCountArgs} args - Arguments to filter VerificationTokens to count.
+     * @example
+     * // Count the number of VerificationTokens
+     * const count = await prisma.verificationToken.count({
+     *   where: {
+     *     // ... the filter for the VerificationTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends VerificationTokenCountArgs>(
+      args?: Subset<T, VerificationTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VerificationTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VerificationToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VerificationTokenAggregateArgs>(args: Subset<T, VerificationTokenAggregateArgs>): Prisma.PrismaPromise<GetVerificationTokenAggregateType<T>>
+
+    /**
+     * Group by VerificationToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VerificationTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VerificationTokenGroupByArgs['orderBy'] }
+        : { orderBy?: VerificationTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VerificationTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVerificationTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VerificationToken model
+   */
+  readonly fields: VerificationTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VerificationToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VerificationTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VerificationToken model
+   */
+  interface VerificationTokenFieldRefs {
+    readonly identifier: FieldRef<"VerificationToken", 'String'>
+    readonly token: FieldRef<"VerificationToken", 'String'>
+    readonly expires: FieldRef<"VerificationToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VerificationToken findUnique
+   */
+  export type VerificationTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken findUniqueOrThrow
+   */
+  export type VerificationTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken findFirst
+   */
+  export type VerificationTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VerificationTokens.
+     */
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken findFirstOrThrow
+   */
+  export type VerificationTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VerificationTokens.
+     */
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken findMany
+   */
+  export type VerificationTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationTokens to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken create
+   */
+  export type VerificationTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VerificationToken.
+     */
+    data: XOR<VerificationTokenCreateInput, VerificationTokenUncheckedCreateInput>
+  }
+
+  /**
+   * VerificationToken createMany
+   */
+  export type VerificationTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VerificationTokens.
+     */
+    data: VerificationTokenCreateManyInput | VerificationTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VerificationToken createManyAndReturn
+   */
+  export type VerificationTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many VerificationTokens.
+     */
+    data: VerificationTokenCreateManyInput | VerificationTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VerificationToken update
+   */
+  export type VerificationTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VerificationToken.
+     */
+    data: XOR<VerificationTokenUpdateInput, VerificationTokenUncheckedUpdateInput>
+    /**
+     * Choose, which VerificationToken to update.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken updateMany
+   */
+  export type VerificationTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VerificationTokens.
+     */
+    data: XOR<VerificationTokenUpdateManyMutationInput, VerificationTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which VerificationTokens to update
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken updateManyAndReturn
+   */
+  export type VerificationTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update VerificationTokens.
+     */
+    data: XOR<VerificationTokenUpdateManyMutationInput, VerificationTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which VerificationTokens to update
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken upsert
+   */
+  export type VerificationTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VerificationToken to update in case it exists.
+     */
+    where: VerificationTokenWhereUniqueInput
+    /**
+     * In case the VerificationToken found by the `where` argument doesn't exist, create a new VerificationToken with this data.
+     */
+    create: XOR<VerificationTokenCreateInput, VerificationTokenUncheckedCreateInput>
+    /**
+     * In case the VerificationToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VerificationTokenUpdateInput, VerificationTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * VerificationToken delete
+   */
+  export type VerificationTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter which VerificationToken to delete.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken deleteMany
+   */
+  export type VerificationTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VerificationTokens to delete
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken without action
+   */
+  export type VerificationTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Authenticator
+   */
+
+  export type AggregateAuthenticator = {
+    _count: AuthenticatorCountAggregateOutputType | null
+    _avg: AuthenticatorAvgAggregateOutputType | null
+    _sum: AuthenticatorSumAggregateOutputType | null
+    _min: AuthenticatorMinAggregateOutputType | null
+    _max: AuthenticatorMaxAggregateOutputType | null
+  }
+
+  export type AuthenticatorAvgAggregateOutputType = {
+    counter: number | null
+  }
+
+  export type AuthenticatorSumAggregateOutputType = {
+    counter: number | null
+  }
+
+  export type AuthenticatorMinAggregateOutputType = {
+    credentialID: string | null
+    userId: string | null
+    providerAccountId: string | null
+    credentialPublicKey: string | null
+    counter: number | null
+    credentialDeviceType: string | null
+    credentialBackedUp: boolean | null
+    transports: string | null
+  }
+
+  export type AuthenticatorMaxAggregateOutputType = {
+    credentialID: string | null
+    userId: string | null
+    providerAccountId: string | null
+    credentialPublicKey: string | null
+    counter: number | null
+    credentialDeviceType: string | null
+    credentialBackedUp: boolean | null
+    transports: string | null
+  }
+
+  export type AuthenticatorCountAggregateOutputType = {
+    credentialID: number
+    userId: number
+    providerAccountId: number
+    credentialPublicKey: number
+    counter: number
+    credentialDeviceType: number
+    credentialBackedUp: number
+    transports: number
+    _all: number
+  }
+
+
+  export type AuthenticatorAvgAggregateInputType = {
+    counter?: true
+  }
+
+  export type AuthenticatorSumAggregateInputType = {
+    counter?: true
+  }
+
+  export type AuthenticatorMinAggregateInputType = {
+    credentialID?: true
+    userId?: true
+    providerAccountId?: true
+    credentialPublicKey?: true
+    counter?: true
+    credentialDeviceType?: true
+    credentialBackedUp?: true
+    transports?: true
+  }
+
+  export type AuthenticatorMaxAggregateInputType = {
+    credentialID?: true
+    userId?: true
+    providerAccountId?: true
+    credentialPublicKey?: true
+    counter?: true
+    credentialDeviceType?: true
+    credentialBackedUp?: true
+    transports?: true
+  }
+
+  export type AuthenticatorCountAggregateInputType = {
+    credentialID?: true
+    userId?: true
+    providerAccountId?: true
+    credentialPublicKey?: true
+    counter?: true
+    credentialDeviceType?: true
+    credentialBackedUp?: true
+    transports?: true
+    _all?: true
+  }
+
+  export type AuthenticatorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Authenticator to aggregate.
+     */
+    where?: AuthenticatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authenticators to fetch.
+     */
+    orderBy?: AuthenticatorOrderByWithRelationInput | AuthenticatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AuthenticatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authenticators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authenticators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Authenticators
+    **/
+    _count?: true | AuthenticatorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AuthenticatorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AuthenticatorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AuthenticatorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AuthenticatorMaxAggregateInputType
+  }
+
+  export type GetAuthenticatorAggregateType<T extends AuthenticatorAggregateArgs> = {
+        [P in keyof T & keyof AggregateAuthenticator]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAuthenticator[P]>
+      : GetScalarType<T[P], AggregateAuthenticator[P]>
+  }
+
+
+
+
+  export type AuthenticatorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuthenticatorWhereInput
+    orderBy?: AuthenticatorOrderByWithAggregationInput | AuthenticatorOrderByWithAggregationInput[]
+    by: AuthenticatorScalarFieldEnum[] | AuthenticatorScalarFieldEnum
+    having?: AuthenticatorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AuthenticatorCountAggregateInputType | true
+    _avg?: AuthenticatorAvgAggregateInputType
+    _sum?: AuthenticatorSumAggregateInputType
+    _min?: AuthenticatorMinAggregateInputType
+    _max?: AuthenticatorMaxAggregateInputType
+  }
+
+  export type AuthenticatorGroupByOutputType = {
+    credentialID: string
+    userId: string
+    providerAccountId: string
+    credentialPublicKey: string
+    counter: number
+    credentialDeviceType: string
+    credentialBackedUp: boolean
+    transports: string | null
+    _count: AuthenticatorCountAggregateOutputType | null
+    _avg: AuthenticatorAvgAggregateOutputType | null
+    _sum: AuthenticatorSumAggregateOutputType | null
+    _min: AuthenticatorMinAggregateOutputType | null
+    _max: AuthenticatorMaxAggregateOutputType | null
+  }
+
+  type GetAuthenticatorGroupByPayload<T extends AuthenticatorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AuthenticatorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AuthenticatorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AuthenticatorGroupByOutputType[P]>
+            : GetScalarType<T[P], AuthenticatorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AuthenticatorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    credentialID?: boolean
+    userId?: boolean
+    providerAccountId?: boolean
+    credentialPublicKey?: boolean
+    counter?: boolean
+    credentialDeviceType?: boolean
+    credentialBackedUp?: boolean
+    transports?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["authenticator"]>
+
+  export type AuthenticatorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    credentialID?: boolean
+    userId?: boolean
+    providerAccountId?: boolean
+    credentialPublicKey?: boolean
+    counter?: boolean
+    credentialDeviceType?: boolean
+    credentialBackedUp?: boolean
+    transports?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["authenticator"]>
+
+  export type AuthenticatorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    credentialID?: boolean
+    userId?: boolean
+    providerAccountId?: boolean
+    credentialPublicKey?: boolean
+    counter?: boolean
+    credentialDeviceType?: boolean
+    credentialBackedUp?: boolean
+    transports?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["authenticator"]>
+
+  export type AuthenticatorSelectScalar = {
+    credentialID?: boolean
+    userId?: boolean
+    providerAccountId?: boolean
+    credentialPublicKey?: boolean
+    counter?: boolean
+    credentialDeviceType?: boolean
+    credentialBackedUp?: boolean
+    transports?: boolean
+  }
+
+  export type AuthenticatorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"credentialID" | "userId" | "providerAccountId" | "credentialPublicKey" | "counter" | "credentialDeviceType" | "credentialBackedUp" | "transports", ExtArgs["result"]["authenticator"]>
+  export type AuthenticatorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AuthenticatorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AuthenticatorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $AuthenticatorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Authenticator"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      credentialID: string
+      userId: string
+      providerAccountId: string
+      credentialPublicKey: string
+      counter: number
+      credentialDeviceType: string
+      credentialBackedUp: boolean
+      transports: string | null
+    }, ExtArgs["result"]["authenticator"]>
+    composites: {}
+  }
+
+  type AuthenticatorGetPayload<S extends boolean | null | undefined | AuthenticatorDefaultArgs> = $Result.GetResult<Prisma.$AuthenticatorPayload, S>
+
+  type AuthenticatorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AuthenticatorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AuthenticatorCountAggregateInputType | true
+    }
+
+  export interface AuthenticatorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Authenticator'], meta: { name: 'Authenticator' } }
+    /**
+     * Find zero or one Authenticator that matches the filter.
+     * @param {AuthenticatorFindUniqueArgs} args - Arguments to find a Authenticator
+     * @example
+     * // Get one Authenticator
+     * const authenticator = await prisma.authenticator.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AuthenticatorFindUniqueArgs>(args: SelectSubset<T, AuthenticatorFindUniqueArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Authenticator that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AuthenticatorFindUniqueOrThrowArgs} args - Arguments to find a Authenticator
+     * @example
+     * // Get one Authenticator
+     * const authenticator = await prisma.authenticator.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AuthenticatorFindUniqueOrThrowArgs>(args: SelectSubset<T, AuthenticatorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Authenticator that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthenticatorFindFirstArgs} args - Arguments to find a Authenticator
+     * @example
+     * // Get one Authenticator
+     * const authenticator = await prisma.authenticator.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AuthenticatorFindFirstArgs>(args?: SelectSubset<T, AuthenticatorFindFirstArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Authenticator that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthenticatorFindFirstOrThrowArgs} args - Arguments to find a Authenticator
+     * @example
+     * // Get one Authenticator
+     * const authenticator = await prisma.authenticator.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AuthenticatorFindFirstOrThrowArgs>(args?: SelectSubset<T, AuthenticatorFindFirstOrThrowArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Authenticators that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthenticatorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Authenticators
+     * const authenticators = await prisma.authenticator.findMany()
+     * 
+     * // Get first 10 Authenticators
+     * const authenticators = await prisma.authenticator.findMany({ take: 10 })
+     * 
+     * // Only select the `credentialID`
+     * const authenticatorWithCredentialIDOnly = await prisma.authenticator.findMany({ select: { credentialID: true } })
+     * 
+     */
+    findMany<T extends AuthenticatorFindManyArgs>(args?: SelectSubset<T, AuthenticatorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Authenticator.
+     * @param {AuthenticatorCreateArgs} args - Arguments to create a Authenticator.
+     * @example
+     * // Create one Authenticator
+     * const Authenticator = await prisma.authenticator.create({
+     *   data: {
+     *     // ... data to create a Authenticator
+     *   }
+     * })
+     * 
+     */
+    create<T extends AuthenticatorCreateArgs>(args: SelectSubset<T, AuthenticatorCreateArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Authenticators.
+     * @param {AuthenticatorCreateManyArgs} args - Arguments to create many Authenticators.
+     * @example
+     * // Create many Authenticators
+     * const authenticator = await prisma.authenticator.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AuthenticatorCreateManyArgs>(args?: SelectSubset<T, AuthenticatorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Authenticators and returns the data saved in the database.
+     * @param {AuthenticatorCreateManyAndReturnArgs} args - Arguments to create many Authenticators.
+     * @example
+     * // Create many Authenticators
+     * const authenticator = await prisma.authenticator.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Authenticators and only return the `credentialID`
+     * const authenticatorWithCredentialIDOnly = await prisma.authenticator.createManyAndReturn({
+     *   select: { credentialID: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AuthenticatorCreateManyAndReturnArgs>(args?: SelectSubset<T, AuthenticatorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Authenticator.
+     * @param {AuthenticatorDeleteArgs} args - Arguments to delete one Authenticator.
+     * @example
+     * // Delete one Authenticator
+     * const Authenticator = await prisma.authenticator.delete({
+     *   where: {
+     *     // ... filter to delete one Authenticator
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AuthenticatorDeleteArgs>(args: SelectSubset<T, AuthenticatorDeleteArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Authenticator.
+     * @param {AuthenticatorUpdateArgs} args - Arguments to update one Authenticator.
+     * @example
+     * // Update one Authenticator
+     * const authenticator = await prisma.authenticator.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AuthenticatorUpdateArgs>(args: SelectSubset<T, AuthenticatorUpdateArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Authenticators.
+     * @param {AuthenticatorDeleteManyArgs} args - Arguments to filter Authenticators to delete.
+     * @example
+     * // Delete a few Authenticators
+     * const { count } = await prisma.authenticator.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AuthenticatorDeleteManyArgs>(args?: SelectSubset<T, AuthenticatorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Authenticators.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthenticatorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Authenticators
+     * const authenticator = await prisma.authenticator.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AuthenticatorUpdateManyArgs>(args: SelectSubset<T, AuthenticatorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Authenticators and returns the data updated in the database.
+     * @param {AuthenticatorUpdateManyAndReturnArgs} args - Arguments to update many Authenticators.
+     * @example
+     * // Update many Authenticators
+     * const authenticator = await prisma.authenticator.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Authenticators and only return the `credentialID`
+     * const authenticatorWithCredentialIDOnly = await prisma.authenticator.updateManyAndReturn({
+     *   select: { credentialID: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AuthenticatorUpdateManyAndReturnArgs>(args: SelectSubset<T, AuthenticatorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Authenticator.
+     * @param {AuthenticatorUpsertArgs} args - Arguments to update or create a Authenticator.
+     * @example
+     * // Update or create a Authenticator
+     * const authenticator = await prisma.authenticator.upsert({
+     *   create: {
+     *     // ... data to create a Authenticator
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Authenticator we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AuthenticatorUpsertArgs>(args: SelectSubset<T, AuthenticatorUpsertArgs<ExtArgs>>): Prisma__AuthenticatorClient<$Result.GetResult<Prisma.$AuthenticatorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Authenticators.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthenticatorCountArgs} args - Arguments to filter Authenticators to count.
+     * @example
+     * // Count the number of Authenticators
+     * const count = await prisma.authenticator.count({
+     *   where: {
+     *     // ... the filter for the Authenticators we want to count
+     *   }
+     * })
+    **/
+    count<T extends AuthenticatorCountArgs>(
+      args?: Subset<T, AuthenticatorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AuthenticatorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Authenticator.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthenticatorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AuthenticatorAggregateArgs>(args: Subset<T, AuthenticatorAggregateArgs>): Prisma.PrismaPromise<GetAuthenticatorAggregateType<T>>
+
+    /**
+     * Group by Authenticator.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthenticatorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AuthenticatorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AuthenticatorGroupByArgs['orderBy'] }
+        : { orderBy?: AuthenticatorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AuthenticatorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAuthenticatorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Authenticator model
+   */
+  readonly fields: AuthenticatorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Authenticator.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AuthenticatorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Authenticator model
+   */
+  interface AuthenticatorFieldRefs {
+    readonly credentialID: FieldRef<"Authenticator", 'String'>
+    readonly userId: FieldRef<"Authenticator", 'String'>
+    readonly providerAccountId: FieldRef<"Authenticator", 'String'>
+    readonly credentialPublicKey: FieldRef<"Authenticator", 'String'>
+    readonly counter: FieldRef<"Authenticator", 'Int'>
+    readonly credentialDeviceType: FieldRef<"Authenticator", 'String'>
+    readonly credentialBackedUp: FieldRef<"Authenticator", 'Boolean'>
+    readonly transports: FieldRef<"Authenticator", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Authenticator findUnique
+   */
+  export type AuthenticatorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Authenticator to fetch.
+     */
+    where: AuthenticatorWhereUniqueInput
+  }
+
+  /**
+   * Authenticator findUniqueOrThrow
+   */
+  export type AuthenticatorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Authenticator to fetch.
+     */
+    where: AuthenticatorWhereUniqueInput
+  }
+
+  /**
+   * Authenticator findFirst
+   */
+  export type AuthenticatorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Authenticator to fetch.
+     */
+    where?: AuthenticatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authenticators to fetch.
+     */
+    orderBy?: AuthenticatorOrderByWithRelationInput | AuthenticatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Authenticators.
+     */
+    cursor?: AuthenticatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authenticators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authenticators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Authenticators.
+     */
+    distinct?: AuthenticatorScalarFieldEnum | AuthenticatorScalarFieldEnum[]
+  }
+
+  /**
+   * Authenticator findFirstOrThrow
+   */
+  export type AuthenticatorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Authenticator to fetch.
+     */
+    where?: AuthenticatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authenticators to fetch.
+     */
+    orderBy?: AuthenticatorOrderByWithRelationInput | AuthenticatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Authenticators.
+     */
+    cursor?: AuthenticatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authenticators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authenticators.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Authenticators.
+     */
+    distinct?: AuthenticatorScalarFieldEnum | AuthenticatorScalarFieldEnum[]
+  }
+
+  /**
+   * Authenticator findMany
+   */
+  export type AuthenticatorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * Filter, which Authenticators to fetch.
+     */
+    where?: AuthenticatorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authenticators to fetch.
+     */
+    orderBy?: AuthenticatorOrderByWithRelationInput | AuthenticatorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Authenticators.
+     */
+    cursor?: AuthenticatorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authenticators from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authenticators.
+     */
+    skip?: number
+    distinct?: AuthenticatorScalarFieldEnum | AuthenticatorScalarFieldEnum[]
+  }
+
+  /**
+   * Authenticator create
+   */
+  export type AuthenticatorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Authenticator.
+     */
+    data: XOR<AuthenticatorCreateInput, AuthenticatorUncheckedCreateInput>
+  }
+
+  /**
+   * Authenticator createMany
+   */
+  export type AuthenticatorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Authenticators.
+     */
+    data: AuthenticatorCreateManyInput | AuthenticatorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Authenticator createManyAndReturn
+   */
+  export type AuthenticatorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * The data used to create many Authenticators.
+     */
+    data: AuthenticatorCreateManyInput | AuthenticatorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Authenticator update
+   */
+  export type AuthenticatorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Authenticator.
+     */
+    data: XOR<AuthenticatorUpdateInput, AuthenticatorUncheckedUpdateInput>
+    /**
+     * Choose, which Authenticator to update.
+     */
+    where: AuthenticatorWhereUniqueInput
+  }
+
+  /**
+   * Authenticator updateMany
+   */
+  export type AuthenticatorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Authenticators.
+     */
+    data: XOR<AuthenticatorUpdateManyMutationInput, AuthenticatorUncheckedUpdateManyInput>
+    /**
+     * Filter which Authenticators to update
+     */
+    where?: AuthenticatorWhereInput
+    /**
+     * Limit how many Authenticators to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Authenticator updateManyAndReturn
+   */
+  export type AuthenticatorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * The data used to update Authenticators.
+     */
+    data: XOR<AuthenticatorUpdateManyMutationInput, AuthenticatorUncheckedUpdateManyInput>
+    /**
+     * Filter which Authenticators to update
+     */
+    where?: AuthenticatorWhereInput
+    /**
+     * Limit how many Authenticators to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Authenticator upsert
+   */
+  export type AuthenticatorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Authenticator to update in case it exists.
+     */
+    where: AuthenticatorWhereUniqueInput
+    /**
+     * In case the Authenticator found by the `where` argument doesn't exist, create a new Authenticator with this data.
+     */
+    create: XOR<AuthenticatorCreateInput, AuthenticatorUncheckedCreateInput>
+    /**
+     * In case the Authenticator was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AuthenticatorUpdateInput, AuthenticatorUncheckedUpdateInput>
+  }
+
+  /**
+   * Authenticator delete
+   */
+  export type AuthenticatorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
+    /**
+     * Filter which Authenticator to delete.
+     */
+    where: AuthenticatorWhereUniqueInput
+  }
+
+  /**
+   * Authenticator deleteMany
+   */
+  export type AuthenticatorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Authenticators to delete
+     */
+    where?: AuthenticatorWhereInput
+    /**
+     * Limit how many Authenticators to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Authenticator without action
+   */
+  export type AuthenticatorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Authenticator
+     */
+    select?: AuthenticatorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Authenticator
+     */
+    omit?: AuthenticatorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthenticatorInclude<ExtArgs> | null
   }
 
 
@@ -4459,38 +6801,70 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const PlayerScalarFieldEnum: {
-    playerId: 'playerId',
-    userId: 'userId',
-    nickname: 'nickname',
-    createdAt: 'createdAt'
-  };
-
-  export type PlayerScalarFieldEnum = (typeof PlayerScalarFieldEnum)[keyof typeof PlayerScalarFieldEnum]
-
-
-  export const GameScalarFieldEnum: {
-    gameId: 'gameId',
-    code: 'code',
+  export const UserScalarFieldEnum: {
+    id: 'id',
     name: 'name',
-    config: 'config',
-    createdAt: 'createdAt'
+    email: 'email',
+    emailVerified: 'emailVerified',
+    image: 'image',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
-  export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const GameSessionScalarFieldEnum: {
-    sessionId: 'sessionId',
-    playerId: 'playerId',
-    gameId: 'gameId',
-    score: 'score',
-    duration: 'duration',
-    extra: 'extra',
-    playedAt: 'playedAt'
+  export const AccountScalarFieldEnum: {
+    userId: 'userId',
+    type: 'type',
+    provider: 'provider',
+    providerAccountId: 'providerAccountId',
+    refresh_token: 'refresh_token',
+    access_token: 'access_token',
+    expires_at: 'expires_at',
+    token_type: 'token_type',
+    scope: 'scope',
+    id_token: 'id_token',
+    session_state: 'session_state',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
-  export type GameSessionScalarFieldEnum = (typeof GameSessionScalarFieldEnum)[keyof typeof GameSessionScalarFieldEnum]
+  export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+  export const SessionScalarFieldEnum: {
+    sessionToken: 'sessionToken',
+    userId: 'userId',
+    expires: 'expires',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+  export const VerificationTokenScalarFieldEnum: {
+    identifier: 'identifier',
+    token: 'token',
+    expires: 'expires'
+  };
+
+  export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+  export const AuthenticatorScalarFieldEnum: {
+    credentialID: 'credentialID',
+    userId: 'userId',
+    providerAccountId: 'providerAccountId',
+    credentialPublicKey: 'credentialPublicKey',
+    counter: 'counter',
+    credentialDeviceType: 'credentialDeviceType',
+    credentialBackedUp: 'credentialBackedUp',
+    transports: 'transports'
+  };
+
+  export type AuthenticatorScalarFieldEnum = (typeof AuthenticatorScalarFieldEnum)[keyof typeof AuthenticatorScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4499,14 +6873,6 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-  export const NullableJsonNullValueInput: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull
-  };
-
-  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -4525,32 +6891,9 @@ export namespace Prisma {
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
   /**
    * Field references
    */
-
-
-  /**
-   * Reference to a field of type 'BigInt'
-   */
-  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
-    
-
-
-  /**
-   * Reference to a field of type 'BigInt[]'
-   */
-  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
-    
 
 
   /**
@@ -4596,16 +6939,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
+   * Reference to a field of type 'Boolean'
    */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4626,372 +6962,725 @@ export namespace Prisma {
    */
 
 
-  export type PlayerWhereInput = {
-    AND?: PlayerWhereInput | PlayerWhereInput[]
-    OR?: PlayerWhereInput[]
-    NOT?: PlayerWhereInput | PlayerWhereInput[]
-    playerId?: BigIntFilter<"Player"> | bigint | number
-    userId?: BigIntFilter<"Player"> | bigint | number
-    nickname?: StringNullableFilter<"Player"> | string | null
-    createdAt?: DateTimeFilter<"Player"> | Date | string
-    sessions?: GameSessionListRelationFilter
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: StringFilter<"User"> | string
+    name?: StringNullableFilter<"User"> | string | null
+    email?: StringFilter<"User"> | string
+    emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    image?: StringNullableFilter<"User"> | string | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    accounts?: AccountListRelationFilter
+    sessions?: SessionListRelationFilter
+    Authenticator?: AuthenticatorListRelationFilter
   }
 
-  export type PlayerOrderByWithRelationInput = {
-    playerId?: SortOrder
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrderInput | SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    accounts?: AccountOrderByRelationAggregateInput
+    sessions?: SessionOrderByRelationAggregateInput
+    Authenticator?: AuthenticatorOrderByRelationAggregateInput
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringNullableFilter<"User"> | string | null
+    emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    image?: StringNullableFilter<"User"> | string | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    accounts?: AccountListRelationFilter
+    sessions?: SessionListRelationFilter
+    Authenticator?: AuthenticatorListRelationFilter
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrderInput | SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"User"> | string
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    email?: StringWithAggregatesFilter<"User"> | string
+    emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    image?: StringNullableWithAggregatesFilter<"User"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type AccountWhereInput = {
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    userId?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    provider?: StringFilter<"Account"> | string
+    providerAccountId?: StringFilter<"Account"> | string
+    refresh_token?: StringNullableFilter<"Account"> | string | null
+    access_token?: StringNullableFilter<"Account"> | string | null
+    expires_at?: IntNullableFilter<"Account"> | number | null
+    token_type?: StringNullableFilter<"Account"> | string | null
+    scope?: StringNullableFilter<"Account"> | string | null
+    id_token?: StringNullableFilter<"Account"> | string | null
+    session_state?: StringNullableFilter<"Account"> | string | null
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type AccountOrderByWithRelationInput = {
     userId?: SortOrder
-    nickname?: SortOrderInput | SortOrder
+    type?: SortOrder
+    provider?: SortOrder
+    providerAccountId?: SortOrder
+    refresh_token?: SortOrderInput | SortOrder
+    access_token?: SortOrderInput | SortOrder
+    expires_at?: SortOrderInput | SortOrder
+    token_type?: SortOrderInput | SortOrder
+    scope?: SortOrderInput | SortOrder
+    id_token?: SortOrderInput | SortOrder
+    session_state?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    sessions?: GameSessionOrderByRelationAggregateInput
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
   }
 
-  export type PlayerWhereUniqueInput = Prisma.AtLeast<{
-    playerId?: bigint | number
-    userId?: bigint | number
-    AND?: PlayerWhereInput | PlayerWhereInput[]
-    OR?: PlayerWhereInput[]
-    NOT?: PlayerWhereInput | PlayerWhereInput[]
-    nickname?: StringNullableFilter<"Player"> | string | null
-    createdAt?: DateTimeFilter<"Player"> | Date | string
-    sessions?: GameSessionListRelationFilter
-  }, "playerId" | "userId">
+  export type AccountWhereUniqueInput = Prisma.AtLeast<{
+    provider_providerAccountId?: AccountProviderProviderAccountIdCompoundUniqueInput
+    AND?: AccountWhereInput | AccountWhereInput[]
+    OR?: AccountWhereInput[]
+    NOT?: AccountWhereInput | AccountWhereInput[]
+    userId?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    provider?: StringFilter<"Account"> | string
+    providerAccountId?: StringFilter<"Account"> | string
+    refresh_token?: StringNullableFilter<"Account"> | string | null
+    access_token?: StringNullableFilter<"Account"> | string | null
+    expires_at?: IntNullableFilter<"Account"> | number | null
+    token_type?: StringNullableFilter<"Account"> | string | null
+    scope?: StringNullableFilter<"Account"> | string | null
+    id_token?: StringNullableFilter<"Account"> | string | null
+    session_state?: StringNullableFilter<"Account"> | string | null
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "provider_providerAccountId">
 
-  export type PlayerOrderByWithAggregationInput = {
-    playerId?: SortOrder
+  export type AccountOrderByWithAggregationInput = {
     userId?: SortOrder
-    nickname?: SortOrderInput | SortOrder
+    type?: SortOrder
+    provider?: SortOrder
+    providerAccountId?: SortOrder
+    refresh_token?: SortOrderInput | SortOrder
+    access_token?: SortOrderInput | SortOrder
+    expires_at?: SortOrderInput | SortOrder
+    token_type?: SortOrderInput | SortOrder
+    scope?: SortOrderInput | SortOrder
+    id_token?: SortOrderInput | SortOrder
+    session_state?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    _count?: PlayerCountOrderByAggregateInput
-    _avg?: PlayerAvgOrderByAggregateInput
-    _max?: PlayerMaxOrderByAggregateInput
-    _min?: PlayerMinOrderByAggregateInput
-    _sum?: PlayerSumOrderByAggregateInput
+    updatedAt?: SortOrder
+    _count?: AccountCountOrderByAggregateInput
+    _avg?: AccountAvgOrderByAggregateInput
+    _max?: AccountMaxOrderByAggregateInput
+    _min?: AccountMinOrderByAggregateInput
+    _sum?: AccountSumOrderByAggregateInput
   }
 
-  export type PlayerScalarWhereWithAggregatesInput = {
-    AND?: PlayerScalarWhereWithAggregatesInput | PlayerScalarWhereWithAggregatesInput[]
-    OR?: PlayerScalarWhereWithAggregatesInput[]
-    NOT?: PlayerScalarWhereWithAggregatesInput | PlayerScalarWhereWithAggregatesInput[]
-    playerId?: BigIntWithAggregatesFilter<"Player"> | bigint | number
-    userId?: BigIntWithAggregatesFilter<"Player"> | bigint | number
-    nickname?: StringNullableWithAggregatesFilter<"Player"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Player"> | Date | string
+  export type AccountScalarWhereWithAggregatesInput = {
+    AND?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    OR?: AccountScalarWhereWithAggregatesInput[]
+    NOT?: AccountScalarWhereWithAggregatesInput | AccountScalarWhereWithAggregatesInput[]
+    userId?: StringWithAggregatesFilter<"Account"> | string
+    type?: StringWithAggregatesFilter<"Account"> | string
+    provider?: StringWithAggregatesFilter<"Account"> | string
+    providerAccountId?: StringWithAggregatesFilter<"Account"> | string
+    refresh_token?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    access_token?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    expires_at?: IntNullableWithAggregatesFilter<"Account"> | number | null
+    token_type?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    scope?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    id_token?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    session_state?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
   }
 
-  export type GameWhereInput = {
-    AND?: GameWhereInput | GameWhereInput[]
-    OR?: GameWhereInput[]
-    NOT?: GameWhereInput | GameWhereInput[]
-    gameId?: IntFilter<"Game"> | number
-    code?: StringFilter<"Game"> | string
-    name?: StringFilter<"Game"> | string
-    config?: JsonNullableFilter<"Game">
-    createdAt?: DateTimeFilter<"Game"> | Date | string
-    sessions?: GameSessionListRelationFilter
+  export type SessionWhereInput = {
+    AND?: SessionWhereInput | SessionWhereInput[]
+    OR?: SessionWhereInput[]
+    NOT?: SessionWhereInput | SessionWhereInput[]
+    sessionToken?: StringFilter<"Session"> | string
+    userId?: StringFilter<"Session"> | string
+    expires?: DateTimeFilter<"Session"> | Date | string
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type GameOrderByWithRelationInput = {
-    gameId?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    config?: SortOrderInput | SortOrder
+  export type SessionOrderByWithRelationInput = {
+    sessionToken?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
     createdAt?: SortOrder
-    sessions?: GameSessionOrderByRelationAggregateInput
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
   }
 
-  export type GameWhereUniqueInput = Prisma.AtLeast<{
-    gameId?: number
-    code?: string
-    AND?: GameWhereInput | GameWhereInput[]
-    OR?: GameWhereInput[]
-    NOT?: GameWhereInput | GameWhereInput[]
-    name?: StringFilter<"Game"> | string
-    config?: JsonNullableFilter<"Game">
-    createdAt?: DateTimeFilter<"Game"> | Date | string
-    sessions?: GameSessionListRelationFilter
-  }, "gameId" | "code">
+  export type SessionWhereUniqueInput = Prisma.AtLeast<{
+    sessionToken?: string
+    AND?: SessionWhereInput | SessionWhereInput[]
+    OR?: SessionWhereInput[]
+    NOT?: SessionWhereInput | SessionWhereInput[]
+    userId?: StringFilter<"Session"> | string
+    expires?: DateTimeFilter<"Session"> | Date | string
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "sessionToken">
 
-  export type GameOrderByWithAggregationInput = {
-    gameId?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    config?: SortOrderInput | SortOrder
+  export type SessionOrderByWithAggregationInput = {
+    sessionToken?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
     createdAt?: SortOrder
-    _count?: GameCountOrderByAggregateInput
-    _avg?: GameAvgOrderByAggregateInput
-    _max?: GameMaxOrderByAggregateInput
-    _min?: GameMinOrderByAggregateInput
-    _sum?: GameSumOrderByAggregateInput
+    updatedAt?: SortOrder
+    _count?: SessionCountOrderByAggregateInput
+    _max?: SessionMaxOrderByAggregateInput
+    _min?: SessionMinOrderByAggregateInput
   }
 
-  export type GameScalarWhereWithAggregatesInput = {
-    AND?: GameScalarWhereWithAggregatesInput | GameScalarWhereWithAggregatesInput[]
-    OR?: GameScalarWhereWithAggregatesInput[]
-    NOT?: GameScalarWhereWithAggregatesInput | GameScalarWhereWithAggregatesInput[]
-    gameId?: IntWithAggregatesFilter<"Game"> | number
-    code?: StringWithAggregatesFilter<"Game"> | string
-    name?: StringWithAggregatesFilter<"Game"> | string
-    config?: JsonNullableWithAggregatesFilter<"Game">
-    createdAt?: DateTimeWithAggregatesFilter<"Game"> | Date | string
+  export type SessionScalarWhereWithAggregatesInput = {
+    AND?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
+    OR?: SessionScalarWhereWithAggregatesInput[]
+    NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
+    sessionToken?: StringWithAggregatesFilter<"Session"> | string
+    userId?: StringWithAggregatesFilter<"Session"> | string
+    expires?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
   }
 
-  export type GameSessionWhereInput = {
-    AND?: GameSessionWhereInput | GameSessionWhereInput[]
-    OR?: GameSessionWhereInput[]
-    NOT?: GameSessionWhereInput | GameSessionWhereInput[]
-    sessionId?: BigIntFilter<"GameSession"> | bigint | number
-    playerId?: BigIntFilter<"GameSession"> | bigint | number
-    gameId?: IntFilter<"GameSession"> | number
-    score?: IntFilter<"GameSession"> | number
-    duration?: IntFilter<"GameSession"> | number
-    extra?: JsonNullableFilter<"GameSession">
-    playedAt?: DateTimeFilter<"GameSession"> | Date | string
-    player?: XOR<PlayerScalarRelationFilter, PlayerWhereInput>
-    game?: XOR<GameScalarRelationFilter, GameWhereInput>
+  export type VerificationTokenWhereInput = {
+    AND?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    OR?: VerificationTokenWhereInput[]
+    NOT?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    identifier?: StringFilter<"VerificationToken"> | string
+    token?: StringFilter<"VerificationToken"> | string
+    expires?: DateTimeFilter<"VerificationToken"> | Date | string
   }
 
-  export type GameSessionOrderByWithRelationInput = {
-    sessionId?: SortOrder
-    playerId?: SortOrder
-    gameId?: SortOrder
-    score?: SortOrder
-    duration?: SortOrder
-    extra?: SortOrderInput | SortOrder
-    playedAt?: SortOrder
-    player?: PlayerOrderByWithRelationInput
-    game?: GameOrderByWithRelationInput
+  export type VerificationTokenOrderByWithRelationInput = {
+    identifier?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
   }
 
-  export type GameSessionWhereUniqueInput = Prisma.AtLeast<{
-    sessionId?: bigint | number
-    AND?: GameSessionWhereInput | GameSessionWhereInput[]
-    OR?: GameSessionWhereInput[]
-    NOT?: GameSessionWhereInput | GameSessionWhereInput[]
-    playerId?: BigIntFilter<"GameSession"> | bigint | number
-    gameId?: IntFilter<"GameSession"> | number
-    score?: IntFilter<"GameSession"> | number
-    duration?: IntFilter<"GameSession"> | number
-    extra?: JsonNullableFilter<"GameSession">
-    playedAt?: DateTimeFilter<"GameSession"> | Date | string
-    player?: XOR<PlayerScalarRelationFilter, PlayerWhereInput>
-    game?: XOR<GameScalarRelationFilter, GameWhereInput>
-  }, "sessionId">
+  export type VerificationTokenWhereUniqueInput = Prisma.AtLeast<{
+    identifier_token?: VerificationTokenIdentifierTokenCompoundUniqueInput
+    AND?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    OR?: VerificationTokenWhereInput[]
+    NOT?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    identifier?: StringFilter<"VerificationToken"> | string
+    token?: StringFilter<"VerificationToken"> | string
+    expires?: DateTimeFilter<"VerificationToken"> | Date | string
+  }, "identifier_token">
 
-  export type GameSessionOrderByWithAggregationInput = {
-    sessionId?: SortOrder
-    playerId?: SortOrder
-    gameId?: SortOrder
-    score?: SortOrder
-    duration?: SortOrder
-    extra?: SortOrderInput | SortOrder
-    playedAt?: SortOrder
-    _count?: GameSessionCountOrderByAggregateInput
-    _avg?: GameSessionAvgOrderByAggregateInput
-    _max?: GameSessionMaxOrderByAggregateInput
-    _min?: GameSessionMinOrderByAggregateInput
-    _sum?: GameSessionSumOrderByAggregateInput
+  export type VerificationTokenOrderByWithAggregationInput = {
+    identifier?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+    _count?: VerificationTokenCountOrderByAggregateInput
+    _max?: VerificationTokenMaxOrderByAggregateInput
+    _min?: VerificationTokenMinOrderByAggregateInput
   }
 
-  export type GameSessionScalarWhereWithAggregatesInput = {
-    AND?: GameSessionScalarWhereWithAggregatesInput | GameSessionScalarWhereWithAggregatesInput[]
-    OR?: GameSessionScalarWhereWithAggregatesInput[]
-    NOT?: GameSessionScalarWhereWithAggregatesInput | GameSessionScalarWhereWithAggregatesInput[]
-    sessionId?: BigIntWithAggregatesFilter<"GameSession"> | bigint | number
-    playerId?: BigIntWithAggregatesFilter<"GameSession"> | bigint | number
-    gameId?: IntWithAggregatesFilter<"GameSession"> | number
-    score?: IntWithAggregatesFilter<"GameSession"> | number
-    duration?: IntWithAggregatesFilter<"GameSession"> | number
-    extra?: JsonNullableWithAggregatesFilter<"GameSession">
-    playedAt?: DateTimeWithAggregatesFilter<"GameSession"> | Date | string
+  export type VerificationTokenScalarWhereWithAggregatesInput = {
+    AND?: VerificationTokenScalarWhereWithAggregatesInput | VerificationTokenScalarWhereWithAggregatesInput[]
+    OR?: VerificationTokenScalarWhereWithAggregatesInput[]
+    NOT?: VerificationTokenScalarWhereWithAggregatesInput | VerificationTokenScalarWhereWithAggregatesInput[]
+    identifier?: StringWithAggregatesFilter<"VerificationToken"> | string
+    token?: StringWithAggregatesFilter<"VerificationToken"> | string
+    expires?: DateTimeWithAggregatesFilter<"VerificationToken"> | Date | string
   }
 
-  export type PlayerCreateInput = {
-    playerId?: bigint | number
-    userId: bigint | number
-    nickname?: string | null
+  export type AuthenticatorWhereInput = {
+    AND?: AuthenticatorWhereInput | AuthenticatorWhereInput[]
+    OR?: AuthenticatorWhereInput[]
+    NOT?: AuthenticatorWhereInput | AuthenticatorWhereInput[]
+    credentialID?: StringFilter<"Authenticator"> | string
+    userId?: StringFilter<"Authenticator"> | string
+    providerAccountId?: StringFilter<"Authenticator"> | string
+    credentialPublicKey?: StringFilter<"Authenticator"> | string
+    counter?: IntFilter<"Authenticator"> | number
+    credentialDeviceType?: StringFilter<"Authenticator"> | string
+    credentialBackedUp?: BoolFilter<"Authenticator"> | boolean
+    transports?: StringNullableFilter<"Authenticator"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type AuthenticatorOrderByWithRelationInput = {
+    credentialID?: SortOrder
+    userId?: SortOrder
+    providerAccountId?: SortOrder
+    credentialPublicKey?: SortOrder
+    counter?: SortOrder
+    credentialDeviceType?: SortOrder
+    credentialBackedUp?: SortOrder
+    transports?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type AuthenticatorWhereUniqueInput = Prisma.AtLeast<{
+    credentialID?: string
+    userId_credentialID?: AuthenticatorUserIdCredentialIDCompoundUniqueInput
+    AND?: AuthenticatorWhereInput | AuthenticatorWhereInput[]
+    OR?: AuthenticatorWhereInput[]
+    NOT?: AuthenticatorWhereInput | AuthenticatorWhereInput[]
+    userId?: StringFilter<"Authenticator"> | string
+    providerAccountId?: StringFilter<"Authenticator"> | string
+    credentialPublicKey?: StringFilter<"Authenticator"> | string
+    counter?: IntFilter<"Authenticator"> | number
+    credentialDeviceType?: StringFilter<"Authenticator"> | string
+    credentialBackedUp?: BoolFilter<"Authenticator"> | boolean
+    transports?: StringNullableFilter<"Authenticator"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "userId_credentialID" | "credentialID">
+
+  export type AuthenticatorOrderByWithAggregationInput = {
+    credentialID?: SortOrder
+    userId?: SortOrder
+    providerAccountId?: SortOrder
+    credentialPublicKey?: SortOrder
+    counter?: SortOrder
+    credentialDeviceType?: SortOrder
+    credentialBackedUp?: SortOrder
+    transports?: SortOrderInput | SortOrder
+    _count?: AuthenticatorCountOrderByAggregateInput
+    _avg?: AuthenticatorAvgOrderByAggregateInput
+    _max?: AuthenticatorMaxOrderByAggregateInput
+    _min?: AuthenticatorMinOrderByAggregateInput
+    _sum?: AuthenticatorSumOrderByAggregateInput
+  }
+
+  export type AuthenticatorScalarWhereWithAggregatesInput = {
+    AND?: AuthenticatorScalarWhereWithAggregatesInput | AuthenticatorScalarWhereWithAggregatesInput[]
+    OR?: AuthenticatorScalarWhereWithAggregatesInput[]
+    NOT?: AuthenticatorScalarWhereWithAggregatesInput | AuthenticatorScalarWhereWithAggregatesInput[]
+    credentialID?: StringWithAggregatesFilter<"Authenticator"> | string
+    userId?: StringWithAggregatesFilter<"Authenticator"> | string
+    providerAccountId?: StringWithAggregatesFilter<"Authenticator"> | string
+    credentialPublicKey?: StringWithAggregatesFilter<"Authenticator"> | string
+    counter?: IntWithAggregatesFilter<"Authenticator"> | number
+    credentialDeviceType?: StringWithAggregatesFilter<"Authenticator"> | string
+    credentialBackedUp?: BoolWithAggregatesFilter<"Authenticator"> | boolean
+    transports?: StringNullableWithAggregatesFilter<"Authenticator"> | string | null
+  }
+
+  export type UserCreateInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
     createdAt?: Date | string
-    sessions?: GameSessionCreateNestedManyWithoutPlayerInput
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
   }
 
-  export type PlayerUncheckedCreateInput = {
-    playerId?: bigint | number
-    userId: bigint | number
-    nickname?: string | null
+  export type UserUncheckedCreateInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
     createdAt?: Date | string
-    sessions?: GameSessionUncheckedCreateNestedManyWithoutPlayerInput
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type PlayerUpdateInput = {
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    userId?: BigIntFieldUpdateOperationsInput | bigint | number
-    nickname?: NullableStringFieldUpdateOperationsInput | string | null
+  export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: GameSessionUpdateManyWithoutPlayerNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
   }
 
-  export type PlayerUncheckedUpdateInput = {
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    userId?: BigIntFieldUpdateOperationsInput | bigint | number
-    nickname?: NullableStringFieldUpdateOperationsInput | string | null
+  export type UserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: GameSessionUncheckedUpdateManyWithoutPlayerNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type PlayerCreateManyInput = {
-    playerId?: bigint | number
-    userId: bigint | number
-    nickname?: string | null
+  export type UserCreateManyInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type PlayerUpdateManyMutationInput = {
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    userId?: BigIntFieldUpdateOperationsInput | bigint | number
-    nickname?: NullableStringFieldUpdateOperationsInput | string | null
+  export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PlayerUncheckedUpdateManyInput = {
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    userId?: BigIntFieldUpdateOperationsInput | bigint | number
-    nickname?: NullableStringFieldUpdateOperationsInput | string | null
+  export type UserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameCreateInput = {
-    code: string
-    name: string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type AccountCreateInput = {
+    type: string
+    provider: string
+    providerAccountId: string
+    refresh_token?: string | null
+    access_token?: string | null
+    expires_at?: number | null
+    token_type?: string | null
+    scope?: string | null
+    id_token?: string | null
+    session_state?: string | null
     createdAt?: Date | string
-    sessions?: GameSessionCreateNestedManyWithoutGameInput
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAccountsInput
   }
 
-  export type GameUncheckedCreateInput = {
-    gameId?: number
-    code: string
-    name: string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type AccountUncheckedCreateInput = {
+    userId: string
+    type: string
+    provider: string
+    providerAccountId: string
+    refresh_token?: string | null
+    access_token?: string | null
+    expires_at?: number | null
+    token_type?: string | null
+    scope?: string | null
+    id_token?: string | null
+    session_state?: string | null
     createdAt?: Date | string
-    sessions?: GameSessionUncheckedCreateNestedManyWithoutGameInput
+    updatedAt?: Date | string
   }
 
-  export type GameUpdateInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type AccountUpdateInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    expires_at?: NullableIntFieldUpdateOperationsInput | number | null
+    token_type?: NullableStringFieldUpdateOperationsInput | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    id_token?: NullableStringFieldUpdateOperationsInput | string | null
+    session_state?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: GameSessionUpdateManyWithoutGameNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAccountsNestedInput
   }
 
-  export type GameUncheckedUpdateInput = {
-    gameId?: IntFieldUpdateOperationsInput | number
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type AccountUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    expires_at?: NullableIntFieldUpdateOperationsInput | number | null
+    token_type?: NullableStringFieldUpdateOperationsInput | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    id_token?: NullableStringFieldUpdateOperationsInput | string | null
+    session_state?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: GameSessionUncheckedUpdateManyWithoutGameNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameCreateManyInput = {
-    gameId?: number
-    code: string
-    name: string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type AccountCreateManyInput = {
+    userId: string
+    type: string
+    provider: string
+    providerAccountId: string
+    refresh_token?: string | null
+    access_token?: string | null
+    expires_at?: number | null
+    token_type?: string | null
+    scope?: string | null
+    id_token?: string | null
+    session_state?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameUpdateManyMutationInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type AccountUpdateManyMutationInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    expires_at?: NullableIntFieldUpdateOperationsInput | number | null
+    token_type?: NullableStringFieldUpdateOperationsInput | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    id_token?: NullableStringFieldUpdateOperationsInput | string | null
+    session_state?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameUncheckedUpdateManyInput = {
-    gameId?: IntFieldUpdateOperationsInput | number
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type AccountUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    expires_at?: NullableIntFieldUpdateOperationsInput | number | null
+    token_type?: NullableStringFieldUpdateOperationsInput | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    id_token?: NullableStringFieldUpdateOperationsInput | string | null
+    session_state?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameSessionCreateInput = {
-    sessionId?: bigint | number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
-    player: PlayerCreateNestedOneWithoutSessionsInput
-    game: GameCreateNestedOneWithoutSessionsInput
+  export type SessionCreateInput = {
+    sessionToken: string
+    expires: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSessionsInput
   }
 
-  export type GameSessionUncheckedCreateInput = {
-    sessionId?: bigint | number
-    playerId: bigint | number
-    gameId: number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
+  export type SessionUncheckedCreateInput = {
+    sessionToken: string
+    userId: string
+    expires: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionUpdateInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    player?: PlayerUpdateOneRequiredWithoutSessionsNestedInput
-    game?: GameUpdateOneRequiredWithoutSessionsNestedInput
+  export type SessionUpdateInput = {
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSessionsNestedInput
   }
 
-  export type GameSessionUncheckedUpdateInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    gameId?: IntFieldUpdateOperationsInput | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type SessionUncheckedUpdateInput = {
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameSessionCreateManyInput = {
-    sessionId?: bigint | number
-    playerId: bigint | number
-    gameId: number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
+  export type SessionCreateManyInput = {
+    sessionToken: string
+    userId: string
+    expires: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionUpdateManyMutationInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type SessionUpdateManyMutationInput = {
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameSessionUncheckedUpdateManyInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    gameId?: IntFieldUpdateOperationsInput | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type SessionUncheckedUpdateManyInput = {
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  export type VerificationTokenCreateInput = {
+    identifier: string
+    token: string
+    expires: Date | string
+  }
+
+  export type VerificationTokenUncheckedCreateInput = {
+    identifier: string
+    token: string
+    expires: Date | string
+  }
+
+  export type VerificationTokenUpdateInput = {
+    identifier?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenUncheckedUpdateInput = {
+    identifier?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenCreateManyInput = {
+    identifier: string
+    token: string
+    expires: Date | string
+  }
+
+  export type VerificationTokenUpdateManyMutationInput = {
+    identifier?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenUncheckedUpdateManyInput = {
+    identifier?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuthenticatorCreateInput = {
+    credentialID: string
+    providerAccountId: string
+    credentialPublicKey: string
+    counter: number
+    credentialDeviceType: string
+    credentialBackedUp: boolean
+    transports?: string | null
+    user: UserCreateNestedOneWithoutAuthenticatorInput
+  }
+
+  export type AuthenticatorUncheckedCreateInput = {
+    credentialID: string
+    userId: string
+    providerAccountId: string
+    credentialPublicKey: string
+    counter: number
+    credentialDeviceType: string
+    credentialBackedUp: boolean
+    transports?: string | null
+  }
+
+  export type AuthenticatorUpdateInput = {
+    credentialID?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    credentialPublicKey?: StringFieldUpdateOperationsInput | string
+    counter?: IntFieldUpdateOperationsInput | number
+    credentialDeviceType?: StringFieldUpdateOperationsInput | string
+    credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
+    transports?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutAuthenticatorNestedInput
+  }
+
+  export type AuthenticatorUncheckedUpdateInput = {
+    credentialID?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    credentialPublicKey?: StringFieldUpdateOperationsInput | string
+    counter?: IntFieldUpdateOperationsInput | number
+    credentialDeviceType?: StringFieldUpdateOperationsInput | string
+    credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
+    transports?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AuthenticatorCreateManyInput = {
+    credentialID: string
+    userId: string
+    providerAccountId: string
+    credentialPublicKey: string
+    counter: number
+    credentialDeviceType: string
+    credentialBackedUp: boolean
+    transports?: string | null
+  }
+
+  export type AuthenticatorUpdateManyMutationInput = {
+    credentialID?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    credentialPublicKey?: StringFieldUpdateOperationsInput | string
+    counter?: IntFieldUpdateOperationsInput | number
+    credentialDeviceType?: StringFieldUpdateOperationsInput | string
+    credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
+    transports?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AuthenticatorUncheckedUpdateManyInput = {
+    credentialID?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    credentialPublicKey?: StringFieldUpdateOperationsInput | string
+    counter?: IntFieldUpdateOperationsInput | number
+    credentialDeviceType?: StringFieldUpdateOperationsInput | string
+    credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
+    transports?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -5009,6 +7698,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5020,10 +7720,22 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type GameSessionListRelationFilter = {
-    every?: GameSessionWhereInput
-    some?: GameSessionWhereInput
-    none?: GameSessionWhereInput
+  export type AccountListRelationFilter = {
+    every?: AccountWhereInput
+    some?: AccountWhereInput
+    none?: AccountWhereInput
+  }
+
+  export type SessionListRelationFilter = {
+    every?: SessionWhereInput
+    some?: SessionWhereInput
+    none?: SessionWhereInput
+  }
+
+  export type AuthenticatorListRelationFilter = {
+    every?: AuthenticatorWhereInput
+    some?: AuthenticatorWhereInput
+    none?: AuthenticatorWhereInput
   }
 
   export type SortOrderInput = {
@@ -5031,55 +7743,64 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type GameSessionOrderByRelationAggregateInput = {
+  export type AccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type PlayerCountOrderByAggregateInput = {
-    playerId?: SortOrder
-    userId?: SortOrder
-    nickname?: SortOrder
+  export type SessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AuthenticatorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type PlayerAvgOrderByAggregateInput = {
-    playerId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type PlayerMaxOrderByAggregateInput = {
-    playerId?: SortOrder
-    userId?: SortOrder
-    nickname?: SortOrder
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type PlayerMinOrderByAggregateInput = {
-    playerId?: SortOrder
-    userId?: SortOrder
-    nickname?: SortOrder
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrder
+    image?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type PlayerSumOrderByAggregateInput = {
-    playerId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5100,6 +7821,20 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5114,6 +7849,146 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type AccountProviderProviderAccountIdCompoundUniqueInput = {
+    provider: string
+    providerAccountId: string
+  }
+
+  export type AccountCountOrderByAggregateInput = {
+    userId?: SortOrder
+    type?: SortOrder
+    provider?: SortOrder
+    providerAccountId?: SortOrder
+    refresh_token?: SortOrder
+    access_token?: SortOrder
+    expires_at?: SortOrder
+    token_type?: SortOrder
+    scope?: SortOrder
+    id_token?: SortOrder
+    session_state?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountAvgOrderByAggregateInput = {
+    expires_at?: SortOrder
+  }
+
+  export type AccountMaxOrderByAggregateInput = {
+    userId?: SortOrder
+    type?: SortOrder
+    provider?: SortOrder
+    providerAccountId?: SortOrder
+    refresh_token?: SortOrder
+    access_token?: SortOrder
+    expires_at?: SortOrder
+    token_type?: SortOrder
+    scope?: SortOrder
+    id_token?: SortOrder
+    session_state?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountMinOrderByAggregateInput = {
+    userId?: SortOrder
+    type?: SortOrder
+    provider?: SortOrder
+    providerAccountId?: SortOrder
+    refresh_token?: SortOrder
+    access_token?: SortOrder
+    expires_at?: SortOrder
+    token_type?: SortOrder
+    scope?: SortOrder
+    id_token?: SortOrder
+    session_state?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccountSumOrderByAggregateInput = {
+    expires_at?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type SessionCountOrderByAggregateInput = {
+    sessionToken?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SessionMaxOrderByAggregateInput = {
+    sessionToken?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SessionMinOrderByAggregateInput = {
+    sessionToken?: SortOrder
+    userId?: SortOrder
+    expires?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VerificationTokenIdentifierTokenCompoundUniqueInput = {
+    identifier: string
+    token: string
+  }
+
+  export type VerificationTokenCountOrderByAggregateInput = {
+    identifier?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type VerificationTokenMaxOrderByAggregateInput = {
+    identifier?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type VerificationTokenMinOrderByAggregateInput = {
+    identifier?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5125,72 +8000,55 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
-  export type JsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type GameCountOrderByAggregateInput = {
-    gameId?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    config?: SortOrder
-    createdAt?: SortOrder
+  export type AuthenticatorUserIdCredentialIDCompoundUniqueInput = {
+    userId: string
+    credentialID: string
   }
 
-  export type GameAvgOrderByAggregateInput = {
-    gameId?: SortOrder
+  export type AuthenticatorCountOrderByAggregateInput = {
+    credentialID?: SortOrder
+    userId?: SortOrder
+    providerAccountId?: SortOrder
+    credentialPublicKey?: SortOrder
+    counter?: SortOrder
+    credentialDeviceType?: SortOrder
+    credentialBackedUp?: SortOrder
+    transports?: SortOrder
   }
 
-  export type GameMaxOrderByAggregateInput = {
-    gameId?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    createdAt?: SortOrder
+  export type AuthenticatorAvgOrderByAggregateInput = {
+    counter?: SortOrder
   }
 
-  export type GameMinOrderByAggregateInput = {
-    gameId?: SortOrder
-    code?: SortOrder
-    name?: SortOrder
-    createdAt?: SortOrder
+  export type AuthenticatorMaxOrderByAggregateInput = {
+    credentialID?: SortOrder
+    userId?: SortOrder
+    providerAccountId?: SortOrder
+    credentialPublicKey?: SortOrder
+    counter?: SortOrder
+    credentialDeviceType?: SortOrder
+    credentialBackedUp?: SortOrder
+    transports?: SortOrder
   }
 
-  export type GameSumOrderByAggregateInput = {
-    gameId?: SortOrder
+  export type AuthenticatorMinOrderByAggregateInput = {
+    credentialID?: SortOrder
+    userId?: SortOrder
+    providerAccountId?: SortOrder
+    credentialPublicKey?: SortOrder
+    counter?: SortOrder
+    credentialDeviceType?: SortOrder
+    credentialBackedUp?: SortOrder
+    transports?: SortOrder
+  }
+
+  export type AuthenticatorSumOrderByAggregateInput = {
+    counter?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -5209,192 +8067,196 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type PlayerScalarRelationFilter = {
-    is?: PlayerWhereInput
-    isNot?: PlayerWhereInput
+  export type AccountCreateNestedManyWithoutUserInput = {
+    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
+    createMany?: AccountCreateManyUserInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
-  export type GameScalarRelationFilter = {
-    is?: GameWhereInput
-    isNot?: GameWhereInput
+  export type SessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type GameSessionCountOrderByAggregateInput = {
-    sessionId?: SortOrder
-    playerId?: SortOrder
-    gameId?: SortOrder
-    score?: SortOrder
-    duration?: SortOrder
-    extra?: SortOrder
-    playedAt?: SortOrder
+  export type AuthenticatorCreateNestedManyWithoutUserInput = {
+    create?: XOR<AuthenticatorCreateWithoutUserInput, AuthenticatorUncheckedCreateWithoutUserInput> | AuthenticatorCreateWithoutUserInput[] | AuthenticatorUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuthenticatorCreateOrConnectWithoutUserInput | AuthenticatorCreateOrConnectWithoutUserInput[]
+    createMany?: AuthenticatorCreateManyUserInputEnvelope
+    connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
   }
 
-  export type GameSessionAvgOrderByAggregateInput = {
-    sessionId?: SortOrder
-    playerId?: SortOrder
-    gameId?: SortOrder
-    score?: SortOrder
-    duration?: SortOrder
+  export type AccountUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
+    createMany?: AccountCreateManyUserInputEnvelope
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
   }
 
-  export type GameSessionMaxOrderByAggregateInput = {
-    sessionId?: SortOrder
-    playerId?: SortOrder
-    gameId?: SortOrder
-    score?: SortOrder
-    duration?: SortOrder
-    playedAt?: SortOrder
+  export type SessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type GameSessionMinOrderByAggregateInput = {
-    sessionId?: SortOrder
-    playerId?: SortOrder
-    gameId?: SortOrder
-    score?: SortOrder
-    duration?: SortOrder
-    playedAt?: SortOrder
-  }
-
-  export type GameSessionSumOrderByAggregateInput = {
-    sessionId?: SortOrder
-    playerId?: SortOrder
-    gameId?: SortOrder
-    score?: SortOrder
-    duration?: SortOrder
-  }
-
-  export type GameSessionCreateNestedManyWithoutPlayerInput = {
-    create?: XOR<GameSessionCreateWithoutPlayerInput, GameSessionUncheckedCreateWithoutPlayerInput> | GameSessionCreateWithoutPlayerInput[] | GameSessionUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutPlayerInput | GameSessionCreateOrConnectWithoutPlayerInput[]
-    createMany?: GameSessionCreateManyPlayerInputEnvelope
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-  }
-
-  export type GameSessionUncheckedCreateNestedManyWithoutPlayerInput = {
-    create?: XOR<GameSessionCreateWithoutPlayerInput, GameSessionUncheckedCreateWithoutPlayerInput> | GameSessionCreateWithoutPlayerInput[] | GameSessionUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutPlayerInput | GameSessionCreateOrConnectWithoutPlayerInput[]
-    createMany?: GameSessionCreateManyPlayerInputEnvelope
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-  }
-
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type GameSessionUpdateManyWithoutPlayerNestedInput = {
-    create?: XOR<GameSessionCreateWithoutPlayerInput, GameSessionUncheckedCreateWithoutPlayerInput> | GameSessionCreateWithoutPlayerInput[] | GameSessionUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutPlayerInput | GameSessionCreateOrConnectWithoutPlayerInput[]
-    upsert?: GameSessionUpsertWithWhereUniqueWithoutPlayerInput | GameSessionUpsertWithWhereUniqueWithoutPlayerInput[]
-    createMany?: GameSessionCreateManyPlayerInputEnvelope
-    set?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    disconnect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    delete?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    update?: GameSessionUpdateWithWhereUniqueWithoutPlayerInput | GameSessionUpdateWithWhereUniqueWithoutPlayerInput[]
-    updateMany?: GameSessionUpdateManyWithWhereWithoutPlayerInput | GameSessionUpdateManyWithWhereWithoutPlayerInput[]
-    deleteMany?: GameSessionScalarWhereInput | GameSessionScalarWhereInput[]
-  }
-
-  export type GameSessionUncheckedUpdateManyWithoutPlayerNestedInput = {
-    create?: XOR<GameSessionCreateWithoutPlayerInput, GameSessionUncheckedCreateWithoutPlayerInput> | GameSessionCreateWithoutPlayerInput[] | GameSessionUncheckedCreateWithoutPlayerInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutPlayerInput | GameSessionCreateOrConnectWithoutPlayerInput[]
-    upsert?: GameSessionUpsertWithWhereUniqueWithoutPlayerInput | GameSessionUpsertWithWhereUniqueWithoutPlayerInput[]
-    createMany?: GameSessionCreateManyPlayerInputEnvelope
-    set?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    disconnect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    delete?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    update?: GameSessionUpdateWithWhereUniqueWithoutPlayerInput | GameSessionUpdateWithWhereUniqueWithoutPlayerInput[]
-    updateMany?: GameSessionUpdateManyWithWhereWithoutPlayerInput | GameSessionUpdateManyWithWhereWithoutPlayerInput[]
-    deleteMany?: GameSessionScalarWhereInput | GameSessionScalarWhereInput[]
-  }
-
-  export type GameSessionCreateNestedManyWithoutGameInput = {
-    create?: XOR<GameSessionCreateWithoutGameInput, GameSessionUncheckedCreateWithoutGameInput> | GameSessionCreateWithoutGameInput[] | GameSessionUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutGameInput | GameSessionCreateOrConnectWithoutGameInput[]
-    createMany?: GameSessionCreateManyGameInputEnvelope
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-  }
-
-  export type GameSessionUncheckedCreateNestedManyWithoutGameInput = {
-    create?: XOR<GameSessionCreateWithoutGameInput, GameSessionUncheckedCreateWithoutGameInput> | GameSessionCreateWithoutGameInput[] | GameSessionUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutGameInput | GameSessionCreateOrConnectWithoutGameInput[]
-    createMany?: GameSessionCreateManyGameInputEnvelope
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
+  export type AuthenticatorUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AuthenticatorCreateWithoutUserInput, AuthenticatorUncheckedCreateWithoutUserInput> | AuthenticatorCreateWithoutUserInput[] | AuthenticatorUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuthenticatorCreateOrConnectWithoutUserInput | AuthenticatorCreateOrConnectWithoutUserInput[]
+    createMany?: AuthenticatorCreateManyUserInputEnvelope
+    connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type GameSessionUpdateManyWithoutGameNestedInput = {
-    create?: XOR<GameSessionCreateWithoutGameInput, GameSessionUncheckedCreateWithoutGameInput> | GameSessionCreateWithoutGameInput[] | GameSessionUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutGameInput | GameSessionCreateOrConnectWithoutGameInput[]
-    upsert?: GameSessionUpsertWithWhereUniqueWithoutGameInput | GameSessionUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: GameSessionCreateManyGameInputEnvelope
-    set?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    disconnect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    delete?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    update?: GameSessionUpdateWithWhereUniqueWithoutGameInput | GameSessionUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: GameSessionUpdateManyWithWhereWithoutGameInput | GameSessionUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: GameSessionScalarWhereInput | GameSessionScalarWhereInput[]
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type AccountUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutUserInput | AccountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AccountCreateManyUserInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type SessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type AuthenticatorUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AuthenticatorCreateWithoutUserInput, AuthenticatorUncheckedCreateWithoutUserInput> | AuthenticatorCreateWithoutUserInput[] | AuthenticatorUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuthenticatorCreateOrConnectWithoutUserInput | AuthenticatorCreateOrConnectWithoutUserInput[]
+    upsert?: AuthenticatorUpsertWithWhereUniqueWithoutUserInput | AuthenticatorUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AuthenticatorCreateManyUserInputEnvelope
+    set?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    disconnect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    delete?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    update?: AuthenticatorUpdateWithWhereUniqueWithoutUserInput | AuthenticatorUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AuthenticatorUpdateManyWithWhereWithoutUserInput | AuthenticatorUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
+  }
+
+  export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
+    upsert?: AccountUpsertWithWhereUniqueWithoutUserInput | AccountUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AccountCreateManyUserInputEnvelope
+    set?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    disconnect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    delete?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    connect?: AccountWhereUniqueInput | AccountWhereUniqueInput[]
+    update?: AccountUpdateWithWhereUniqueWithoutUserInput | AccountUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AccountUpdateManyWithWhereWithoutUserInput | AccountUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AccountScalarWhereInput | AccountScalarWhereInput[]
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput> | SessionCreateWithoutUserInput[] | SessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
+    upsert?: SessionUpsertWithWhereUniqueWithoutUserInput | SessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SessionCreateManyUserInputEnvelope
+    set?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    disconnect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    delete?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+    update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type AuthenticatorUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AuthenticatorCreateWithoutUserInput, AuthenticatorUncheckedCreateWithoutUserInput> | AuthenticatorCreateWithoutUserInput[] | AuthenticatorUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuthenticatorCreateOrConnectWithoutUserInput | AuthenticatorCreateOrConnectWithoutUserInput[]
+    upsert?: AuthenticatorUpsertWithWhereUniqueWithoutUserInput | AuthenticatorUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AuthenticatorCreateManyUserInputEnvelope
+    set?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    disconnect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    delete?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
+    update?: AuthenticatorUpdateWithWhereUniqueWithoutUserInput | AuthenticatorUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AuthenticatorUpdateManyWithWhereWithoutUserInput | AuthenticatorUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutAccountsInput = {
+    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
+    create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
+    upsert?: UserUpsertWithoutAccountsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type UserCreateNestedOneWithoutSessionsInput = {
+    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
+    create?: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
+    upsert?: UserUpsertWithoutSessionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutAuthenticatorInput = {
+    create?: XOR<UserCreateWithoutAuthenticatorInput, UserUncheckedCreateWithoutAuthenticatorInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuthenticatorInput
+    connect?: UserWhereUniqueInput
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -5405,57 +8267,30 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type GameSessionUncheckedUpdateManyWithoutGameNestedInput = {
-    create?: XOR<GameSessionCreateWithoutGameInput, GameSessionUncheckedCreateWithoutGameInput> | GameSessionCreateWithoutGameInput[] | GameSessionUncheckedCreateWithoutGameInput[]
-    connectOrCreate?: GameSessionCreateOrConnectWithoutGameInput | GameSessionCreateOrConnectWithoutGameInput[]
-    upsert?: GameSessionUpsertWithWhereUniqueWithoutGameInput | GameSessionUpsertWithWhereUniqueWithoutGameInput[]
-    createMany?: GameSessionCreateManyGameInputEnvelope
-    set?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    disconnect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    delete?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    connect?: GameSessionWhereUniqueInput | GameSessionWhereUniqueInput[]
-    update?: GameSessionUpdateWithWhereUniqueWithoutGameInput | GameSessionUpdateWithWhereUniqueWithoutGameInput[]
-    updateMany?: GameSessionUpdateManyWithWhereWithoutGameInput | GameSessionUpdateManyWithWhereWithoutGameInput[]
-    deleteMany?: GameSessionScalarWhereInput | GameSessionScalarWhereInput[]
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
-  export type PlayerCreateNestedOneWithoutSessionsInput = {
-    create?: XOR<PlayerCreateWithoutSessionsInput, PlayerUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: PlayerCreateOrConnectWithoutSessionsInput
-    connect?: PlayerWhereUniqueInput
+  export type UserUpdateOneRequiredWithoutAuthenticatorNestedInput = {
+    create?: XOR<UserCreateWithoutAuthenticatorInput, UserUncheckedCreateWithoutAuthenticatorInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuthenticatorInput
+    upsert?: UserUpsertWithoutAuthenticatorInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAuthenticatorInput, UserUpdateWithoutAuthenticatorInput>, UserUncheckedUpdateWithoutAuthenticatorInput>
   }
 
-  export type GameCreateNestedOneWithoutSessionsInput = {
-    create?: XOR<GameCreateWithoutSessionsInput, GameUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: GameCreateOrConnectWithoutSessionsInput
-    connect?: GameWhereUniqueInput
-  }
-
-  export type PlayerUpdateOneRequiredWithoutSessionsNestedInput = {
-    create?: XOR<PlayerCreateWithoutSessionsInput, PlayerUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: PlayerCreateOrConnectWithoutSessionsInput
-    upsert?: PlayerUpsertWithoutSessionsInput
-    connect?: PlayerWhereUniqueInput
-    update?: XOR<XOR<PlayerUpdateToOneWithWhereWithoutSessionsInput, PlayerUpdateWithoutSessionsInput>, PlayerUncheckedUpdateWithoutSessionsInput>
-  }
-
-  export type GameUpdateOneRequiredWithoutSessionsNestedInput = {
-    create?: XOR<GameCreateWithoutSessionsInput, GameUncheckedCreateWithoutSessionsInput>
-    connectOrCreate?: GameCreateOrConnectWithoutSessionsInput
-    upsert?: GameUpsertWithoutSessionsInput
-    connect?: GameWhereUniqueInput
-    update?: XOR<XOR<GameUpdateToOneWithWhereWithoutSessionsInput, GameUpdateWithoutSessionsInput>, GameUncheckedUpdateWithoutSessionsInput>
-  }
-
-  export type NestedBigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -5472,6 +8307,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5483,20 +8329,21 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -5508,17 +8355,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5549,6 +8385,20 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5563,18 +8413,36 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -5593,307 +8461,529 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type GameSessionCreateWithoutPlayerInput = {
-    sessionId?: bigint | number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
-    game: GameCreateNestedOneWithoutSessionsInput
+  export type AccountCreateWithoutUserInput = {
+    type: string
+    provider: string
+    providerAccountId: string
+    refresh_token?: string | null
+    access_token?: string | null
+    expires_at?: number | null
+    token_type?: string | null
+    scope?: string | null
+    id_token?: string | null
+    session_state?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionUncheckedCreateWithoutPlayerInput = {
-    sessionId?: bigint | number
-    gameId: number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
+  export type AccountUncheckedCreateWithoutUserInput = {
+    type: string
+    provider: string
+    providerAccountId: string
+    refresh_token?: string | null
+    access_token?: string | null
+    expires_at?: number | null
+    token_type?: string | null
+    scope?: string | null
+    id_token?: string | null
+    session_state?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionCreateOrConnectWithoutPlayerInput = {
-    where: GameSessionWhereUniqueInput
-    create: XOR<GameSessionCreateWithoutPlayerInput, GameSessionUncheckedCreateWithoutPlayerInput>
+  export type AccountCreateOrConnectWithoutUserInput = {
+    where: AccountWhereUniqueInput
+    create: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput>
   }
 
-  export type GameSessionCreateManyPlayerInputEnvelope = {
-    data: GameSessionCreateManyPlayerInput | GameSessionCreateManyPlayerInput[]
+  export type AccountCreateManyUserInputEnvelope = {
+    data: AccountCreateManyUserInput | AccountCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type GameSessionUpsertWithWhereUniqueWithoutPlayerInput = {
-    where: GameSessionWhereUniqueInput
-    update: XOR<GameSessionUpdateWithoutPlayerInput, GameSessionUncheckedUpdateWithoutPlayerInput>
-    create: XOR<GameSessionCreateWithoutPlayerInput, GameSessionUncheckedCreateWithoutPlayerInput>
+  export type SessionCreateWithoutUserInput = {
+    sessionToken: string
+    expires: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionUpdateWithWhereUniqueWithoutPlayerInput = {
-    where: GameSessionWhereUniqueInput
-    data: XOR<GameSessionUpdateWithoutPlayerInput, GameSessionUncheckedUpdateWithoutPlayerInput>
+  export type SessionUncheckedCreateWithoutUserInput = {
+    sessionToken: string
+    expires: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionUpdateManyWithWhereWithoutPlayerInput = {
-    where: GameSessionScalarWhereInput
-    data: XOR<GameSessionUpdateManyMutationInput, GameSessionUncheckedUpdateManyWithoutPlayerInput>
+  export type SessionCreateOrConnectWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
   }
 
-  export type GameSessionScalarWhereInput = {
-    AND?: GameSessionScalarWhereInput | GameSessionScalarWhereInput[]
-    OR?: GameSessionScalarWhereInput[]
-    NOT?: GameSessionScalarWhereInput | GameSessionScalarWhereInput[]
-    sessionId?: BigIntFilter<"GameSession"> | bigint | number
-    playerId?: BigIntFilter<"GameSession"> | bigint | number
-    gameId?: IntFilter<"GameSession"> | number
-    score?: IntFilter<"GameSession"> | number
-    duration?: IntFilter<"GameSession"> | number
-    extra?: JsonNullableFilter<"GameSession">
-    playedAt?: DateTimeFilter<"GameSession"> | Date | string
-  }
-
-  export type GameSessionCreateWithoutGameInput = {
-    sessionId?: bigint | number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
-    player: PlayerCreateNestedOneWithoutSessionsInput
-  }
-
-  export type GameSessionUncheckedCreateWithoutGameInput = {
-    sessionId?: bigint | number
-    playerId: bigint | number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
-  }
-
-  export type GameSessionCreateOrConnectWithoutGameInput = {
-    where: GameSessionWhereUniqueInput
-    create: XOR<GameSessionCreateWithoutGameInput, GameSessionUncheckedCreateWithoutGameInput>
-  }
-
-  export type GameSessionCreateManyGameInputEnvelope = {
-    data: GameSessionCreateManyGameInput | GameSessionCreateManyGameInput[]
+  export type SessionCreateManyUserInputEnvelope = {
+    data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type GameSessionUpsertWithWhereUniqueWithoutGameInput = {
-    where: GameSessionWhereUniqueInput
-    update: XOR<GameSessionUpdateWithoutGameInput, GameSessionUncheckedUpdateWithoutGameInput>
-    create: XOR<GameSessionCreateWithoutGameInput, GameSessionUncheckedCreateWithoutGameInput>
+  export type AuthenticatorCreateWithoutUserInput = {
+    credentialID: string
+    providerAccountId: string
+    credentialPublicKey: string
+    counter: number
+    credentialDeviceType: string
+    credentialBackedUp: boolean
+    transports?: string | null
   }
 
-  export type GameSessionUpdateWithWhereUniqueWithoutGameInput = {
-    where: GameSessionWhereUniqueInput
-    data: XOR<GameSessionUpdateWithoutGameInput, GameSessionUncheckedUpdateWithoutGameInput>
+  export type AuthenticatorUncheckedCreateWithoutUserInput = {
+    credentialID: string
+    providerAccountId: string
+    credentialPublicKey: string
+    counter: number
+    credentialDeviceType: string
+    credentialBackedUp: boolean
+    transports?: string | null
   }
 
-  export type GameSessionUpdateManyWithWhereWithoutGameInput = {
-    where: GameSessionScalarWhereInput
-    data: XOR<GameSessionUpdateManyMutationInput, GameSessionUncheckedUpdateManyWithoutGameInput>
+  export type AuthenticatorCreateOrConnectWithoutUserInput = {
+    where: AuthenticatorWhereUniqueInput
+    create: XOR<AuthenticatorCreateWithoutUserInput, AuthenticatorUncheckedCreateWithoutUserInput>
   }
 
-  export type PlayerCreateWithoutSessionsInput = {
-    playerId?: bigint | number
-    userId: bigint | number
-    nickname?: string | null
+  export type AuthenticatorCreateManyUserInputEnvelope = {
+    data: AuthenticatorCreateManyUserInput | AuthenticatorCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccountUpsertWithWhereUniqueWithoutUserInput = {
+    where: AccountWhereUniqueInput
+    update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
+    create: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput>
+  }
+
+  export type AccountUpdateWithWhereUniqueWithoutUserInput = {
+    where: AccountWhereUniqueInput
+    data: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AccountUpdateManyWithWhereWithoutUserInput = {
+    where: AccountScalarWhereInput
+    data: XOR<AccountUpdateManyMutationInput, AccountUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AccountScalarWhereInput = {
+    AND?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    OR?: AccountScalarWhereInput[]
+    NOT?: AccountScalarWhereInput | AccountScalarWhereInput[]
+    userId?: StringFilter<"Account"> | string
+    type?: StringFilter<"Account"> | string
+    provider?: StringFilter<"Account"> | string
+    providerAccountId?: StringFilter<"Account"> | string
+    refresh_token?: StringNullableFilter<"Account"> | string | null
+    access_token?: StringNullableFilter<"Account"> | string | null
+    expires_at?: IntNullableFilter<"Account"> | number | null
+    token_type?: StringNullableFilter<"Account"> | string | null
+    scope?: StringNullableFilter<"Account"> | string | null
+    id_token?: StringNullableFilter<"Account"> | string | null
+    session_state?: StringNullableFilter<"Account"> | string | null
+    createdAt?: DateTimeFilter<"Account"> | Date | string
+    updatedAt?: DateTimeFilter<"Account"> | Date | string
+  }
+
+  export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    update: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+    create: XOR<SessionCreateWithoutUserInput, SessionUncheckedCreateWithoutUserInput>
+  }
+
+  export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+    where: SessionWhereUniqueInput
+    data: XOR<SessionUpdateWithoutUserInput, SessionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SessionUpdateManyWithWhereWithoutUserInput = {
+    where: SessionScalarWhereInput
+    data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SessionScalarWhereInput = {
+    AND?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    OR?: SessionScalarWhereInput[]
+    NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
+    sessionToken?: StringFilter<"Session"> | string
+    userId?: StringFilter<"Session"> | string
+    expires?: DateTimeFilter<"Session"> | Date | string
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
+  }
+
+  export type AuthenticatorUpsertWithWhereUniqueWithoutUserInput = {
+    where: AuthenticatorWhereUniqueInput
+    update: XOR<AuthenticatorUpdateWithoutUserInput, AuthenticatorUncheckedUpdateWithoutUserInput>
+    create: XOR<AuthenticatorCreateWithoutUserInput, AuthenticatorUncheckedCreateWithoutUserInput>
+  }
+
+  export type AuthenticatorUpdateWithWhereUniqueWithoutUserInput = {
+    where: AuthenticatorWhereUniqueInput
+    data: XOR<AuthenticatorUpdateWithoutUserInput, AuthenticatorUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AuthenticatorUpdateManyWithWhereWithoutUserInput = {
+    where: AuthenticatorScalarWhereInput
+    data: XOR<AuthenticatorUpdateManyMutationInput, AuthenticatorUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AuthenticatorScalarWhereInput = {
+    AND?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
+    OR?: AuthenticatorScalarWhereInput[]
+    NOT?: AuthenticatorScalarWhereInput | AuthenticatorScalarWhereInput[]
+    credentialID?: StringFilter<"Authenticator"> | string
+    userId?: StringFilter<"Authenticator"> | string
+    providerAccountId?: StringFilter<"Authenticator"> | string
+    credentialPublicKey?: StringFilter<"Authenticator"> | string
+    counter?: IntFilter<"Authenticator"> | number
+    credentialDeviceType?: StringFilter<"Authenticator"> | string
+    credentialBackedUp?: BoolFilter<"Authenticator"> | boolean
+    transports?: StringNullableFilter<"Authenticator"> | string | null
+  }
+
+  export type UserCreateWithoutAccountsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
   }
 
-  export type PlayerUncheckedCreateWithoutSessionsInput = {
-    playerId?: bigint | number
-    userId: bigint | number
-    nickname?: string | null
+  export type UserUncheckedCreateWithoutAccountsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type PlayerCreateOrConnectWithoutSessionsInput = {
-    where: PlayerWhereUniqueInput
-    create: XOR<PlayerCreateWithoutSessionsInput, PlayerUncheckedCreateWithoutSessionsInput>
+  export type UserCreateOrConnectWithoutAccountsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
   }
 
-  export type GameCreateWithoutSessionsInput = {
-    code: string
-    name: string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type UserUpsertWithoutAccountsInput = {
+    update: XOR<UserUpdateWithoutAccountsInput, UserUncheckedUpdateWithoutAccountsInput>
+    create: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAccountsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAccountsInput, UserUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type UserUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAccountsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutSessionsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
   }
 
-  export type GameUncheckedCreateWithoutSessionsInput = {
-    gameId?: number
-    code: string
-    name: string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type UserUncheckedCreateWithoutSessionsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type GameCreateOrConnectWithoutSessionsInput = {
-    where: GameWhereUniqueInput
-    create: XOR<GameCreateWithoutSessionsInput, GameUncheckedCreateWithoutSessionsInput>
+  export type UserCreateOrConnectWithoutSessionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
   }
 
-  export type PlayerUpsertWithoutSessionsInput = {
-    update: XOR<PlayerUpdateWithoutSessionsInput, PlayerUncheckedUpdateWithoutSessionsInput>
-    create: XOR<PlayerCreateWithoutSessionsInput, PlayerUncheckedCreateWithoutSessionsInput>
-    where?: PlayerWhereInput
+  export type UserUpsertWithoutSessionsInput = {
+    update: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
+    create: XOR<UserCreateWithoutSessionsInput, UserUncheckedCreateWithoutSessionsInput>
+    where?: UserWhereInput
   }
 
-  export type PlayerUpdateToOneWithWhereWithoutSessionsInput = {
-    where?: PlayerWhereInput
-    data: XOR<PlayerUpdateWithoutSessionsInput, PlayerUncheckedUpdateWithoutSessionsInput>
+  export type UserUpdateToOneWithWhereWithoutSessionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSessionsInput, UserUncheckedUpdateWithoutSessionsInput>
   }
 
-  export type PlayerUpdateWithoutSessionsInput = {
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    userId?: BigIntFieldUpdateOperationsInput | bigint | number
-    nickname?: NullableStringFieldUpdateOperationsInput | string | null
+  export type UserUpdateWithoutSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
   }
 
-  export type PlayerUncheckedUpdateWithoutSessionsInput = {
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    userId?: BigIntFieldUpdateOperationsInput | bigint | number
-    nickname?: NullableStringFieldUpdateOperationsInput | string | null
+  export type UserUncheckedUpdateWithoutSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type GameUpsertWithoutSessionsInput = {
-    update: XOR<GameUpdateWithoutSessionsInput, GameUncheckedUpdateWithoutSessionsInput>
-    create: XOR<GameCreateWithoutSessionsInput, GameUncheckedCreateWithoutSessionsInput>
-    where?: GameWhereInput
+  export type UserCreateWithoutAuthenticatorInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
   }
 
-  export type GameUpdateToOneWithWhereWithoutSessionsInput = {
-    where?: GameWhereInput
-    data: XOR<GameUpdateWithoutSessionsInput, GameUncheckedUpdateWithoutSessionsInput>
+  export type UserUncheckedCreateWithoutAuthenticatorInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type GameUpdateWithoutSessionsInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type UserCreateOrConnectWithoutAuthenticatorInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAuthenticatorInput, UserUncheckedCreateWithoutAuthenticatorInput>
+  }
+
+  export type UserUpsertWithoutAuthenticatorInput = {
+    update: XOR<UserUpdateWithoutAuthenticatorInput, UserUncheckedUpdateWithoutAuthenticatorInput>
+    create: XOR<UserCreateWithoutAuthenticatorInput, UserUncheckedCreateWithoutAuthenticatorInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAuthenticatorInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAuthenticatorInput, UserUncheckedUpdateWithoutAuthenticatorInput>
+  }
+
+  export type UserUpdateWithoutAuthenticatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
   }
 
-  export type GameUncheckedUpdateWithoutSessionsInput = {
-    gameId?: IntFieldUpdateOperationsInput | number
-    code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    config?: NullableJsonNullValueInput | InputJsonValue
+  export type UserUncheckedUpdateWithoutAuthenticatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type GameSessionCreateManyPlayerInput = {
-    sessionId?: bigint | number
-    gameId: number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
+  export type AccountCreateManyUserInput = {
+    type: string
+    provider: string
+    providerAccountId: string
+    refresh_token?: string | null
+    access_token?: string | null
+    expires_at?: number | null
+    token_type?: string | null
+    scope?: string | null
+    id_token?: string | null
+    session_state?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionUpdateWithoutPlayerInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    game?: GameUpdateOneRequiredWithoutSessionsNestedInput
+  export type SessionCreateManyUserInput = {
+    sessionToken: string
+    expires: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type GameSessionUncheckedUpdateWithoutPlayerInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    gameId?: IntFieldUpdateOperationsInput | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type AuthenticatorCreateManyUserInput = {
+    credentialID: string
+    providerAccountId: string
+    credentialPublicKey: string
+    counter: number
+    credentialDeviceType: string
+    credentialBackedUp: boolean
+    transports?: string | null
   }
 
-  export type GameSessionUncheckedUpdateManyWithoutPlayerInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    gameId?: IntFieldUpdateOperationsInput | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type AccountUpdateWithoutUserInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    expires_at?: NullableIntFieldUpdateOperationsInput | number | null
+    token_type?: NullableStringFieldUpdateOperationsInput | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    id_token?: NullableStringFieldUpdateOperationsInput | string | null
+    session_state?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameSessionCreateManyGameInput = {
-    sessionId?: bigint | number
-    playerId: bigint | number
-    score: number
-    duration: number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: Date | string
+  export type AccountUncheckedUpdateWithoutUserInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    expires_at?: NullableIntFieldUpdateOperationsInput | number | null
+    token_type?: NullableStringFieldUpdateOperationsInput | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    id_token?: NullableStringFieldUpdateOperationsInput | string | null
+    session_state?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameSessionUpdateWithoutGameInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    player?: PlayerUpdateOneRequiredWithoutSessionsNestedInput
+  export type AccountUncheckedUpdateManyWithoutUserInput = {
+    type?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    expires_at?: NullableIntFieldUpdateOperationsInput | number | null
+    token_type?: NullableStringFieldUpdateOperationsInput | string | null
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
+    id_token?: NullableStringFieldUpdateOperationsInput | string | null
+    session_state?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameSessionUncheckedUpdateWithoutGameInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type SessionUpdateWithoutUserInput = {
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GameSessionUncheckedUpdateManyWithoutGameInput = {
-    sessionId?: BigIntFieldUpdateOperationsInput | bigint | number
-    playerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    score?: IntFieldUpdateOperationsInput | number
-    duration?: IntFieldUpdateOperationsInput | number
-    extra?: NullableJsonNullValueInput | InputJsonValue
-    playedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type SessionUncheckedUpdateWithoutUserInput = {
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SessionUncheckedUpdateManyWithoutUserInput = {
+    sessionToken?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuthenticatorUpdateWithoutUserInput = {
+    credentialID?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    credentialPublicKey?: StringFieldUpdateOperationsInput | string
+    counter?: IntFieldUpdateOperationsInput | number
+    credentialDeviceType?: StringFieldUpdateOperationsInput | string
+    credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
+    transports?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AuthenticatorUncheckedUpdateWithoutUserInput = {
+    credentialID?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    credentialPublicKey?: StringFieldUpdateOperationsInput | string
+    counter?: IntFieldUpdateOperationsInput | number
+    credentialDeviceType?: StringFieldUpdateOperationsInput | string
+    credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
+    transports?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AuthenticatorUncheckedUpdateManyWithoutUserInput = {
+    credentialID?: StringFieldUpdateOperationsInput | string
+    providerAccountId?: StringFieldUpdateOperationsInput | string
+    credentialPublicKey?: StringFieldUpdateOperationsInput | string
+    counter?: IntFieldUpdateOperationsInput | number
+    credentialDeviceType?: StringFieldUpdateOperationsInput | string
+    credentialBackedUp?: BoolFieldUpdateOperationsInput | boolean
+    transports?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
