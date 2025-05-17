@@ -8,7 +8,7 @@ const routeMeta = computed(() => route.meta)
 
 <template>
   <div v-if="routeMeta.layout === 'fullscreen'" class="ContainerLayout fullscreen absolute-layout">
-    <router-view />
+    <slot />
   </div>
   <a-layout v-else class="ContainerLayout absolute-layout overflow-hidden">
     <a-layout-header
@@ -21,7 +21,7 @@ const routeMeta = computed(() => route.meta)
         <MenuBar />
       </a-layout-sider>
       <a-layout-content>
-        <router-view />
+        <slot />
       </a-layout-content>
     </a-layout>
   </a-layout>

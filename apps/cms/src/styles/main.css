@@ -52,3 +52,10 @@ input.arco-input.arco-input-size-large {
 .transition-cubic {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+.Toast {
+  padding: 1rem;
+  height: 48px;
+
+  border-radius: 18px;
+}

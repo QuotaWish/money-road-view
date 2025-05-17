@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { toast } from 'vue-sonner'
 import Logo from '~/components/display/Logo.vue'
 
 const router = useRouter()
@@ -11,10 +12,8 @@ function handleClick() {
   router.push('/auth/register')
 }
 function handleLogin() {
-  if (username.value && password.value) {
-    alert('登录成功')
-  }else {
-    alert('请输入用户名或密码')
+  if (!username.value || !password.value) {
+    toast.error('请输入用户名或密码')
   }
 }
 </script>
@@ -29,15 +28,15 @@ function handleLogin() {
       </h1>
 
       <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
-      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear type="password"/>
+      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
       <a-checkbox v-model="agreement">
         <p>
           继续操作即代表您同意接受
-          <a-link href="link">
+          <a-link href="/service">
             《服务条款》
           </a-link>
           和
-          <a-link href="link">
+          <a-link href="/privacy">
             《隐私政策》
           </a-link>
         </p>
