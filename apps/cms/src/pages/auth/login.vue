@@ -1,20 +1,15 @@
 <script lang="ts" setup>
-// const username = ref("")
-// const password = ref("")
-// function handleClick() {
-//   if (username.value === "" || password.value === "") {
-//     alert("请输入用户名或密码")
-//     return
-//   }
-// }
+import Logo from '~/components/display/Logo.vue'
 </script>
 
 <template>
   <div class="Login">
     <div class="Login-Background" />
 
-    <div class="Login-Form">
-      <h1>LOGIN</h1>
+    <div class="Login-Form fake-background">
+      <h1 text-3xl font-bold>
+        登录账号
+      </h1>
 
       <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear />
       <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear />
@@ -52,10 +47,36 @@
         SSO登录
       </a-button>
     </div>
+
+    <div class="Login-Brand">
+      <Logo />
+    </div>
+
+    <div class="Login-Copyright">
+      Powered by QuotaWish.
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
+.Login-Brand {
+  z-index: 1;
+  position: absolute;
+
+  top: 1rem;
+  left: 1rem;
+}
+
+.Login-Copyright {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 1rem;
+  opacity: 0.5;
+  transform: translateX(-50%);
+}
+
 .Login-Form {
   &::before {
     z-index: -1;
@@ -70,13 +91,15 @@
   }
 
   position: absolute;
-  padding: 1rem;
+  padding: 2rem;
 
-  top: 10%;
+  top: 50%;
   right: 10%;
 
   width: 20%;
-  height: 80%;
+  min-width: 480px;
+  height: 60%;
+  min-height: 600px;
 
   display: flex;
   flex-direction: column;
@@ -84,6 +107,10 @@
   align-items: center;
   gap: 1rem;
 
+  overflow: hidden;
+  border-radius: 18px;
+  --fake-opacity: 0.75;
+  transform: translateY(-50%);
   backdrop-filter: blur(18px) saturate(180%);
 }
 
@@ -94,10 +121,10 @@
   width: 100%;
   height: 100%;
 
-  background-size: contain;
+  background-size: cover;
   background-position: left center;
   background-repeat: no-repeat;
-  background-image: url('/bg/auth.png');
+  background-image: url('/bg/auth-bg.png');
 }
 
 .Login {
