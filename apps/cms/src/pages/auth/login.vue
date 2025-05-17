@@ -106,9 +106,7 @@ function handleClick() {
 
   width: 20%;
   min-width: 480px;
-  height: 60%;
-  min-height: 400px;
-  max-height: 600px;
+  height: 600px;
 
   display: flex;
   flex-direction: column;
@@ -153,7 +151,6 @@ function handleClick() {
   width: 100%;
 }
 
-// 如果页面宽度小于 1280
 @media (max-width: 1280px) {
   .Login-Form {
     height: 80%;
@@ -167,7 +164,6 @@ function handleClick() {
 
     width: 100%;
     height: 100%;
-    max-height: 100%;
 
     transform: none;
     border-radius: 0;
