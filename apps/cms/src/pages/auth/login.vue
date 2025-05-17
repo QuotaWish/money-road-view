@@ -4,8 +4,18 @@ import Logo from '~/components/display/Logo.vue'
 const router = useRouter()
 const agreement = ref(false)
 
+const username = ref('')
+const password = ref('')
+
 function handleClick() {
   router.push('/auth/register')
+}
+function handleLogin() {
+  if (username.value && password.value) {
+    alert('登录成功')
+  }else {
+    alert('请输入用户名或密码')
+  }
 }
 </script>
 
@@ -18,8 +28,8 @@ function handleClick() {
         登录账号
       </h1>
 
-      <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear />
-      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear />
+      <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear type="password"/>
       <a-checkbox v-model="agreement">
         <p>
           继续操作即代表您同意接受
@@ -32,7 +42,7 @@ function handleClick() {
           </a-link>
         </p>
       </a-checkbox>
-      <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
+      <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement" @click="handleLogin()">
         登录
       </a-button>
       <div class="Login-Button-Second">

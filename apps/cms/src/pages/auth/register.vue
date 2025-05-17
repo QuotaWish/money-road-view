@@ -1,10 +1,25 @@
 <script lang="ts" setup>
 import Logo from '~/components/display/Logo.vue'
 
+const username = ref('')
+const password = ref('')
+const confirmPassword = ref('')
+
 const agreement = ref(false)
 const router = useRouter()
 function handleClick() {
   router.push('/auth/login')
+}
+
+function handleRegister() {
+  if (username.value && password.value && confirmPassword.value) {
+    // TODO: 提交注册信息
+    alert('注册成功')
+    router.push('/auth/login')
+  }
+  else {
+    alert('请填写完整信息')
+  }
 }
 </script>
 
@@ -17,9 +32,9 @@ function handleClick() {
         注册账号
       </h1>
 
-      <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear />
-      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear />
-      <a-input class="w-[80%]" size="large" placeholder="重复密码" allow-clear />
+      <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
+      <a-input class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="password" />
       <a-checkbox v-model="agreement">
         <p>
           继续操作即代表您同意接受
@@ -32,7 +47,7 @@ function handleClick() {
           </a-link>
         </p>
       </a-checkbox>
-      <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
+      <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement" @click="handleRegister()">
         注册
       </a-button>
       <div class="Login-Button-Second">
