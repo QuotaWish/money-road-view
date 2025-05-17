@@ -1,20 +1,24 @@
 <script lang="ts" setup>
 import Logo from '~/components/display/Logo.vue'
 
-const router = useRouter()
-const agreement = ref(false)
-
 const username = ref('')
 const password = ref('')
+const confirmPassword = ref('')
 
+const agreement = ref(false)
+const router = useRouter()
 function handleClick() {
-  router.push('/auth/register')
+  router.push('/auth/login')
 }
-function handleLogin() {
-  if (username.value && password.value) {
-    alert('登录成功')
-  }else {
-    alert('请输入用户名或密码')
+
+function handleRegister() {
+  if (username.value && password.value && confirmPassword.value) {
+    // TODO: 提交注册信息
+    alert('注册成功')
+    router.push('/auth/login')
+  }
+  else {
+    alert('请填写完整信息')
   }
 }
 </script>
@@ -25,11 +29,12 @@ function handleLogin() {
 
     <div class="Login-Form fake-background">
       <h1 text-3xl font-bold>
-        登录账号
+        注册账号
       </h1>
 
       <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
-      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear type="password"/>
+      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
+      <a-input class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="password" />
       <a-checkbox v-model="agreement">
         <p>
           继续操作即代表您同意接受
@@ -42,28 +47,17 @@ function handleLogin() {
           </a-link>
         </p>
       </a-checkbox>
-      <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement" @click="handleLogin()">
-        登录
+      <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement" @click="handleRegister()">
+        注册
       </a-button>
       <div class="Login-Button-Second">
         <a-button type="text">
           忘记密码
         </a-button>
         <a-button type="text" @click="handleClick()">
-          立即注册
+          立即登录
         </a-button>
       </div>
-
-      <a-divider orientation="center">
-        或者
-      </a-divider>
-
-      <a-button size="large" type="outline" class="Login-Button w-full">
-        谷歌注册
-      </a-button>
-      <a-button size="large" type="outline" class="Login-Button w-full">
-        SSO注册
-      </a-button>
     </div>
 
     <div class="Login-Brand">
@@ -116,7 +110,9 @@ function handleLogin() {
 
   width: 20%;
   min-width: 480px;
-  height: 600px;
+  height: 60%;
+  min-height: 400px;
+  max-height: 600px;
 
   display: flex;
   flex-direction: column;
@@ -161,6 +157,7 @@ function handleLogin() {
   width: 100%;
 }
 
+// 如果页面宽度小于 1280
 @media (max-width: 1280px) {
   .Login-Form {
     height: 80%;
@@ -174,6 +171,7 @@ function handleLogin() {
 
     width: 100%;
     height: 100%;
+    max-height: 100%;
 
     transform: none;
     border-radius: 0;
