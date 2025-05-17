@@ -160,12 +160,6 @@ function handleLogin() {
   width: 100%;
 }
 
-@media (max-width: 1280px) {
-  .Login-Form {
-    height: 80%;
-  }
-}
-
 @media (max-width: 720px) {
   .Login-Form {
     top: 0;
