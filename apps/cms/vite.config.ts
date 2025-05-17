@@ -73,4 +73,15 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
   },
+
+  css: {
+    preprocessorOptions: {
+      less: {
+        modifyVars: {
+
+        },
+        javascriptEnabled: true
+      }
+    }
+  }
 })

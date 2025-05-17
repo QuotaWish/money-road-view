@@ -1,5 +1,8 @@
 {
   "cSpell.words": [
     "eventbus"
-  ]
+  ],
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "onlySnippets",
+  "editor.stickyTabStops": false
 }
