@@ -1,5 +1,9 @@
 {
-  "cSpell.words": [
-    "eventbus"
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "vue",
+    "typescript",
   ]
 }
