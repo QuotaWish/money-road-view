@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { MenuBar } from './index.ts'
+import { MenuBar } from './index'
 
 const route = useRoute()
 

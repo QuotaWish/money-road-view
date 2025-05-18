@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { toast } from 'vue-sonner'
 import Logo from '~/components/display/Logo.vue'
 
-const username = ref('')
-const password = ref('')
-const confirmPassword = ref('')
+const form = reactive({
+  account: '',
+  password: '',
+  confirmPassword: '',
+})
 
 const agreement = ref(false)
 const router = useRouter()
@@ -12,13 +15,13 @@ function handleClick() {
 }
 
 function handleRegister() {
-  if (username.value && password.value && confirmPassword.value) {
-    // TODO: 提交注册信息
-    alert('注册成功')
+  if (form.account && form.password && form.confirmPassword) {
+    if (form.password !== form.confirmPassword) {
+      toast.error('两次密码不一致')
+      return
+    }
+    toast.error('注册成功')
     router.push('/auth/login')
-  }
-  else {
-    alert('请填写完整信息')
   }
 }
 </script>
@@ -31,25 +34,36 @@ function handleRegister() {
       <h1 text-3xl font-bold text-left w-full>
         注册账号
       </h1>
-
-      <a-input class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
-      <a-input class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
-      <a-input class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="password" />
-      <a-checkbox v-model="agreement">
-        <p>
-          继续操作即代表您同意接受
-          <a-link href="link">
-            《服务条款》
-          </a-link>
-          和
-          <a-link href="link">
-            《隐私政策》
-          </a-link>
-        </p>
-      </a-checkbox>
-      <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement" @click="handleRegister()">
-        注册
-      </a-button>
+      <a-form :model="form" layout="vertical" @submit="handleRegister">
+        <a-form-item field="account" tooltip="请输入账号" label="账号">
+          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+        </a-form-item>
+        <a-form-item field="password" tooltip="请输入密码" label="密码">
+          <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
+        </a-form-item>
+        <a-form-item field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
+          <a-input v-model="form.confirmPassword" class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="Password" />
+        </a-form-item>
+        <a-form-item field="isRead">
+          <a-checkbox v-model="agreement">
+            <p>
+              继续操作即代表您同意接受
+              <a-link href="/service">
+                《服务条款》
+              </a-link>
+              和
+              <a-link href="/privacy">
+                《隐私政策》
+              </a-link>
+            </p>
+          </a-checkbox>
+        </a-form-item>
+        <a-form-item>
+          <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
+            注册
+          </a-button>
+        </a-form-item>
+      </a-form>
       <div class="Login-Button-Second">
         <a-button type="text">
           忘记密码
@@ -110,7 +124,7 @@ function handleRegister() {
 
   width: 20%;
   min-width: 480px;
-  height: 500px;
+  height: 750px;
 
   display: flex;
   flex-direction: column;
