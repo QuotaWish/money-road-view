@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 const router = useRouter()
-const selectedKeys = ref([])
+const selectedKeys = ref<string[]>([])
 
-function handleMenuItemClick(key) {
+function handleMenuItemClick(key: string) {
   selectedKeys.value = [key]
 
-  router.push(`/${key.replace("_", "/")}`)
+  router.push(`/${key.replace('_', '/')}`)
 }
 </script>
 

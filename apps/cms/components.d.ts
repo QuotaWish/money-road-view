@@ -25,6 +25,8 @@ declare module 'vue' {
     AMenu: typeof import('@arco-design/web-vue')['Menu']
     AMenuItem: typeof import('@arco-design/web-vue')['MenuItem']
     ASubMenu: typeof import('@arco-design/web-vue')['SubMenu']
+    ATabPane: typeof import('@arco-design/web-vue')['TabPane']
+    ATabs: typeof import('@arco-design/web-vue')['Tabs']
     GaHeader: typeof import('./src/components/display/GaHeader.vue')['default']
     Logo: typeof import('./src/components/display/Logo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

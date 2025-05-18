@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Toaster } from 'vue-sonner'
 import { useUserStore } from '~/composables/store'
-import { ContainerLayout } from '~/modules/core'
+import { ContainerLayout, GaRouterView } from '~/modules/core'
 import { initApis } from './composables/api/clients'
 
 const userStore = useUserStore()
@@ -29,7 +29,8 @@ router.beforeEach((to, from, next) => {
 
 <template>
   <ContainerLayout>
-    <RouterView />
+    <GaRouterView />
+
     <Toaster
       position="top-right" :toast-options="{
         class: 'Toast',

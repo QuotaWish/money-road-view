@@ -1,9 +1,42 @@
 <script lang="ts" setup>
-import { MenuBar, GaHeader } from './index'
+import { GaHeader, MenuBar } from './index'
+
+interface IMenuItem {
+  name: string
+  path: string
+}
 
 const route = useRoute()
+const router = useRouter()
+
+const activeKey = ref('')
+const menus = useLocalStorage('gather-tabs', new Array<IMenuItem>())
 
 const routeMeta = computed(() => route.meta)
+
+function handleDelete(a) {
+  console.log(a)
+}
+
+router.afterEach((to) => {
+  const { name, path } = to
+
+  const targetMenu = menus.value.find((item: IMenuItem) => item.path === path)
+
+  if (!targetMenu) {
+    menus.value.push({ name, path })
+  }
+
+  activeKey.value = route.path
+
+  console.log(to)
+})
+
+function handleTabClick(key: string) {
+  activeKey.value = key
+
+  router.push(key)
+}
 </script>
 
 <template>
@@ -23,7 +56,11 @@ const routeMeta = computed(() => route.meta)
         <MenuBar />
       </a-layout-sider>
       <a-layout-content>
-        <slot />
+        <a-tabs v-model:active-key="activeKey" size="large" type="card-gutter" :editable="true" animation auto-switch justify @tab-click="handleTabClick" @delete="handleDelete">
+          <a-tab-pane v-for="(item) of menus" :key="item.path" :title="item.name" :closable="menus.length">
+            <slot />
+          </a-tab-pane>
+        </a-tabs>
       </a-layout-content>
     </a-layout>
   </a-layout>
