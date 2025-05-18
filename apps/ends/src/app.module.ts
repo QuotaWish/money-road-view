@@ -5,9 +5,10 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { jwtAuthGuard } from './guard/jwt-auth.guard';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, AuthModule],
+  imports: [ConfigModule.forRoot(), UserModule, AuthModule],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_GUARD,

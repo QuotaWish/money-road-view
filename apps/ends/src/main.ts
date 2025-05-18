@@ -5,6 +5,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './filter/http-exception/http-exception.filter';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
 import { prismaClient } from './lib/prisma';
+import { ConfigModule } from '@nestjs/config';
 
 // @ts-ignore
 BigInt.prototype.toJSON = function () {
@@ -13,6 +14,11 @@ BigInt.prototype.toJSON = function () {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  ConfigModule.forRoot({
+    isGlobal: true,
+    envFilePath: ['.development.env', '.env']
+  })
 
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter())
