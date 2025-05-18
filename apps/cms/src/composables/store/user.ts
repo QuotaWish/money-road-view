@@ -9,7 +9,14 @@ export const useUserStore = defineStore('user', () => {
     isLogin.value = true
   }
 
-  return { isLogin, setLogin }
+  function logout() {
+    localStorage.removeItem('gather-auth')
+
+    isLogin.value = false
+    // TODO clear user info
+  }
+
+  return { isLogin, logout, userInfo, setLogin }
 }, {
   persist: true,
 })

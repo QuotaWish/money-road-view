@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { MenuBar } from './index'
+import { MenuBar, GaHeader } from './index'
 
 const route = useRoute()
 
@@ -15,6 +15,8 @@ const routeMeta = computed(() => route.meta)
       class="p-4 border-b border-color-[var(--color-neutral-2)] flex h-[64px] items-center justify-between"
     >
       <Logo />
+
+      <GaHeader />
     </a-layout-header>
     <a-layout>
       <a-layout-sider class="w-[200px]">
