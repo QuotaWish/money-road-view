@@ -15,6 +15,15 @@ function handleLogin() {
   if (!username.value || !password.value) {
     toast.error('请输入用户名或密码')
   }
+
+  /**
+   * 发一个请求 - 认证/登录
+   * {
+   *    account: 账号名
+   *    password: 密码
+   *    type: 固定写死 password
+   * }
+   */
 }
 </script>
 
