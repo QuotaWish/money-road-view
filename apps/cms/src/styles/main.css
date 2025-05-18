@@ -39,6 +39,11 @@ button.arco-btn.arco-btn-size-large {
   height: 48px;
 }
 
+button.arco-btn-size-large.arco-btn-shape-circle {
+  width: 48px;
+  border-radius: 50%;
+}
+
 span.arco-input-wrapper {
   border-radius: 12px;
 
