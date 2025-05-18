@@ -2,9 +2,11 @@ import { Injectable, Logger } from '@nestjs/common';
 import { prismaClient } from 'src/lib/prisma';
 import * as bcrypt from 'bcrypt'
 
+
 @Injectable()
 export class UserService {
-  constructor() {
+  constructor(
+  ) {
     setTimeout(async () => {
       if (await prismaClient.user.count() === 0) {
         this.initAdminUser()
