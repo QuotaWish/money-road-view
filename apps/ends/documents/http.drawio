@@ -1,0 +1,25 @@
+<mxfile host="65bd71144e">
+    <diagram id="L2e47YCiHIG1pUsH_BQC" name="第 1 页">
+        <mxGraphModel dx="1079" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="HTTP 超文本传输协议" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="230" y="120" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;span style=&quot;color: rgb(28, 31, 35); font-family: Inter, -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, &amp;quot;SF Pro SC&amp;quot;, &amp;quot;SF Pro Display&amp;quot;, &amp;quot;SF Pro Icons&amp;quot;, &amp;quot;PingFang SC&amp;quot;, &amp;quot;Hiragino Sans GB&amp;quot;, &amp;quot;Microsoft YaHei&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; font-size: medium; white-space: pre; background-color: rgb(255, 255, 255);&quot;&gt;GET /api/data?page=1&amp;amp;size=10 HTTP/1.1          # 请求行：方法 + URL + 协议版本&lt;br&gt;Host: baidu.com                             # 请求头：主机地址&lt;br&gt;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/114.0.0.0&lt;br&gt;Accept: application/json, text/plain, */*       # 可接受的响应数据类型&lt;br&gt;Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8     # 可接受的语言&lt;br&gt;Cache-Control: no-cache                         # 禁止缓存&lt;br&gt;Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...  # 身份认证令牌&lt;br&gt;Content-Type: application/x-www-form-urlencoded  # 请求体格式（若有）&lt;br&gt;Content-Length: 0                               # 请求体长度（GET 请求通常为 0）&lt;br&gt;Connection: keep-alive                          # 保持连接&lt;br&gt;&lt;br&gt;# 请求体（GET 请求一般无请求体，POST/PUT 等方法可能有）&lt;br&gt;# 参数示例（若通过请求体传递）：&lt;br&gt;# name=John&amp;amp;age=30&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="150" width="650" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="方法 路径 版本&lt;div&gt;k: v&lt;/div&gt;&lt;div&gt;k: v&lt;/div&gt;&lt;div&gt;k: v&lt;br&gt;&lt;br&gt;身体&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="245" y="150" width="325" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="MySQL 关系型数据库&lt;br&gt;数据：类似excel表的格式&lt;br&gt;a b c d e f&lt;br&gt;1 2 3 4 5 6&lt;br&gt;&lt;br&gt;&lt;br&gt;NoSQL Redis 非关系型数据库&lt;br&gt;k: v&lt;br&gt;&lt;br&gt;a: 1&lt;br&gt;b: 2&lt;br&gt;c: 3" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="245" y="390" width="325" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="常见的方法 GET POST PUT DELETE OPTIONS ..." style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="690" y="120" width="600" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
