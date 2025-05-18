@@ -15,7 +15,7 @@ function handleClick() {
 }
 
 function handleRegister({ errors }: any) {
-  if (errors.length) {
+  if (Object.values(errors).length) {
     return
   }
 
