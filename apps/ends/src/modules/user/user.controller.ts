@@ -4,6 +4,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/common/decorator/public.decorator';
 import type { IUserInfo } from './user.types';
 import { UserInfo } from 'src/common/decorator/user-info.decorator';
+import { AdminOnly } from 'src/common/decorator/admin.decorator';
 
 @ApiTags('User')
 @Controller('user')
@@ -17,6 +18,7 @@ export class UserController {
   }
 
   @Get("users")
+  @AdminOnly()
   getUsers() {
     return this.userService.getAllUsers();
   }

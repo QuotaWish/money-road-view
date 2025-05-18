@@ -61,7 +61,7 @@ function handleTabClick(key: string) {
     <a-layout-header
       class="p-4 border-b border-color-[var(--color-neutral-2)] flex h-[64px] items-center justify-between"
     >
-      <Logo />
+      <Logo font-bold />
 
       <GaHeader />
     </a-layout-header>

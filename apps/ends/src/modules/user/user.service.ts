@@ -67,6 +67,7 @@ export class UserService {
         email: 'admin@money-road.com',
         emailVerified: new Date(),
         image: '',
+        role: 'ADMIN',
       }
     })
 

@@ -8,7 +8,7 @@ import type { IUserInfo } from 'src/modules/user/user.types';
 
 @Injectable()
 export class jwtAuthGuard implements CanActivate {
-  constructor(private jwtService: JwtService, private reflector: Reflector) { }
+  constructor(protected jwtService: JwtService, protected reflector: Reflector) { }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
@@ -31,7 +31,7 @@ export class jwtAuthGuard implements CanActivate {
       });
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers
-      request['user'] = payload as IUserInfo;
+      request['user'] = payload.user as IUserInfo;
     } catch {
       throw new GaUnauthorizedException();
     }
