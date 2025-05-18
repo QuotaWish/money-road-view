@@ -1,4 +1,5 @@
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
@@ -13,6 +14,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
 })
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(router)
+
 app.mount('#app')

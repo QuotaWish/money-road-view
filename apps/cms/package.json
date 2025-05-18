@@ -16,6 +16,7 @@
     "@vueuse/core": "catalog:frontend",
     "alova": "^3.2.11",
     "pinia": "^3.0.2",
+    "pinia-plugin-persistedstate": "^4.3.0",
     "vue": "catalog:frontend",
     "vue-router": "catalog:frontend",
     "vue-sonner": "^1.3.2"

@@ -8,6 +8,9 @@ const agreement = ref(false)
 
 const { form, loading, send, onSuccess } = useForm(formData => EndApis.Auth.AuthController_login({
   data: formData,
+  meta: {
+    autoRole: 'login',
+  },
 }), {
   initialForm: {
     account: '',
@@ -19,7 +22,8 @@ const { form, loading, send, onSuccess } = useForm(formData => EndApis.Auth.Auth
 function handleClick() {
   router.push('/auth/register')
 }
-function handleLogin({ errors }: any) {
+
+async function handleLogin({ errors }: any) {
   /**
    * 发一个请求 - 认证/登录
    * {
@@ -32,7 +36,9 @@ function handleLogin({ errors }: any) {
     return
   }
 
-  send()
+  await send()
+
+  router.push('/')
 }
 
 onSuccess((data) => {
