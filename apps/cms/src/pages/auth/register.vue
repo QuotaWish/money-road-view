@@ -14,7 +14,11 @@ function handleClick() {
   router.push('/auth/login')
 }
 
-function handleRegister() {
+function handleRegister({ errors }: any) {
+  if (errors.length) {
+    return
+  }
+
   if (form.password !== form.confirmPassword) {
     toast.error('两次密码不一致')
     return
@@ -57,11 +61,12 @@ function handleRegister() {
           </a-checkbox>
         </a-form-item>
         <a-form-item>
-          <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
+          <a-button html-type="submit" size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
             注册
           </a-button>
         </a-form-item>
       </a-form>
+
       <div class="Login-Button-Second">
         <a-button type="text">
           忘记密码
