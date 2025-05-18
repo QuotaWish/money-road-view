@@ -14,12 +14,19 @@ const menus = useLocalStorage('gather-tabs', new Array<IMenuItem>())
 
 const routeMeta = computed(() => route.meta)
 
-function handleDelete(a) {
-  console.log(a)
+function handleDelete(key: string) {
+  menus.value = menus.value.filter((item: IMenuItem) => item.path !== key)
 }
 
 router.afterEach((to) => {
-  const { name, path } = to
+  const { matched, path } = to
+  if (path === '/') {
+    router.push('/dashboard/workspace')
+    return
+  }
+  const target = matched?.at?.(-1)
+
+  const name: string = (target?.meta?.title as string) ?? target?.components?.default?.name ?? (to.name as string)
 
   const targetMenu = menus.value.find((item: IMenuItem) => item.path === path)
 
@@ -28,8 +35,6 @@ router.afterEach((to) => {
   }
 
   activeKey.value = route.path
-
-  console.log(to)
 })
 
 function handleTabClick(key: string) {

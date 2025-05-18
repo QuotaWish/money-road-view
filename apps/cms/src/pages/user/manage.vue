@@ -1,6 +1,6 @@
-<script name="用户管理" lang="ts" setup>
+<script lang="ts" setup>
 defineOptions({
-  name: '用户管理',
+  name: 'Users',
 })
 </script>
 
@@ -9,3 +9,8 @@ defineOptions({
     Manage
   </div>
 </template>
+
+<route lang="yaml">
+  meta:
+    title: 用户管理
+</route>
