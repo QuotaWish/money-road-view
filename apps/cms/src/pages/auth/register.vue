@@ -15,14 +15,12 @@ function handleClick() {
 }
 
 function handleRegister() {
-  if (form.account && form.password && form.confirmPassword) {
-    if (form.password !== form.confirmPassword) {
-      toast.error('两次密码不一致')
-      return
-    }
-    toast.error('注册成功')
-    router.push('/auth/login')
+  if (form.password !== form.confirmPassword) {
+    toast.error('两次密码不一致')
+    return
   }
+  toast.error('注册成功')
+  router.push('/auth/login')
 }
 </script>
 
@@ -35,13 +33,13 @@ function handleRegister() {
         注册账号
       </h1>
       <a-form :model="form" layout="vertical" @submit="handleRegister">
-        <a-form-item field="account" tooltip="请输入账号" label="账号">
+        <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
           <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
-        <a-form-item field="password" tooltip="请输入密码" label="密码">
+        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="password" tooltip="请输入密码" label="密码">
           <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
         </a-form-item>
-        <a-form-item field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
+        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
           <a-input v-model="form.confirmPassword" class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="Password" />
         </a-form-item>
         <a-form-item field="isRead">
