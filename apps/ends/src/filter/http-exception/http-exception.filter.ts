@@ -4,6 +4,7 @@ import {
   ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
+import { BaseError } from './internal';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -26,11 +27,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const errorResponse = {
       data: null,
       message: validMessage || message,
-      code: -1,
+      code: status ?? -1,
     };
 
-    // 设置返回的状态码， 请求头，发送错误信息
-    response.status(status);
+    if (exception instanceof BaseError) {
+      const ex = (exception as BaseError)
+      errorResponse.code = ex.code as unknown as number;
+    }
+
+    response.status(200);
     response.header('Content-Type', 'application/json; charset=utf-8');
     response.send(errorResponse);
   }

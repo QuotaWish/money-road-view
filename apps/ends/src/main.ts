@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './filter/http-exception/http-exception.filter';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
 import { prismaClient } from './lib/prisma';
@@ -31,7 +31,7 @@ async function bootstrap() {
 
   prismaClient.$connect();
 
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  Logger.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();

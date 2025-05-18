@@ -6,4 +6,7 @@ export class UserRegisterProps {
 
   @IsNotEmpty()
   password: string
+
+  @IsNotEmpty()
+  type: string
 }
