@@ -5,5 +5,9 @@
     "html",
     "vue",
     "typescript",
-  ]
+  ],
+  "cSpell.words": [
+    "sider"
+  ],
+  "eslint.format.enable": true
 }
