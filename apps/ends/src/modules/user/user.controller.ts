@@ -33,7 +33,7 @@ export class UserController {
       throw new ResourceNotFound()
     }
 
-    const isCorrect = this.userService.comparePassword(entity.password, account.id_token)
+    const isCorrect = await this.userService.comparePassword(entity.password, account.id_token)
     if (!isCorrect) {
       throw new BusinessException("Credential is incorrect")
     }
