@@ -1,6 +1,7 @@
 import { HttpException } from '@nestjs/common';
 
 export enum ErrorCode {
+  UnauthorizedException = '11001',
   ResourceNotFound = '11404',
   BusinessException = '11101'
 }
