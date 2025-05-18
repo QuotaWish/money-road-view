@@ -10,11 +10,14 @@ const router = useRouter()
 initApis()
 
 router.beforeEach((to, from, next) => {
-  if (to.meta?.needAuth !== false && !userStore.isLogin) {
+  const targetNeedAuth = to.meta?.needAuth
+  const doNotNeedAuth = targetNeedAuth !== undefined || targetNeedAuth === false
+
+  if (!doNotNeedAuth && !userStore.isLogin) {
     next({ path: '/auth/login' })
   }
   else {
-    if (to.meta?.needAuth === false && userStore.isLogin) {
+    if (doNotNeedAuth && userStore.isLogin) {
       next({ path: '/' })
     }
     else {

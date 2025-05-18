@@ -1,13 +1,21 @@
-import { defineStore } from 'pinia'
+export class UserAuthStore {
+  accessToken: string = ''
 
-export const useAuthStore = defineStore('user', () => {
-  const refreshToken = ref('')
+  constructor() {
 
-  function setRefreshToken(token: string) {
-    refreshToken.value = token
   }
+}
 
-  return { refreshToken, setRefreshToken }
-}, {
-  persist: true,
-})
+export const useAuthStore = createGlobalState(() => useLocalStorage('gather-auth', new UserAuthStore()))
+
+// defineStore('user', () => {
+//   const refreshToken = ref('')
+
+//   function setRefreshToken(token: string) {
+//     refreshToken.value = token
+//   }
+
+//   return { refreshToken, setRefreshToken }
+// }, {
+//   persist: true,
+// })

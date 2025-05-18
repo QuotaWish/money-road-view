@@ -7,26 +7,16 @@ import { useAuthStore, useUserStore } from '~/composables/store'
 import { END_POINT_API } from '..'
 import { createApis, withConfigType } from './createApis'
 
+const authStore = useAuthStore()
+
 const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthentication({
-  login({ data }) {
-    if (data.code !== 0) {
-      return
-    }
-
-    const authStore = useAuthStore()
-    const userStore = useUserStore()
-
-    const token = data.data.token
-    authStore.setRefreshToken(token)
-
-    userStore.setLogin(data.data.user)
+  async login(response) {
   },
   assignToken(method) {
-    const authStore = useAuthStore()
     const userStore = useUserStore()
 
-    if (authStore.refreshToken && userStore.isLogin) {
-      method.config.headers.Authorization = authStore.refreshToken
+    if (authStore.value.accessToken && userStore.isLogin) {
+      method.config.headers.Authorization = authStore.value.accessToken
     }
   },
 })
