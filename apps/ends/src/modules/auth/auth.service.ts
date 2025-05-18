@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { isEmpty } from 'class-validator';
 import { ResourceNotFound } from 'src/filter/http-exception/internal/ResourceNotFound';
 import { JwtService } from '@nestjs/jwt';
@@ -27,8 +27,10 @@ export class AuthService {
       throw new BusinessException("Credential is incorrect")
     }
 
-    const user = this.userService.getUser(account.userId)
-    const token = this.signIn(account.userId)
+    const user = await this.userService.getUser(account.userId)
+    const token = await this.signIn(account.userId)
+
+    Logger.log(`User ${account.userId} login success`)
 
     return {
       user, token

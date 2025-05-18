@@ -13,6 +13,6 @@ export class AuthController {
   @Post("login")
   @ApiOperation({ summary: 'Login' })
   async login(@Body() entity: UserLoginProps) {
-    return this.authService.handleLogin(entity)
+    return await this.authService.handleLogin(entity)
   }
 }
