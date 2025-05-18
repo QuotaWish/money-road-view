@@ -6,7 +6,7 @@ defineOptions({
 
 <template>
   <div>
-    Manage
+    Workspace
   </div>
 </template>
 
