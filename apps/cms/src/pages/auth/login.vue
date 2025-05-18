@@ -18,6 +18,14 @@ function handleLogin() {
     toast.error('请输入用户名或密码')
   }
 }
+
+function handleGoogleLogin() {
+  toast.error('功能暂未开放')
+}
+
+function handleSSOLogin() {
+  toast.error('功能暂未开放')
+}
 </script>
 
 <template>
@@ -70,10 +78,10 @@ function handleLogin() {
         或者
       </a-divider>
 
-      <a-button size="large" type="outline" class="Login-Button w-full">
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleGoogleLogin()">
         谷歌注册
       </a-button>
-      <a-button size="large" type="outline" class="Login-Button w-full">
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleSSOLogin()">
         SSO注册
       </a-button>
     </div>
