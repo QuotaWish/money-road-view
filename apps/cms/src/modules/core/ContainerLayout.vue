@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useUserStore } from '~/composables/store'
 import { GaHeader, MenuBar } from './index'
 
 interface IMenuItem {
@@ -10,6 +11,7 @@ const route = useRoute()
 const router = useRouter()
 
 const activeKey = ref('')
+const userStore = useUserStore()
 const menus = useLocalStorage('gather-tabs', new Array<IMenuItem>())
 
 const routeMeta = computed(() => route.meta)
@@ -19,6 +21,13 @@ function handleDelete(key: string) {
 }
 
 router.afterEach((to) => {
+  const targetNeedAuth = to.meta?.needAuth
+  const doNotNeedAuth = targetNeedAuth !== undefined || targetNeedAuth === false
+
+  if (doNotNeedAuth && !userStore.isLogin) {
+    return
+  }
+
   const { matched, path } = to
   if (path === '/') {
     router.push('/dashboard/workspace')
