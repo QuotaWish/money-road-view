@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator'
 
-export class UserRegisterProps {
+export class UserLoginProps {
   @IsNotEmpty()
   account: string
 

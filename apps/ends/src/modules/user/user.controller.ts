@@ -1,17 +1,21 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/common/public.decorator';
-import { UserRegisterProps } from './user.dto';
-import { isEmpty } from 'class-validator';
-import { ResourceNotFound } from 'src/filter/http-exception/internal/ResourceNotFound';
-import { BusinessException } from 'src/filter/http-exception/internal/BusinessException';
-
+import { Public } from 'src/common/decorator/public.decorator';
+import type { IUserInfo } from './user.types';
+import { UserInfo } from 'src/common/decorator/user-info.decorator';
 
 @ApiTags('用户')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }
+
+  @Get("info")
+  @ApiOperation({ summary: 'Get logined user info' })
+  async getUserInfo(@UserInfo() userInfo: IUserInfo) {
+    return userInfo
+  }
+
   @Get("users")
   getUsers() {
     return this.userService.getAllUsers();
@@ -24,22 +28,5 @@ export class UserController {
 
   }
 
-  @Public()
-  @Post("login")
-  @ApiOperation({ summary: 'Login' })
-  async login(@Body() entity: UserRegisterProps) {
-    const account = await this.userService.getAccount(entity.account, entity.password, entity.type)
-    if (isEmpty(account)) {
-      throw new ResourceNotFound()
-    }
 
-    const isCorrect = await this.userService.comparePassword(entity.password, account.id_token)
-    if (!isCorrect) {
-      throw new BusinessException("Credential is incorrect")
-    }
-
-    const user = this.userService.getUser(account.userId)
-
-    return user
-  }
 }
