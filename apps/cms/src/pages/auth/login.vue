@@ -1,20 +1,25 @@
 <script lang="ts" setup>
+import { useForm } from 'alova/client'
 import { toast } from 'vue-sonner'
 import Logo from '~/components/display/Logo.vue'
 
 const router = useRouter()
 const agreement = ref(false)
 
-const form = reactive({
-  account: '',
-  password: '',
+const { form, loading, send, onSuccess } = useForm(formData => EndApis.Auth.AuthController_login({
+  data: formData,
+}), {
+  initialForm: {
+    account: '',
+    password: '',
+    type: 'password',
+  },
 })
 
 function handleClick() {
   router.push('/auth/register')
 }
-function handleLogin() {
-
+function handleLogin({ errors }: any) {
   /**
    * 发一个请求 - 认证/登录
    * {
@@ -23,7 +28,16 @@ function handleLogin() {
    *    type: 固定写死 password
    * }
    */
+  if (Object.values(errors ?? {}).length) {
+    return
+  }
+
+  send()
 }
+
+onSuccess((data) => {
+  console.log(data)
+})
 
 function handleGoogleLogin() {
   toast.error('功能暂未开放')
@@ -43,7 +57,7 @@ function handleSSOLogin() {
         登录账号
       </h1>
 
-      <a-form layout="vertical" :model="form" @submit="handleLogin">
+      <a-form :disabled="loading" layout="vertical" :model="form" @submit="handleLogin">
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
           <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
@@ -65,7 +79,7 @@ function handleSSOLogin() {
           </a-checkbox>
         </a-form-item>
         <a-form-item>
-          <a-button size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
+          <a-button html-type="submit" :loading="loading" size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
             登录
           </a-button>
         </a-form-item>

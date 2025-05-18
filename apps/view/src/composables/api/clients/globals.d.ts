@@ -89,6 +89,7 @@ type Alova2Method<
       >
     : never;
 
+export type UserLoginProps = object;
 declare global {
   interface Apis {
     App: {
@@ -114,6 +115,23 @@ declare global {
       /**
        * ---
        *
+       * [GET] Get logined user info
+       *
+       * **path:** /user/info
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      UserController_getUserInfo<Config extends Alova2MethodConfig<unknown>>(
+        config?: Config
+      ): Alova2Method<unknown, 'User.UserController_getUserInfo', Config>;
+      /**
+       * ---
+       *
        * [GET]
        *
        * **path:** /user/users
@@ -128,6 +146,53 @@ declare global {
       UserController_getUsers<Config extends Alova2MethodConfig<unknown>>(
         config?: Config
       ): Alova2Method<unknown, 'User.UserController_getUsers', Config>;
+      /**
+       * ---
+       *
+       * [POST] Register
+       *
+       * **path:** /user/register
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      UserController_register<Config extends Alova2MethodConfig<unknown>>(
+        config?: Config
+      ): Alova2Method<unknown, 'User.UserController_register', Config>;
+    };
+    Auth: {
+      /**
+       * ---
+       *
+       * [POST] Login
+       *
+       * **path:** /auth/login
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = object
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      AuthController_login<
+        Config extends Alova2MethodConfig<unknown> & {
+          data: UserLoginProps;
+        }
+      >(
+        config: Config
+      ): Alova2Method<unknown, 'Auth.AuthController_login', Config>;
     };
   }
 

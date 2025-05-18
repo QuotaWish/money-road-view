@@ -20,6 +20,7 @@ async function bootstrap() {
     envFilePath: ['.development.env', '.env']
   })
 
+  app.enableCors()
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter())
   app.useGlobalInterceptors(new TransformInterceptor())

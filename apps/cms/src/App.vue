@@ -2,9 +2,12 @@
 import { Toaster } from 'vue-sonner'
 import { useUserStore } from '~/composables/store'
 import { ContainerLayout } from '~/modules/core'
+import { initApis } from './composables/api/clients'
 
 const userStore = useUserStore()
 const router = useRouter()
+
+initApis()
 
 router.beforeEach((to, from, next) => {
   if (to.meta?.needAuth !== false && !userStore.isLogin) {

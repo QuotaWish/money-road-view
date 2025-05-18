@@ -5,7 +5,7 @@ import { Public } from 'src/common/decorator/public.decorator';
 import type { IUserInfo } from './user.types';
 import { UserInfo } from 'src/common/decorator/user-info.decorator';
 
-@ApiTags('用户')
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }
