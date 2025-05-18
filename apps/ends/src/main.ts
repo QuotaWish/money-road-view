@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './filter/http-exception/http-exception.filter';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
+import { prismaClient } from './lib/prisma';
 
 // @ts-ignore
 BigInt.prototype.toJSON = function () {
@@ -27,6 +28,10 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, documentFactory);
 
   await app.listen(process.env.PORT ?? 3000);
+
+  prismaClient.$connect();
+
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();

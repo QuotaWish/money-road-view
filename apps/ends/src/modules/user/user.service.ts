@@ -1,22 +1,22 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { PrismaService } from 'src/services/prisma.service';
+import { prismaClient } from 'src/lib/prisma';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {
+  constructor() {
     setTimeout(async () => {
-      if (await this.prisma.user.count() === 0) {
+      if (await prismaClient.user.count() === 0) {
         this.initAdminUser()
       }
     })
   }
 
   async getAllUsers() {
-    return this.prisma.user.findMany()
+    return prismaClient.user.findMany()
   }
 
   async initAdminUser() {
-    const res = await this.prisma.user.create({
+    const res = await prismaClient.user.create({
       data: {
         name: 'admin',
         email: 'admin@money-road.com',

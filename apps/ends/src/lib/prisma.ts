@@ -1,6 +1,12 @@
 import { PrismaClient } from '../../prisma/client';
 
-const getPrisma = () => new PrismaClient();
+const URL = process.env.END_DATABASE_URL
+
+console.log("Database URL: " + URL)
+
+const getPrisma = () => new PrismaClient({
+  datasourceUrl: URL
+});
 
 const globalPrismaClient = global as unknown as {
   client: ReturnType<typeof getPrisma>;
