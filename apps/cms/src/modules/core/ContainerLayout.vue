@@ -70,11 +70,14 @@ function handleTabClick(key: string) {
         <MenuBar />
       </a-layout-sider>
       <a-layout-content>
-        <a-tabs v-model:active-key="activeKey" size="large" type="card-gutter" :editable="true" animation auto-switch justify @tab-click="handleTabClick" @delete="handleDelete">
+        <a-tabs v-if="menus.length" v-model:active-key="activeKey" size="large" type="card-gutter" :editable="true" animation auto-switch justify @tab-click="handleTabClick" @delete="handleDelete">
           <a-tab-pane v-for="(item) of menus" :key="item.path" :title="item.name" :closable="menus.length">
             <slot />
           </a-tab-pane>
         </a-tabs>
+        <div v-else flex h-full w-full items-center justify-center absolute>
+          <a-empty />
+        </div>
       </a-layout-content>
     </a-layout>
   </a-layout>
