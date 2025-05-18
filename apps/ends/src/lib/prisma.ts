@@ -1,11 +1,7 @@
 import { PrismaClient } from '../../prisma/client';
 
-const URL = process.env.END_DATABASE_URL
-
-console.log("Database URL: " + URL)
-
 const getPrisma = () => new PrismaClient({
-  datasourceUrl: URL
+  datasourceUrl: process.env.END_DATABASE_URL
 });
 
 const globalPrismaClient = global as unknown as {
