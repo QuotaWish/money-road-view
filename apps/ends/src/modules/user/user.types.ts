@@ -1,10 +1,21 @@
-export interface IUserInfo {
-  name: string | null;
+import { ApiProperty } from '@nestjs/swagger';
+import { User } from 'prisma/client';
+import { ListResult } from 'src/common/dto/pagination.dto';
+
+export type IUserInfo = User
+
+export class ListResultUser extends ListResult<User> {
+  @ApiProperty({ type: Array<User> })
+  data: User[];
+}
+
+export class UserDto implements User {
+  name: string;
   id: string;
-  role: string | null;
   email: string;
-  emailVerified: Date | null;
-  image: string | null;
+  emailVerified: Date;
+  image: string;
+  role: string;
   createdAt: Date;
   updatedAt: Date;
 }

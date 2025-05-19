@@ -89,6 +89,18 @@ type Alova2Method<
       >
     : never;
 
+export type PaginationDto = {
+  /**
+   * 分页页码
+   * [required]
+   */
+  page: number;
+  /**
+   * 分页大小(5, 10, 20, 50, 100)
+   * [required]
+   */
+  pageSize: number;
+};
 export type UserLoginProps = object;
 declare global {
   interface EndApis {
@@ -132,9 +144,23 @@ declare global {
       /**
        * ---
        *
-       * [GET]
+       * [GET] Get users list
        *
        * **path:** /user/users
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 分页页码
+       *   // [required]
+       *   page: number
+       *   // 分页大小(5, 10, 20, 50, 100)
+       *   // [required]
+       *   pageSize: number
+       * }
+       * ```
        *
        * ---
        *
@@ -143,8 +169,12 @@ declare global {
        * type Response = unknown
        * ```
        */
-      UserController_getUsers<Config extends Alova2MethodConfig<unknown>>(
-        config?: Config
+      UserController_getUsers<
+        Config extends Alova2MethodConfig<unknown> & {
+          data: PaginationDto;
+        }
+      >(
+        config: Config
       ): Alova2Method<unknown, 'User.UserController_getUsers', Config>;
       /**
        * ---

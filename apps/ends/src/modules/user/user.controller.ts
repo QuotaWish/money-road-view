@@ -1,13 +1,16 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiExtraModels, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/common/decorator/public.decorator';
-import type { IUserInfo } from './user.types';
+import { ListResultUser, IUserInfo, UserDto } from './user.types';
 import { UserInfo } from 'src/common/decorator/user-info.decorator';
 import { AdminOnly } from 'src/common/decorator/admin.decorator';
+import { ListResult, PaginationDto } from 'src/common/dto/pagination.dto';
+import { ApiPaginatedResponse } from 'src/common/decorator/api-paginated-response.decorator';
 
 @ApiTags('User')
 @Controller('user')
+@ApiExtraModels(ListResult)
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
@@ -19,8 +22,10 @@ export class UserController {
 
   @Get("users")
   @AdminOnly()
-  getUsers() {
-    return this.userService.getAllUsers();
+  @ApiOperation({ summary: 'Get users list ' })
+  @ApiResponse({ type: ListResultUser, isArray: true })
+  getUsers(@Body() entity: PaginationDto) {
+    return this.userService.getAllUsers(new PaginationDto(entity));
   }
 
   @Public()

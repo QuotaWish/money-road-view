@@ -69,7 +69,9 @@ function handleTabClick(key: string) {
       <a-layout-sider class="w-[200px]">
         <MenuBar />
       </a-layout-sider>
-      <a-layout-content>
+      <a-layout-content
+        class="bg-[var(--color-neutral-1)]"
+      >
         <a-tabs v-if="menus.length" v-model:active-key="activeKey" size="large" type="card-gutter" :editable="true" animation auto-switch justify @tab-click="handleTabClick" @delete="handleDelete">
           <a-tab-pane v-for="(item) of menus" :key="item.path" :title="item.name" :closable="menus.length">
             <slot />
