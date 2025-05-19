@@ -21,10 +21,10 @@ const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthenticati
   },
   refreshToken: {
     isExpired: () => {
-      return authStore.value.expiredTime - 1000 <= Date.now()
+      return authStore.value.expiredTime - 5000 <= Date.now()
     },
     handler: async () => {
-      return refreshToken()
+      return await refreshToken()
     },
   },
 })
@@ -76,7 +76,7 @@ export function initApis() {
   console.debug('Network initialized')
 }
 
-const { onSuccess, send } = useForm(() => Apis.Auth.AuthController_refresh({
+const { send } = useForm(() => Apis.Auth.AuthController_refresh({
   data: {
     token: authStore.value.refreshToken,
   },
@@ -85,17 +85,10 @@ const { onSuccess, send } = useForm(() => Apis.Auth.AuthController_refresh({
   },
 }), {})
 
-onSuccess((res) => {
-  const token = res.token
+async function refreshToken() {
+  const token = await send()
 
   authStore.value.accessToken = token.access_token
   authStore.value.refreshToken = token.refresh_token
   authStore.value.expiredTime = Date.now() + token.expire_time
-})
-
-async function refreshToken() {
-  console.log("Execute refresh workflow")
-
-  send()
-
 }
