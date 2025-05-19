@@ -5,6 +5,12 @@ defineOptions({
   name: 'Users',
 })
 
+const form = useTemplateRef('searchForm')
+
+function handleReset() {
+  form.value.resetFields()
+}
+
 const form = reactive({
   name: '',
   email: '',
@@ -35,7 +41,7 @@ const {
 <template>
   <div p-4 flex flex-col gap-4 h-full w-full>
     <a-card w-full>
-      <a-form :model="form" layout="inline">
+      <a-form ref="searchForm" :model="form" layout="inline">
         <a-form-item field="name" label="账号">
           <a-input v-model="form.name" placeholder="按账号名称筛选" />
         </a-form-item>
@@ -50,7 +56,7 @@ const {
             <a-button @click="send">
               刷新
             </a-button>
-            <a-button status="warning">
+            <a-button status="warning" @click="handleReset()">
               重置
             </a-button>
           </div>
