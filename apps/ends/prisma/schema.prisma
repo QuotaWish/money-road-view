@@ -6,7 +6,13 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../prisma/client"
+  output   = "./client"
+}
+
+generator prismaClassGenerator {
+  provider = "prisma-class-generator"
+  output   = "./prisma-class"
+  dryRun   = false
 }
 
 datasource db {

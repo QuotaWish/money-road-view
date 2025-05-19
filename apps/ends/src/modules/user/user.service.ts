@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { prismaClient } from 'src/lib/prisma';
+import { prismaClient } from 'src/lib/database';
 import * as bcrypt from 'bcrypt'
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import type { User } from 'prisma/client';

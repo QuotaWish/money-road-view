@@ -19,8 +19,7 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@prisma/client": [
-        "./prisma-common-database/common-database-client-types/client",
-        "prisma/client/client"
+        "prisma/client"
       ]
     }
   }

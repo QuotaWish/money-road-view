@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from './filter/http-exception/http-exception.filter';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
-import { prismaClient } from './lib/prisma';
+import { prismaClient, PrismaModel } from './lib/database';
 import { ConfigModule } from '@nestjs/config';
 
 // @ts-ignore
@@ -31,7 +31,9 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .addTag('QuotaWish')
     .build();
-  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  const documentFactory = () => SwaggerModule.createDocument(app, config, {
+    extraModels: [...PrismaModel.extraModels]
+  });
   SwaggerModule.setup('api', app, documentFactory);
 
   await app.listen(process.env.PORT ?? 3000);
