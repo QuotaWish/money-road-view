@@ -43,9 +43,9 @@ async function handleLogin({ errors }: any) {
   send()
 }
 
-onSuccess(({data}) => {
+onSuccess(({ data }: any) => {
   const token = data.data.token
-  authStore.value.accessToken = token
+  authStore.value.accessToken = token.access_token
 
   userStore.setLogin(data.data.user)
 
@@ -73,12 +73,16 @@ function handleSSOLogin() {
       </h1>
 
       <a-form :disabled="loading" layout="vertical" :model="form" @submit="handleLogin">
-        <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]"
-          field="account" tooltip="请输入账号" label="账号">
+        <a-form-item
+          :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]"
+          field="account" tooltip="请输入账号" label="账号"
+        >
           <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]"
-          field="password" tooltip="请输入密码" label="密码">
+        <a-form-item
+          :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]"
+          field="password" tooltip="请输入密码" label="密码"
+        >
           <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
         </a-form-item>
         <a-form-item field="isRead">
@@ -96,8 +100,10 @@ function handleSSOLogin() {
           </a-checkbox>
         </a-form-item>
         <a-form-item>
-          <a-button html-type="submit" :loading="loading" size="large" type="primary" class="Login-Button w-full"
-            :disabled="!agreement">
+          <a-button
+            html-type="submit" :loading="loading" size="large" type="primary" class="Login-Button w-full"
+            :disabled="!agreement"
+          >
             登录
           </a-button>
         </a-form-item>

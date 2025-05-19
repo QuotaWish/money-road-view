@@ -16,7 +16,7 @@ const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthenticati
     const userStore = useUserStore()
 
     if (authStore.value.accessToken && userStore.isLogin) {
-      method.config.headers.Authorization = authStore.value.accessToken
+      method.config.headers.Authorization = `Bearer ${authStore.value.accessToken}`
     }
   },
 })
@@ -34,6 +34,13 @@ export const alovaInstance = createAlova({
       }
 
       const body = await response.json()
+
+      if (body.code === 401) {
+        const userStore = useUserStore()
+        userStore.logout()
+        location.reload()
+        return
+      }
 
       if (body.code !== 0) {
         toast.error(body.message)
