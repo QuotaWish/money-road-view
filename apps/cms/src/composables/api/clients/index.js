@@ -1,5 +1,5 @@
 import { createAlova } from 'alova'
-import { createClientTokenAuthentication } from 'alova/client'
+import { createClientTokenAuthentication, useForm } from 'alova/client'
 import fetchAdapter from 'alova/fetch'
 import VueHook from 'alova/vue'
 import { toast } from 'vue-sonner'
@@ -18,6 +18,14 @@ const { onAuthRequired, onResponseRefreshToken } = createClientTokenAuthenticati
     if (authStore.value.accessToken && userStore.isLogin) {
       method.config.headers.Authorization = `Bearer ${authStore.value.accessToken}`
     }
+  },
+  refreshToken: {
+    isExpired: () => {
+      return authStore.value.expiredTime - 1000 <= Date.now()
+    },
+    handler: async () => {
+      return refreshToken()
+    },
   },
 })
 
@@ -66,4 +74,28 @@ export default Apis
 
 export function initApis() {
   console.debug('Network initialized')
+}
+
+const { onSuccess, send } = useForm(() => Apis.Auth.AuthController_refresh({
+  data: {
+    token: authStore.value.refreshToken,
+  },
+  meta: {
+    authRole: 'refreshToken',
+  },
+}), {})
+
+onSuccess((res) => {
+  const token = res.token
+
+  authStore.value.accessToken = token.access_token
+  authStore.value.refreshToken = token.refresh_token
+  authStore.value.expiredTime = Date.now() + token.expire_time
+})
+
+async function refreshToken() {
+  console.log("Execute refresh workflow")
+
+  send()
+
 }

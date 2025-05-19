@@ -46,6 +46,8 @@ async function handleLogin({ errors }: any) {
 onSuccess((data: any) => {
   const token = data.data.token
   authStore.value.accessToken = token.access_token
+  authStore.value.refreshToken = token.refresh_token
+  authStore.value.expiredTime = Date.now() + token.expire_time
 
   userStore.setLogin(data.data.user)
 

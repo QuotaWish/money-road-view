@@ -99,7 +99,7 @@ export type ResultData = {
    */
   msg: string;
 };
-export type PaginationDto = {
+export type UserPagniationDto = {
   /**
    * 分页页码
    * [required]
@@ -110,6 +110,16 @@ export type PaginationDto = {
    * [required]
    */
   pageSize: number;
+  /**
+   * 账号名称参数
+   * [required]
+   */
+  name: string;
+  /**
+   * 邮箱名称参数
+   * [required]
+   */
+  email: string;
 };
 export type UserLoginProps = object;
 declare global {
@@ -169,6 +179,12 @@ declare global {
        *   // 分页大小(5, 10, 20, 50, 100)
        *   // [required]
        *   pageSize: number
+       *   // 账号名称参数
+       *   // [required]
+       *   name: string
+       *   // 邮箱名称参数
+       *   // [required]
+       *   email: string
        * }
        * ```
        *
@@ -186,7 +202,7 @@ declare global {
        */
       UserController_getUsers<
         Config extends Alova2MethodConfig<ResultData & unknown> & {
-          data: PaginationDto;
+          data: UserPagniationDto;
         }
       >(
         config: Config
@@ -238,6 +254,23 @@ declare global {
       >(
         config: Config
       ): Alova2Method<unknown, 'Auth.AuthController_login', Config>;
+      /**
+       * ---
+       *
+       * [POST] Refresh token
+       *
+       * **path:** /auth/refresh
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      AuthController_refresh<Config extends Alova2MethodConfig<unknown>>(
+        config?: Config
+      ): Alova2Method<unknown, 'Auth.AuthController_refresh', Config>;
     };
   }
 

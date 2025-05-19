@@ -1,5 +1,7 @@
 export class UserAuthStore {
   accessToken: string = ''
+  refreshToken: string = ''
+  expiredTime: number = 0
 
   constructor() {
 

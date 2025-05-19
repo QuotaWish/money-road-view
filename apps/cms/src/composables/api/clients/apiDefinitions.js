@@ -21,5 +21,6 @@ export default {
   'User.UserController_getUserInfo': ['GET', '/user/info'],
   'User.UserController_getUsers': ['POST', '/user/users'],
   'User.UserController_register': ['POST', '/user/register'],
-  'Auth.AuthController_login': ['POST', '/auth/login']
+  'Auth.AuthController_login': ['POST', '/auth/login'],
+  'Auth.AuthController_refresh': ['POST', '/auth/refresh']
 };
