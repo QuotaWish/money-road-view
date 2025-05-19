@@ -33,21 +33,21 @@ export const alovaInstance = createAlova({
         return
       }
 
-      const body = await response.json()
+      const { code, message, data } = await response.json()
 
-      if (body.code === 401) {
+      if (code === 401) {
         const userStore = useUserStore()
         userStore.logout()
         location.reload()
         return
       }
 
-      if (body.code !== 0) {
-        toast.error(body.message)
+      if (code !== 0) {
+        toast.error(message)
         return
       }
 
-      return body
+      return data
     },
     onError: async (error) => {
       toast.error(error.method)

@@ -43,7 +43,7 @@ async function handleLogin({ errors }: any) {
   send()
 }
 
-onSuccess(({ data }: any) => {
+onSuccess((data: any) => {
   const token = data.data.token
   authStore.value.accessToken = token.access_token
 

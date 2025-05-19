@@ -21,7 +21,7 @@ export class UserController {
     return userInfo
   }
 
-  @Get("users")
+  @Post("users")
   @AdminOnly()
   @ApiOperation({ summary: 'Get users list ' })
   @ApiResult(User, true)

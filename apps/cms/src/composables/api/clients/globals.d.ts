@@ -89,6 +89,16 @@ type Alova2Method<
       >
     : never;
 
+export type ResultData = {
+  /**
+   * [required]
+   */
+  code: number;
+  /**
+   * [required]
+   */
+  msg: string;
+};
 export type PaginationDto = {
   /**
    * 分页页码
@@ -144,7 +154,7 @@ declare global {
       /**
        * ---
        *
-       * [GET] Get users list
+       * [POST] Get users list
        *
        * **path:** /user/users
        *
@@ -166,16 +176,21 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = unknown
+       * type Response = {
+       *   // [required]
+       *   code: number
+       *   // [required]
+       *   msg: string
+       * } & unknown
        * ```
        */
       UserController_getUsers<
-        Config extends Alova2MethodConfig<unknown> & {
+        Config extends Alova2MethodConfig<ResultData & unknown> & {
           data: PaginationDto;
         }
       >(
         config: Config
-      ): Alova2Method<unknown, 'User.UserController_getUsers', Config>;
+      ): Alova2Method<ResultData & unknown, 'User.UserController_getUsers', Config>;
       /**
        * ---
        *
