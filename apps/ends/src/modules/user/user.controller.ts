@@ -7,6 +7,7 @@ import { UserInfo } from 'src/common/decorator/user-info.decorator';
 import { AdminOnly } from 'src/common/decorator/admin.decorator';
 import { ListResult, PaginationDto } from 'src/common/dto/pagination.dto';
 import { ApiPaginatedResponse } from 'src/common/decorator/api-paginated-response.decorator';
+import { ApiResult } from 'src/common/decorator/api-result.decorator';
 
 @ApiTags('User')
 @Controller('user')
@@ -23,7 +24,7 @@ export class UserController {
   @Get("users")
   @AdminOnly()
   @ApiOperation({ summary: 'Get users list ' })
-  @ApiResponse({ type: ListResultUser, isArray: true })
+  @ApiResult(ListResultUser, true)
   getUsers(@Body() entity: PaginationDto) {
     return this.userService.getAllUsers(new PaginationDto(entity));
   }
