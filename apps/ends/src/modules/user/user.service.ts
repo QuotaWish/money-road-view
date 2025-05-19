@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { prismaClient } from 'src/lib/database';
 import * as bcrypt from 'bcrypt'
-import { PaginationDto } from 'src/common/dto/pagination.dto';
 import type { User } from 'prisma/client';
+import { UserPagniationDto } from './user.types';
 
 @Injectable()
 export class UserService {
@@ -33,13 +33,32 @@ export class UserService {
     })
   }
 
-  async getAllUsers(entity: PaginationDto) {
+  async getAllUsers(entity: UserPagniationDto) {
     const { skip, take } = entity.toSkipAndTake()
+
+    const whereQuery: any = {
+
+    }
+
+    if (entity.name) {
+      whereQuery.name = {
+        contains: entity.name
+      }
+    }
+
+    if (entity.email) {
+      whereQuery.email = {
+        contains: entity.email
+      }
+    }
 
     const total = await prismaClient.user.count()
     const result = (await prismaClient.user.findMany({
       skip,
-      take
+      take,
+      where: {
+        ...whereQuery
+      }
     })) as unknown as User[]
 
     return entity.buildResponse<User>(result, total)

@@ -5,22 +5,20 @@ defineOptions({
   name: 'Users',
 })
 
+const form = reactive({
+  name: '',
+  email: '',
+})
 const {
   loading,
 
   data,
 
-  page,
-
-  pageSize,
-
-  pageCount,
-
-  total,
+  send,
 } = usePagination(
   // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
   (page, pageSize) => EndApis.User.UserController_getUsers({
-    data: { page, pageSize },
+    data: { page, pageSize, name: form.name.length ? form.name : undefined, email: form.email.length ? form.email : undefined },
   }),
   {
     initialData: {
@@ -29,40 +27,38 @@ const {
     },
     initialPage: 1,
     initialPageSize: 10,
+    // watchingStates: [form],
   },
 )
-
-const columns = [
-  {
-    title: 'ID',
-    dataIndex: 'id',
-  },
-  {
-    title: '名称',
-    dataIndex: 'name',
-  },
-  {
-    title: '角色',
-    dataIndex: 'role',
-  },
-  {
-    title: '邮箱',
-    dataIndex: 'email',
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'updatedAt',
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createdAt',
-  },
-]
 </script>
 
 <template>
-  <div p-4 h-full w-full>
-    <a-spin h-full w-full :loading="loading" tip="Loading">
+  <div p-4 flex flex-col gap-4 h-full w-full>
+    <a-card w-full>
+      <a-form :model="form" layout="inline">
+        <a-form-item field="name" label="账号">
+          <a-input v-model="form.name" placeholder="按账号名称筛选" />
+        </a-form-item>
+        <a-form-item field="email" label="邮箱">
+          <a-input v-model="form.email" placeholder="按邮箱地址筛选" />
+        </a-form-item>
+        <a-form-item>
+          <div flex gap-2 items-center>
+            <a-button status="success" @click="send">
+              搜索
+            </a-button>
+            <a-button @click="send">
+              刷新
+            </a-button>
+            <a-button status="warning">
+              重置
+            </a-button>
+          </div>
+        </a-form-item>
+      </a-form>
+    </a-card>
+
+    <a-spin flex-1 h-full w-full :loading="loading" tip="Loading">
       <a-table :data="data">
         <template #columns>
           <a-table-column title="ID" data-index="id" />
@@ -70,7 +66,7 @@ const columns = [
           <a-table-column title="角色" data-index="role" />
           <a-table-column title="邮箱">
             <a-table-column title="地址" data-index="email" />
-            <a-table-column title="是否验证" data-index="emailVerified" />
+            <a-table-column title="验证时间" data-index="emailVerified" />
           </a-table-column>
           <a-table-column title="时间戳">
             <a-table-column title="更新" data-index="updatedAt" />
