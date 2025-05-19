@@ -5,6 +5,9 @@ import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { UserLoginProps } from './auth.dto';
 import { BusinessException } from 'src/filter/http-exception/internal/BusinessException';
+import { IUserInfo } from '../user/user.types';
+import { jwtConstants } from 'src/common/constants';
+import { GaUnauthorizedException } from 'src/filter/http-exception/internal/GaUnauthorizedException';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +17,19 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {
 
+  }
+
+  async handleRefresh(token: string) {
+    const payload = await this.jwtService.verifyAsync(token, {
+      secret: jwtConstants.secret,
+    });
+
+    if (payload['type'] !== 'refresh')
+      throw new GaUnauthorizedException("Invalid token type")
+
+    Logger.log(`[Authorize] Refresh token for user ${payload.sub}`)
+
+    return this.signIn(payload.sub)
   }
 
   async handleLogin(entity: UserLoginProps) {
@@ -45,11 +61,23 @@ export class AuthService {
 
     const payload = {
       user,
+      type: 'access',
       sub: user.id
     }
 
     return {
-      access_token: await this.jwtService.signAsync(payload)
+      access_token: await this.jwtService.signAsync(payload),
+      refresh_token: await this.signInRefresh(user.id)
     }
+  }
+
+  async signInRefresh(userId: string) {
+    const refreshPayload = {
+      type: 'refresh',
+      sub: userId,
+      time: Date.now()
+    }
+
+    return this.jwtService.signAsync(refreshPayload)
   }
 }

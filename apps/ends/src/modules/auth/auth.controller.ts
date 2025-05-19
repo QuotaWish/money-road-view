@@ -15,4 +15,11 @@ export class AuthController {
   async login(@Body() entity: UserLoginProps) {
     return await this.authService.handleLogin(entity)
   }
+
+  @Public()
+  @Post("refresh")
+  @ApiOperation({ summary: 'Refresh token' })
+  async refresh(@Body() body: { token: string }) {
+    return await this.authService.handleRefresh(body.token)
+  }
 }
