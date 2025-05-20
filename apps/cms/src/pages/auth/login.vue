@@ -60,11 +60,11 @@ onSuccess((data: any) => {
   router.push('/')
 })
 
-function handleGoogleLogin() {
+function handleAlipayLogin() {
   toast.error('功能暂未开放')
 }
 
-function handleSSOLogin() {
+function handlePasskeysLogin() {
   toast.error('功能暂未开放')
 }
 </script>
@@ -128,11 +128,11 @@ function handleSSOLogin() {
         或者
       </a-divider>
 
-      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleGoogleLogin()">
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleAlipayLogin()">
         支付宝扫码登录
       </a-button>
-      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleSSOLogin()">
-        PASSKEYS登录
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handlePasskeysLogin()">
+        PASSKEYS 登录
       </a-button>
     </div>
 

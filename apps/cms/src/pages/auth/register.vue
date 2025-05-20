@@ -72,10 +72,10 @@ function handleRegister({ errors }: any) {
       </a-form>
 
       <div class="Login-Button-Second">
-        <a-button type="text" @click="handleForgetPassword()">
+        <a-button type="text" @click="handleForgetPassword">
           忘记密码
         </a-button>
-        <a-button type="text" @click="handleClick()">
+        <a-button type="text" @click="handleClick">
           立即登录
         </a-button>
       </div>

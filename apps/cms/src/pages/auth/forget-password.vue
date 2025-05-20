@@ -60,7 +60,7 @@ function handleForgetPassword({ errors }: any) {
           </a-checkbox>
         </a-form-item>
         <a-form-item>
-          <a-button html-type="submit" size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
+          <a-button html-type="submit" size="large" type="primary" class="ForgetPassword-Button w-full" :disabled="!agreement">
             修改
           </a-button>
         </a-form-item>
