@@ -88,6 +88,13 @@ const { send } = useForm(() => Apis.Auth.AuthController_refresh({
 async function refreshToken() {
   const token = await send()
 
+  if (!token) {
+    const userStore = useUserStore()
+    userStore.logout()
+    location.reload()
+    return
+  }
+
   authStore.value.accessToken = token.access_token
   authStore.value.refreshToken = token.refresh_token
   authStore.value.expiredTime = Date.now() + token.expire_time
