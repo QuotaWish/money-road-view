@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { usePagination } from 'alova/client'
+import { ref } from 'vue'
 
 defineOptions({
   name: 'Users',
@@ -36,6 +37,18 @@ const {
     // watchingStates: [form],
   },
 )
+
+const visible = ref(false)
+
+function handleClick() {
+  visible.value = true
+}
+function handleOk() {
+  visible.value = false
+}
+function handleCancel() {
+  visible.value = false
+}
 </script>
 
 <template>
@@ -81,9 +94,19 @@ const {
           <a-table-column title="操作">
             <template #cell="{ record }">
               <div flex gap-2 items-center>
-                <a-button status="normal">
+                <a-button status="normal" type="primary" @click="handleClick">
                   详情
                 </a-button>
+                <a-drawer :width="340" :visible="visible" unmount-on-close @ok="handleOk" @cancel="handleCancel">
+                  <template #title>
+                    Title
+                  </template>
+                  <div>
+                    You can customize modal body text by the current situation. This modal will be closed immediately
+                    once you
+                    press the OK button.
+                  </div>
+                </a-drawer>
                 <a-button status="warning">
                   编辑
                 </a-button>
