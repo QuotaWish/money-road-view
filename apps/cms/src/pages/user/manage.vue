@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { usePagination } from 'alova/client'
 import { ref } from 'vue'
+import { viewDepthKey } from 'vue-router'
 
 defineOptions({
   name: 'Users',
@@ -39,15 +40,29 @@ const {
 )
 
 const visible = ref(false)
+const type = ref('')
+const rowData = ref({})
 
-function handleClick() {
-  visible.value = true
-}
 function handleOk() {
   visible.value = false
 }
 function handleCancel() {
   visible.value = false
+}
+
+function handleView(data) {
+  type.value = 'view'
+
+  rowData.value = data
+
+  visible.value = true
+}
+function handleEdit(data) {
+  type.value = 'edit'
+
+  rowData.value = data
+
+  visible.value = true
 }
 </script>
 
@@ -94,20 +109,11 @@ function handleCancel() {
           <a-table-column title="操作">
             <template #cell="{ record }">
               <div flex gap-2 items-center>
-                <a-button status="normal" type="primary" @click="handleClick">
+                <a-button status="normal" type="primary" @click="handleView(record)">
                   详情
                 </a-button>
-                <a-drawer :width="340" :visible="visible" unmount-on-close @ok="handleOk" @cancel="handleCancel">
-                  <template #title>
-                    Title
-                  </template>
-                  <div>
-                    You can customize modal body text by the current situation. This modal will be closed immediately
-                    once you
-                    press the OK button.
-                  </div>
-                </a-drawer>
-                <a-button status="warning">
+
+                <a-button status="warning" @click="handleEdit(record)">
                   编辑
                 </a-button>
               </div>
@@ -115,6 +121,49 @@ function handleCancel() {
           </a-table-column>
         </template>
       </a-table>
+
+      <a-drawer :width="340" :visible="visible" unmount-on-close @ok="handleOk" @cancel="handleCancel">
+        <template #title>
+          {{ type === 'view' ? '查看' : '编辑' }}
+        </template>
+        <template #footer>
+          <div v-if="type === 'edit'" flex gap-2 justify-end>
+            <a-button @click="handleCancel">
+              取消
+            </a-button>
+            <a-button :disabled="true" status="warning" @click="handleOk">
+              确定
+            </a-button>
+          </div>
+          <div v-if="type === 'view'">
+            <a-button @click="handleCancel">
+              关闭
+            </a-button>
+          </div>
+        </template>
+        <div>
+          <a-form :form="rowData" :disabled="type === 'view'" @submit="handleSubmit">
+            <a-form-item field="name" label="名称">
+              <a-input v-model="rowData.name" placeholder="请输入你的名称" />
+            </a-form-item>
+            <a-form-item field="role" label="角色">
+              <a-input v-model="rowData.role" placeholder="请输入你的角色" />
+            </a-form-item>
+            <a-form-item field="email" label="地址">
+              <a-input v-model="rowData.email" placeholder="请输入你的邮箱地址" />
+            </a-form-item>
+            <a-form-item field="emailVerified" label="验证时间">
+              <a-input v-model="rowData.emailVerified" placeholder="请输入你的邮箱验证时间" />
+            </a-form-item>
+            <a-form-item field="updatedAt" label="更新">
+              <a-input v-model="rowData.updatedAt" placeholder="请输入你的更新时间" />
+            </a-form-item>
+            <a-form-item field="createdAt" label="创建">
+              <a-input v-model="rowData.createdAt" placeholder="请输入你的创建时间" />
+            </a-form-item>
+          </a-form>
+        </div>
+      </a-drawer>
     </a-spin>
   </div>
 </template>
