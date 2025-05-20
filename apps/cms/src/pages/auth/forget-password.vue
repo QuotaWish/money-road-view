@@ -21,10 +21,10 @@ function handleForgetPassword({ errors }: any) {
     return
   }
 
-  if (form.password !== form.confirmPassword) {
-    toast.error('两次密码不一致')
-    return
-  }
+  // if (form.password !== form.confirmPassword) {
+  //   toast.error('两次密码不一致')
+  //   return
+  // }
   toast.error('修改成功')
   router.push('/auth/login')
 }
@@ -42,8 +42,8 @@ function handleForgetPassword({ errors }: any) {
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
           <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear />
         </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '类型' }, { minLength: 5, message: '密码最短需要是5位' }]" field="password" tooltip="请选择类型" label="类型">
-          <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="类型" allow-clear />
+        <a-form-item :rules="[{ required: true, message: '类型' }]" field="genre" tooltip="请选择类型" label="类型">
+          <a-input class="w-[80%]" size="large" placeholder="类型" allow-clear />
         </a-form-item>
         <a-form-item field="isRead">
           <a-checkbox v-model="agreement">
@@ -67,10 +67,10 @@ function handleForgetPassword({ errors }: any) {
       </a-form>
 
       <div class="ForgetPassword-Button-Second">
-        <a-button type="text" @click="handleRegister()">
+        <a-button type="text" @click="handleRegister">
           立即注册
         </a-button>
-        <a-button type="text" @click="handleLogin()">
+        <a-button type="text" @click="handleLogin">
           立即登录
         </a-button>
       </div>
