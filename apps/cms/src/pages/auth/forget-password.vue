@@ -31,22 +31,19 @@ function handleForgetPassword({ errors }: any) {
 </script>
 
 <template>
-  <div class="Login">
-    <div class="Login-Background" />
+  <div class="ForgetPassword">
+    <div class="ForgetPassword-Background" />
 
-    <div class="Login-Form fake-background">
+    <div class="ForgetPassword-Form fake-background">
       <h1 text-3xl font-bold text-left w-full>
         重置密码
       </h1>
       <a-form :model="form" layout="vertical" @submit="handleForgetPassword">
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
-          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear />
         </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="password" tooltip="请输入密码" label="密码">
-          <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
-        </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
-          <a-input v-model="form.confirmPassword" class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="Password" />
+        <a-form-item :rules="[{ required: true, message: '类型' }, { minLength: 5, message: '密码最短需要是5位' }]" field="password" tooltip="请选择类型" label="类型">
+          <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="类型" allow-clear />
         </a-form-item>
         <a-form-item field="isRead">
           <a-checkbox v-model="agreement">
@@ -69,7 +66,7 @@ function handleForgetPassword({ errors }: any) {
         </a-form-item>
       </a-form>
 
-      <div class="Login-Button-Second">
+      <div class="ForgetPassword-Button-Second">
         <a-button type="text" @click="handleRegister()">
           立即注册
         </a-button>
@@ -79,18 +76,18 @@ function handleForgetPassword({ errors }: any) {
       </div>
     </div>
 
-    <div class="Login-Brand">
+    <div class="ForgetPassword-Brand">
       <Logo />
     </div>
 
-    <div class="Login-Copyright">
+    <div class="ForgetPassword-Copyright">
       Powered by QuotaWish.
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
-.Login-Brand {
+.ForgetPassword-Brand {
   z-index: 1;
   position: absolute;
 
@@ -98,7 +95,7 @@ function handleForgetPassword({ errors }: any) {
   left: 1rem;
 }
 
-.Login-Copyright {
+.ForgetPassword-Copyright {
   position: absolute;
 
   left: 50%;
@@ -108,7 +105,7 @@ function handleForgetPassword({ errors }: any) {
   transform: translateX(-50%);
 }
 
-.Login-Form {
+.ForgetPassword-Form {
   &::before {
     z-index: -1;
     content: '';
@@ -129,7 +126,7 @@ function handleForgetPassword({ errors }: any) {
 
   width: 20%;
   min-width: 480px;
-  height: 750px;
+  height: 550px;
 
   display: flex;
   flex-direction: column;
@@ -144,7 +141,7 @@ function handleForgetPassword({ errors }: any) {
   backdrop-filter: blur(18px) saturate(180%);
 }
 
-.Login-Background {
+.ForgetPassword-Background {
   position: absolute;
   top: 0;
   right: 0;
@@ -157,7 +154,7 @@ function handleForgetPassword({ errors }: any) {
   background-image: url('/bg/auth-bg.png');
 }
 
-.Login {
+.ForgetPassword {
   position: absolute;
 
   top: 0;
@@ -167,7 +164,7 @@ function handleForgetPassword({ errors }: any) {
   height: 100%;
 }
 
-.Login-Button-Second {
+.ForgetPassword-Button-Second {
   display: flex;
   flex-direction: rows;
   justify-content: space-between;
@@ -175,7 +172,7 @@ function handleForgetPassword({ errors }: any) {
 }
 
 @media (max-width: 720px) {
-  .Login-Form {
+  .ForgetPassword-Form {
     top: 0;
     right: 0;
 
@@ -187,7 +184,7 @@ function handleForgetPassword({ errors }: any) {
     border-radius: 0;
   }
 
-  .Login-Copyright {
+  .ForgetPassword-Copyright {
     font-size: 10px;
     bottom: 0.25rem;
   }
