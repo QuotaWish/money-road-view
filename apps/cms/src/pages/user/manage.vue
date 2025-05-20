@@ -5,10 +5,10 @@ defineOptions({
   name: 'Users',
 })
 
-const form = useTemplateRef('searchForm')
+const searchForm = useTemplateRef('searchForm')
 
 function handleReset() {
-  form.value.resetFields()
+  searchForm.value.resetFields()
 }
 
 const form = reactive({
