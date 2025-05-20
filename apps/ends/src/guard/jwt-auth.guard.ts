@@ -4,7 +4,7 @@ import { IS_PUBLIC_KEY } from '../common/decorator/public.decorator';
 import { JwtService } from '@nestjs/jwt';
 import { GaUnauthorizedException } from 'src/filter/http-exception/internal/GaUnauthorizedException';
 import { jwtConstants } from 'src/common/constants';
-import type { IUserInfo } from 'src/modules/user/user.types';
+import type { IUserInfo } from 'src/modules/user/user.dto';
 
 @Injectable()
 export class jwtAuthGuard implements CanActivate {
