@@ -10,3 +10,14 @@ export class UserLoginProps {
   @IsNotEmpty()
   type: string
 }
+
+export class UserRegisterProsp {
+  @IsNotEmpty()
+  account: string
+
+  @IsNotEmpty()
+  password: string
+
+  @IsNotEmpty()
+  type: string
+}
