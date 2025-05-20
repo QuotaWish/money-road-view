@@ -10,15 +10,13 @@ const form = reactive({
 
 const agreement = ref(false)
 const router = useRouter()
-function handleClick() {
+function handleLogin() {
   router.push('/auth/login')
 }
-
-function handleForgetPassword() {
-  router.push('/auth/forget-password')
+function handleRegister() {
+  router.push('/auth/register')
 }
-
-function handleRegister({ errors }: any) {
+function handleForgetPassword({ errors }: any) {
   if (Object.values(errors).length) {
     return
   }
@@ -27,7 +25,7 @@ function handleRegister({ errors }: any) {
     toast.error('两次密码不一致')
     return
   }
-  toast.error('注册成功')
+  toast.error('修改成功')
   router.push('/auth/login')
 }
 </script>
@@ -38,9 +36,9 @@ function handleRegister({ errors }: any) {
 
     <div class="Login-Form fake-background">
       <h1 text-3xl font-bold text-left w-full>
-        注册账号
+        重置密码
       </h1>
-      <a-form :model="form" layout="vertical" @submit="handleRegister">
+      <a-form :model="form" layout="vertical" @submit="handleForgetPassword">
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
           <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
@@ -66,16 +64,16 @@ function handleRegister({ errors }: any) {
         </a-form-item>
         <a-form-item>
           <a-button html-type="submit" size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
-            注册
+            修改
           </a-button>
         </a-form-item>
       </a-form>
 
       <div class="Login-Button-Second">
-        <a-button type="text" @click="handleForgetPassword()">
-          忘记密码
+        <a-button type="text" @click="handleRegister()">
+          立即注册
         </a-button>
-        <a-button type="text" @click="handleClick()">
+        <a-button type="text" @click="handleLogin()">
           立即登录
         </a-button>
       </div>
