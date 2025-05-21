@@ -299,6 +299,23 @@ declare global {
       AuthController_refresh<Config extends Alova2MethodConfig<unknown>>(
         config?: Config
       ): Alova2Method<unknown, 'Auth.AuthController_refresh', Config>;
+      /**
+       * ---
+       *
+       * [POST] Get user history (latest 10)
+       *
+       * **path:** /auth/history
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      AuthController_getHistory<Config extends Alova2MethodConfig<unknown>>(
+        config?: Config
+      ): Alova2Method<unknown, 'Auth.AuthController_getHistory', Config>;
     };
   }
 

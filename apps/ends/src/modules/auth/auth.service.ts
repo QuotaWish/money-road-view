@@ -10,6 +10,7 @@ import { GaUnauthorizedException } from 'src/filter/http-exception/internal/GaUn
 import { prismaClient } from 'src/lib/database';
 import type { Account, LoginHistory, User } from '@prisma/client';
 import { gaLocation, getUserAgentInfo } from 'src/utils';
+import type { IUserInfo } from '../user/user.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,6 +20,18 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {
 
+  }
+
+  async getHistory(entity: IUserInfo) {
+    return await prismaClient.loginHistory.findMany({
+      where: {
+        userId: entity.id
+      },
+      orderBy: {
+        createdAt: 'desc'
+      },
+      take: 10,
+    })
   }
 
   async handleRefresh(token: string) {

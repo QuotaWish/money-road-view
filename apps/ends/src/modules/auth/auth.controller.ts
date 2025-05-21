@@ -4,6 +4,8 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/common/decorator/public.decorator';
 import { UserLoginProps } from './auth.dto';
 import { IpAddress } from 'src/common/decorator/ip-address.decorator';
+import { UserInfo } from 'src/common/decorator/user-info.decorator';
+import type { User } from '@prisma/client';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -22,5 +24,11 @@ export class AuthController {
   @ApiOperation({ summary: 'Refresh token' })
   async refresh(@Body() body: { token: string }) {
     return await this.authService.handleRefresh(body.token)
+  }
+
+  @Post("history")
+  @ApiOperation({ summary: 'Get user history (latest 10)' })
+  async getHistory(@UserInfo() entity: User) {
+    return await this.authService.getHistory(entity)
   }
 }
