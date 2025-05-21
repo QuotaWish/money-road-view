@@ -187,6 +187,18 @@ exports.Prisma.LoginHistoryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ConfigurationScalarFieldEnum = {
+  id: 'id',
+  namespace: 'namespace',
+  key: 'key',
+  value: 'value',
+  valueType: 'valueType',
+  description: 'description',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -209,7 +221,8 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   Authenticator: 'Authenticator',
-  LoginHistory: 'LoginHistory'
+  LoginHistory: 'LoginHistory',
+  Configuration: 'Configuration'
 };
 
 /**

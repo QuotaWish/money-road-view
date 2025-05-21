@@ -112,3 +112,18 @@ model LoginHistory {
   @@index([userId, device])
   @@index([userId, fingerprint])
 }
+
+model Configuration {
+  id          String   @id @default(uuid())
+  namespace   String? // 可选：模块或逻辑分组名，例如 'system', 'feature', 'ui'
+  key         String // 配置键名，例如 'homepage_banner', 'ip_whitelist'
+  value       String // 原始存储值，字符串化后的 JSON/Text/Number 等
+  valueType   String // 类型标识: 'json' | 'string' | 'number' | 'boolean' | 'text' | ...
+  description String? // 说明字段（可用于 CMS 展示）
+  isPublic    Boolean  @default(false) // 是否公开可读取（如供前端使用）
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([namespace, key])
+  @@index([namespace])
+}
