@@ -2,6 +2,7 @@
 import { useForm } from 'alova/client'
 import { toast } from 'vue-sonner'
 import Logo from '~/components/display/Logo.vue'
+import { useSharedFingerprint } from '~/composables/auth'
 import { useAuthStore, useUserStore } from '~/composables/store'
 
 const router = useRouter()
@@ -10,8 +11,14 @@ const agreement = ref(false)
 const userStore = useUserStore()
 const authStore = useAuthStore()
 
+const fp = useSharedFingerprint()
+
 const { form, loading, send, onSuccess } = useForm(formData => EndApis.Auth.AuthController_login({
-  data: formData,
+  data: {
+    fingerprint: fp.value,
+    platform: 'CMS',
+    ...formData,
+  },
   meta: {
     authRole: 'login',
   },
@@ -79,16 +86,12 @@ function handlePasskeysLogin() {
       </h1>
 
       <a-form :disabled="loading" layout="vertical" :model="form" @submit="handleLogin">
-        <a-form-item
-          :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]"
-          field="account" tooltip="请输入账号" label="账号"
-        >
+        <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]"
+          field="account" tooltip="请输入账号" label="账号">
           <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
-        <a-form-item
-          :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]"
-          field="password" tooltip="请输入密码" label="密码"
-        >
+        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]"
+          field="password" tooltip="请输入密码" label="密码">
           <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
         </a-form-item>
         <a-form-item field="isRead">
@@ -106,10 +109,8 @@ function handlePasskeysLogin() {
           </a-checkbox>
         </a-form-item>
         <a-form-item>
-          <a-button
-            html-type="submit" :loading="loading" size="large" type="primary" class="Login-Button w-full"
-            :disabled="!agreement"
-          >
+          <a-button html-type="submit" :loading="loading" size="large" type="primary" class="Login-Button w-full"
+            :disabled="!agreement">
             登录
           </a-button>
         </a-form-item>

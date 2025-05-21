@@ -24,6 +24,6 @@ export const gaLocation = new GaLocation();
  * @param {Request} req
  */
 export const getRealIp = (req: Request): string => {
-  const result = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || req.socket.remoteAddress || req.ip;
+  const result = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] //|| req.socket.remoteAddress || req.ip;
   return Array.isArray(result) ? result[0] : result;
 };

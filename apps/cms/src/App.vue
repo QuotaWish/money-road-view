@@ -31,10 +31,8 @@ router.beforeEach((to, from, next) => {
   <ContainerLayout>
     <GaRouterView />
 
-    <Toaster
-      position="top-right" :toast-options="{
-        class: 'Toast',
-      }" rich-colors
-    />
+    <Toaster position="top-right" :toast-options="{
+      class: 'Toast',
+    }" rich-colors />
   </ContainerLayout>
 </template>
