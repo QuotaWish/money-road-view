@@ -70,7 +70,7 @@ export class AuthService {
       userAgent,
       platform: entity.platform,
       fingerprint: entity.fingerprint,
-      success: isCorrect,
+      success: isCorrect ? true : false,
       errorMsg: ""
     }
 
