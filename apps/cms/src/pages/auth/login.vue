@@ -23,8 +23,12 @@ const { form, loading, send, onSuccess } = useForm(formData => EndApis.Auth.Auth
   },
 })
 
-function handleClick() {
+function handleRegister() {
   router.push('/auth/register')
+}
+
+function handleForgetPassword() {
+  router.push('/auth/forget-password')
 }
 
 async function handleLogin({ errors }: any) {
@@ -56,11 +60,11 @@ onSuccess((data: any) => {
   router.push('/')
 })
 
-function handleGoogleLogin() {
+function handleAlipayLogin() {
   toast.error('功能暂未开放')
 }
 
-function handleSSOLogin() {
+function handlePasskeysLogin() {
   toast.error('功能暂未开放')
 }
 </script>
@@ -112,10 +116,10 @@ function handleSSOLogin() {
       </a-form>
 
       <div class="Login-Button-Second">
-        <a-button type="text">
+        <a-button type="text" @click="handleForgetPassword()">
           忘记密码
         </a-button>
-        <a-button type="text" @click="handleClick()">
+        <a-button type="text" @click="handleRegister()">
           立即注册
         </a-button>
       </div>
@@ -124,11 +128,11 @@ function handleSSOLogin() {
         或者
       </a-divider>
 
-      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleGoogleLogin()">
-        谷歌注册
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleAlipayLogin()">
+        支付宝扫码登录
       </a-button>
-      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleSSOLogin()">
-        SSO注册
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handlePasskeysLogin()">
+        PASSKEYS 登录
       </a-button>
     </div>
 

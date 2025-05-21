@@ -10,45 +10,40 @@ const form = reactive({
 
 const agreement = ref(false)
 const router = useRouter()
-function handleClick() {
+function handleLogin() {
   router.push('/auth/login')
 }
-
-function handleForgetPassword() {
-  router.push('/auth/forget-password')
+function handleRegister() {
+  router.push('/auth/register')
 }
-
-function handleRegister({ errors }: any) {
+function handleForgetPassword({ errors }: any) {
   if (Object.values(errors).length) {
     return
   }
 
-  if (form.password !== form.confirmPassword) {
-    toast.error('两次密码不一致')
-    return
-  }
-  toast.error('注册成功')
+  // if (form.password !== form.confirmPassword) {
+  //   toast.error('两次密码不一致')
+  //   return
+  // }
+  toast.error('修改成功')
   router.push('/auth/login')
 }
 </script>
 
 <template>
-  <div class="Login">
-    <div class="Login-Background" />
+  <div class="ForgetPassword">
+    <div class="ForgetPassword-Background" />
 
-    <div class="Login-Form fake-background">
+    <div class="ForgetPassword-Form fake-background">
       <h1 text-3xl font-bold text-left w-full>
-        注册账号
+        重置密码
       </h1>
-      <a-form :model="form" layout="vertical" @submit="handleRegister">
+      <a-form :model="form" layout="vertical" @submit="handleForgetPassword">
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
-          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear />
         </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="password" tooltip="请输入密码" label="密码">
-          <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
-        </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
-          <a-input v-model="form.confirmPassword" class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="Password" />
+        <a-form-item :rules="[{ required: true, message: '类型' }]" field="genre" tooltip="请选择类型" label="类型">
+          <a-input class="w-[80%]" size="large" placeholder="类型" allow-clear />
         </a-form-item>
         <a-form-item field="isRead">
           <a-checkbox v-model="agreement">
@@ -65,34 +60,34 @@ function handleRegister({ errors }: any) {
           </a-checkbox>
         </a-form-item>
         <a-form-item>
-          <a-button html-type="submit" size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
-            注册
+          <a-button html-type="submit" size="large" type="primary" class="ForgetPassword-Button w-full" :disabled="!agreement">
+            修改
           </a-button>
         </a-form-item>
       </a-form>
 
-      <div class="Login-Button-Second">
-        <a-button type="text" @click="handleForgetPassword">
-          忘记密码
+      <div class="ForgetPassword-Button-Second">
+        <a-button type="text" @click="handleRegister">
+          立即注册
         </a-button>
-        <a-button type="text" @click="handleClick">
+        <a-button type="text" @click="handleLogin">
           立即登录
         </a-button>
       </div>
     </div>
 
-    <div class="Login-Brand">
+    <div class="ForgetPassword-Brand">
       <Logo />
     </div>
 
-    <div class="Login-Copyright">
+    <div class="ForgetPassword-Copyright">
       Powered by QuotaWish.
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
-.Login-Brand {
+.ForgetPassword-Brand {
   z-index: 1;
   position: absolute;
 
@@ -100,7 +95,7 @@ function handleRegister({ errors }: any) {
   left: 1rem;
 }
 
-.Login-Copyright {
+.ForgetPassword-Copyright {
   position: absolute;
 
   left: 50%;
@@ -110,7 +105,7 @@ function handleRegister({ errors }: any) {
   transform: translateX(-50%);
 }
 
-.Login-Form {
+.ForgetPassword-Form {
   &::before {
     z-index: -1;
     content: '';
@@ -131,7 +126,7 @@ function handleRegister({ errors }: any) {
 
   width: 20%;
   min-width: 480px;
-  height: 750px;
+  height: 550px;
 
   display: flex;
   flex-direction: column;
@@ -146,7 +141,7 @@ function handleRegister({ errors }: any) {
   backdrop-filter: blur(18px) saturate(180%);
 }
 
-.Login-Background {
+.ForgetPassword-Background {
   position: absolute;
   top: 0;
   right: 0;
@@ -159,7 +154,7 @@ function handleRegister({ errors }: any) {
   background-image: url('/bg/auth-bg.png');
 }
 
-.Login {
+.ForgetPassword {
   position: absolute;
 
   top: 0;
@@ -169,7 +164,7 @@ function handleRegister({ errors }: any) {
   height: 100%;
 }
 
-.Login-Button-Second {
+.ForgetPassword-Button-Second {
   display: flex;
   flex-direction: rows;
   justify-content: space-between;
@@ -177,7 +172,7 @@ function handleRegister({ errors }: any) {
 }
 
 @media (max-width: 720px) {
-  .Login-Form {
+  .ForgetPassword-Form {
     top: 0;
     right: 0;
 
@@ -189,7 +184,7 @@ function handleRegister({ errors }: any) {
     border-radius: 0;
   }
 
-  .Login-Copyright {
+  .ForgetPassword-Copyright {
     font-size: 10px;
     bottom: 0.25rem;
   }
