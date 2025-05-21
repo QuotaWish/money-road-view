@@ -9,6 +9,9 @@ export class UserLoginProps {
 
   @IsNotEmpty()
   type: string
+
+  @IsNotEmpty()
+  device: string
 }
 
 export class UserRegisterProsp {

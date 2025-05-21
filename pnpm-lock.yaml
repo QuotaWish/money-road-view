@@ -355,6 +355,9 @@ importers:
       ends:
         specifier: 'file:'
         version: 'link:'
+      ip2region:
+        specifier: ^2.3.0
+        version: 2.3.0(@types/node@20.17.47)
       passport:
         specifier: ^0.7.0
         version: 0.7.0
@@ -370,9 +373,15 @@ importers:
       reflect-metadata:
         specifier: ^0.2.0
         version: 0.2.2
+      request-ip:
+        specifier: ^3.3.0
+        version: 3.3.0
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
+      ua-parser-js:
+        specifier: ^2.0.3
+        version: 2.0.3(encoding@0.1.13)
     devDependencies:
       '@nestjs/cli':
         specifier: ^10.0.0
@@ -7274,6 +7283,11 @@ packages:
     resolution: {integrity: sha512-CYdFeFexxhv/Bcny+Q0BfOV+ltRlJcd4BBZBYFX/O0u4npJrgZtIcjokegtiSMAvlMTJ+Koq0GBCc//3bueQxw==}
     engines: {node: '>=8'}
 
+  ip2region@2.3.0:
+    resolution: {integrity: sha512-zV5Xsadzrx9Ej6heoyhbXMsfGWWQ3C6bAIYStrHhw9kzLpGpVNlnAyRBxxPgxA1GNqr1Ti7oUxcWsMWNN3jZBg==}
+    peerDependencies:
+      '@types/node': '*'
+
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
@@ -9389,6 +9403,9 @@ packages:
   repeat-string@1.6.1:
     resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
     engines: {node: '>=0.10'}
+
+  request-ip@3.3.0:
+    resolution: {integrity: sha512-cA6Xh6e0fDBBBwH77SLJaJPBmD3nWVAcF9/XAcsrIHdjhFzFiB5aNQFytdjCGPezU3ROwrR11IddKAM08vohxA==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -19630,6 +19647,10 @@ snapshots:
 
   invert-kv@3.0.1: {}
 
+  ip2region@2.3.0(@types/node@20.17.47):
+    dependencies:
+      '@types/node': 20.17.47
+
   ipaddr.js@1.9.1: {}
 
   is-arrayish@0.2.1: {}
@@ -22318,6 +22339,8 @@ snapshots:
   remove-accents@0.5.0: {}
 
   repeat-string@1.6.1: {}
+
+  request-ip@3.3.0: {}
 
   require-directory@2.1.1: {}
 
