@@ -8,7 +8,7 @@ defineOptions({
   <div class="p-4 flex gap-4 h-full relative">
     <div class="flex flex-1 flex-col" gap-4>
       <div class="p-6 Workspace-Card" flex-1>
-        <P class="titleone">欢迎回来，MONEYROAD</P>
+        <P class="card-one">欢迎回来，MONEYROAD</P>
         <a-divider />
         <a-row class="grid-demo" justify="space-between">
           <a-col :span="4">
@@ -69,7 +69,7 @@ defineOptions({
     </div>
     <div class="flex flex-col gap-4 max-w-[300px] w-[30%]">
       <div class="p-4 rounded-xl flex-1 Workspace-Card">
-        <p class="titleright">快捷入口</p>
+        <p class="card-right">快捷入口</p>
         <div class="layoutright">
           <IconButton icon="i-carbon-book">
             内容管理
