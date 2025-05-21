@@ -82,7 +82,7 @@ export class AuthService {
       const user = await this.userService.getUser(account.userId)
       const token = await this.handleAuth(user, account)
 
-      Logger.log(`User ${account.userId} login success`)
+      Logger.log(`User ${account.userId} login @${entity.platform} success with account ${account.provider}. From ${ip} with agents [${userAgent}]`)
 
       return {
         user, token
