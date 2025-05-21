@@ -127,11 +127,11 @@ defineOptions({
 </template>
 
 <style scoped>
-.titleone {
+.card-one {
   font-size: 25px;
 }
 
-.titleright {
+.card-right {
   font-size: 20px;
 }
 
