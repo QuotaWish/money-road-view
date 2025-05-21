@@ -23,6 +23,9 @@ export class LoginHistory {
 	@ApiProperty({ type: String })
 	ip: string
 
+	@ApiPropertyOptional({ type: String })
+	where?: string
+
 	@ApiProperty({ type: Boolean })
 	success: boolean
 

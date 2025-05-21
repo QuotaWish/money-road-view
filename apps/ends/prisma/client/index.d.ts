@@ -6946,6 +6946,7 @@ export namespace Prisma {
     fingerprint: string | null
     userAgent: string | null
     ip: string | null
+    where: string | null
     success: boolean | null
     errorMsg: string | null
     createdAt: Date | null
@@ -6960,6 +6961,7 @@ export namespace Prisma {
     fingerprint: string | null
     userAgent: string | null
     ip: string | null
+    where: string | null
     success: boolean | null
     errorMsg: string | null
     createdAt: Date | null
@@ -6974,6 +6976,7 @@ export namespace Prisma {
     fingerprint: number
     userAgent: number
     ip: number
+    where: number
     success: number
     errorMsg: number
     createdAt: number
@@ -6990,6 +6993,7 @@ export namespace Prisma {
     fingerprint?: true
     userAgent?: true
     ip?: true
+    where?: true
     success?: true
     errorMsg?: true
     createdAt?: true
@@ -7004,6 +7008,7 @@ export namespace Prisma {
     fingerprint?: true
     userAgent?: true
     ip?: true
+    where?: true
     success?: true
     errorMsg?: true
     createdAt?: true
@@ -7018,6 +7023,7 @@ export namespace Prisma {
     fingerprint?: true
     userAgent?: true
     ip?: true
+    where?: true
     success?: true
     errorMsg?: true
     createdAt?: true
@@ -7105,6 +7111,7 @@ export namespace Prisma {
     fingerprint: string | null
     userAgent: string | null
     ip: string
+    where: string | null
     success: boolean
     errorMsg: string | null
     createdAt: Date
@@ -7136,6 +7143,7 @@ export namespace Prisma {
     fingerprint?: boolean
     userAgent?: boolean
     ip?: boolean
+    where?: boolean
     success?: boolean
     errorMsg?: boolean
     createdAt?: boolean
@@ -7151,6 +7159,7 @@ export namespace Prisma {
     fingerprint?: boolean
     userAgent?: boolean
     ip?: boolean
+    where?: boolean
     success?: boolean
     errorMsg?: boolean
     createdAt?: boolean
@@ -7166,6 +7175,7 @@ export namespace Prisma {
     fingerprint?: boolean
     userAgent?: boolean
     ip?: boolean
+    where?: boolean
     success?: boolean
     errorMsg?: boolean
     createdAt?: boolean
@@ -7181,13 +7191,14 @@ export namespace Prisma {
     fingerprint?: boolean
     userAgent?: boolean
     ip?: boolean
+    where?: boolean
     success?: boolean
     errorMsg?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LoginHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "platform" | "device" | "fingerprint" | "userAgent" | "ip" | "success" | "errorMsg" | "createdAt" | "updatedAt", ExtArgs["result"]["loginHistory"]>
+  export type LoginHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "platform" | "device" | "fingerprint" | "userAgent" | "ip" | "where" | "success" | "errorMsg" | "createdAt" | "updatedAt", ExtArgs["result"]["loginHistory"]>
   export type LoginHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -7211,6 +7222,7 @@ export namespace Prisma {
       fingerprint: string | null
       userAgent: string | null
       ip: string
+      where: string | null
       success: boolean
       errorMsg: string | null
       createdAt: Date
@@ -7646,6 +7658,7 @@ export namespace Prisma {
     readonly fingerprint: FieldRef<"LoginHistory", 'String'>
     readonly userAgent: FieldRef<"LoginHistory", 'String'>
     readonly ip: FieldRef<"LoginHistory", 'String'>
+    readonly where: FieldRef<"LoginHistory", 'String'>
     readonly success: FieldRef<"LoginHistory", 'Boolean'>
     readonly errorMsg: FieldRef<"LoginHistory", 'String'>
     readonly createdAt: FieldRef<"LoginHistory", 'DateTime'>
@@ -8153,6 +8166,7 @@ export namespace Prisma {
     fingerprint: 'fingerprint',
     userAgent: 'userAgent',
     ip: 'ip',
+    where: 'where',
     success: 'success',
     errorMsg: 'errorMsg',
     createdAt: 'createdAt',
@@ -8616,6 +8630,7 @@ export namespace Prisma {
     fingerprint?: StringNullableFilter<"LoginHistory"> | string | null
     userAgent?: StringNullableFilter<"LoginHistory"> | string | null
     ip?: StringFilter<"LoginHistory"> | string
+    where?: StringNullableFilter<"LoginHistory"> | string | null
     success?: BoolFilter<"LoginHistory"> | boolean
     errorMsg?: StringNullableFilter<"LoginHistory"> | string | null
     createdAt?: DateTimeFilter<"LoginHistory"> | Date | string
@@ -8631,6 +8646,7 @@ export namespace Prisma {
     fingerprint?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
     ip?: SortOrder
+    where?: SortOrderInput | SortOrder
     success?: SortOrder
     errorMsg?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -8649,6 +8665,7 @@ export namespace Prisma {
     fingerprint?: StringNullableFilter<"LoginHistory"> | string | null
     userAgent?: StringNullableFilter<"LoginHistory"> | string | null
     ip?: StringFilter<"LoginHistory"> | string
+    where?: StringNullableFilter<"LoginHistory"> | string | null
     success?: BoolFilter<"LoginHistory"> | boolean
     errorMsg?: StringNullableFilter<"LoginHistory"> | string | null
     createdAt?: DateTimeFilter<"LoginHistory"> | Date | string
@@ -8664,6 +8681,7 @@ export namespace Prisma {
     fingerprint?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
     ip?: SortOrder
+    where?: SortOrderInput | SortOrder
     success?: SortOrder
     errorMsg?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -8684,6 +8702,7 @@ export namespace Prisma {
     fingerprint?: StringNullableWithAggregatesFilter<"LoginHistory"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"LoginHistory"> | string | null
     ip?: StringWithAggregatesFilter<"LoginHistory"> | string
+    where?: StringNullableWithAggregatesFilter<"LoginHistory"> | string | null
     success?: BoolWithAggregatesFilter<"LoginHistory"> | boolean
     errorMsg?: StringNullableWithAggregatesFilter<"LoginHistory"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"LoginHistory"> | Date | string
@@ -9074,6 +9093,7 @@ export namespace Prisma {
     fingerprint?: string | null
     userAgent?: string | null
     ip: string
+    where?: string | null
     success: boolean
     errorMsg?: string | null
     createdAt?: Date | string
@@ -9089,6 +9109,7 @@ export namespace Prisma {
     fingerprint?: string | null
     userAgent?: string | null
     ip: string
+    where?: string | null
     success: boolean
     errorMsg?: string | null
     createdAt?: Date | string
@@ -9102,6 +9123,7 @@ export namespace Prisma {
     fingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     ip?: StringFieldUpdateOperationsInput | string
+    where?: NullableStringFieldUpdateOperationsInput | string | null
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9117,6 +9139,7 @@ export namespace Prisma {
     fingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     ip?: StringFieldUpdateOperationsInput | string
+    where?: NullableStringFieldUpdateOperationsInput | string | null
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9131,6 +9154,7 @@ export namespace Prisma {
     fingerprint?: string | null
     userAgent?: string | null
     ip: string
+    where?: string | null
     success: boolean
     errorMsg?: string | null
     createdAt?: Date | string
@@ -9144,6 +9168,7 @@ export namespace Prisma {
     fingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     ip?: StringFieldUpdateOperationsInput | string
+    where?: NullableStringFieldUpdateOperationsInput | string | null
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9158,6 +9183,7 @@ export namespace Prisma {
     fingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     ip?: StringFieldUpdateOperationsInput | string
+    where?: NullableStringFieldUpdateOperationsInput | string | null
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9592,6 +9618,7 @@ export namespace Prisma {
     fingerprint?: SortOrder
     userAgent?: SortOrder
     ip?: SortOrder
+    where?: SortOrder
     success?: SortOrder
     errorMsg?: SortOrder
     createdAt?: SortOrder
@@ -9606,6 +9633,7 @@ export namespace Prisma {
     fingerprint?: SortOrder
     userAgent?: SortOrder
     ip?: SortOrder
+    where?: SortOrder
     success?: SortOrder
     errorMsg?: SortOrder
     createdAt?: SortOrder
@@ -9620,6 +9648,7 @@ export namespace Prisma {
     fingerprint?: SortOrder
     userAgent?: SortOrder
     ip?: SortOrder
+    where?: SortOrder
     success?: SortOrder
     errorMsg?: SortOrder
     createdAt?: SortOrder
@@ -10188,6 +10217,7 @@ export namespace Prisma {
     fingerprint?: string | null
     userAgent?: string | null
     ip: string
+    where?: string | null
     success: boolean
     errorMsg?: string | null
     createdAt?: Date | string
@@ -10201,6 +10231,7 @@ export namespace Prisma {
     fingerprint?: string | null
     userAgent?: string | null
     ip: string
+    where?: string | null
     success: boolean
     errorMsg?: string | null
     createdAt?: Date | string
@@ -10336,6 +10367,7 @@ export namespace Prisma {
     fingerprint?: StringNullableFilter<"LoginHistory"> | string | null
     userAgent?: StringNullableFilter<"LoginHistory"> | string | null
     ip?: StringFilter<"LoginHistory"> | string
+    where?: StringNullableFilter<"LoginHistory"> | string | null
     success?: BoolFilter<"LoginHistory"> | boolean
     errorMsg?: StringNullableFilter<"LoginHistory"> | string | null
     createdAt?: DateTimeFilter<"LoginHistory"> | Date | string
@@ -10669,6 +10701,7 @@ export namespace Prisma {
     fingerprint?: string | null
     userAgent?: string | null
     ip: string
+    where?: string | null
     success: boolean
     errorMsg?: string | null
     createdAt?: Date | string
@@ -10778,6 +10811,7 @@ export namespace Prisma {
     fingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     ip?: StringFieldUpdateOperationsInput | string
+    where?: NullableStringFieldUpdateOperationsInput | string | null
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10791,6 +10825,7 @@ export namespace Prisma {
     fingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     ip?: StringFieldUpdateOperationsInput | string
+    where?: NullableStringFieldUpdateOperationsInput | string | null
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10804,6 +10839,7 @@ export namespace Prisma {
     fingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     ip?: StringFieldUpdateOperationsInput | string
+    where?: NullableStringFieldUpdateOperationsInput | string | null
     success?: BoolFieldUpdateOperationsInput | boolean
     errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

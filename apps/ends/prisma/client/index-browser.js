@@ -180,6 +180,7 @@ exports.Prisma.LoginHistoryScalarFieldEnum = {
   fingerprint: 'fingerprint',
   userAgent: 'userAgent',
   ip: 'ip',
+  where: 'where',
   success: 'success',
   errorMsg: 'errorMsg',
   createdAt: 'createdAt',

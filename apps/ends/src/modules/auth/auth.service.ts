@@ -9,7 +9,7 @@ import { jwtConstants } from 'src/common/constants';
 import { GaUnauthorizedException } from 'src/filter/http-exception/internal/GaUnauthorizedException';
 import { prismaClient } from 'src/lib/database';
 import type { Account, LoginHistory, User } from '@prisma/client';
-import { getUserAgentInfo } from 'src/utils';
+import { gaLocation, getUserAgentInfo } from 'src/utils';
 
 @Injectable()
 export class AuthService {
@@ -59,11 +59,13 @@ export class AuthService {
     const info = getUserAgentInfo(userAgent)
     const device = `${info.browser} ${info.os} ${info.device}`
 
+    const where = gaLocation.getWhere(ip)
     const isCorrect = await this.userService.comparePassword(entity.password, account.id_token)
 
     const loginHistoryData = {
       userId: account.userId,
       ip,
+      where,
       device,
       userAgent,
       platform: entity.platform,

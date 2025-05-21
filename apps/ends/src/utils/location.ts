@@ -15,6 +15,20 @@ export class GaLocation {
   getLocation() {
     return this._location
   }
+
+  checkIfLocalhost(ip: string) {
+    return ip === '127.0.0.1' || ip === '::1'
+  }
+
+  getWhere(ip: string) {
+    if (this.checkIfLocalhost(ip)) {
+      return 'LOCAL LOCAL LOCAL'
+    }
+
+    const result = this._location.search(ip)
+
+    return result.country + ' ' + result.province + ' ' + result.city
+  }
 }
 
 export const gaLocation = new GaLocation();

@@ -112,16 +112,35 @@ export type UserPagniationDto = {
   pageSize: number;
   /**
    * 账号名称参数
-   * [required]
    */
-  name: string;
+  name?: string;
   /**
    * 邮箱名称参数
+   */
+  email?: string;
+};
+export type UserLoginProps = {
+  /**
    * [required]
    */
-  email: string;
+  account: string;
+  /**
+   * [required]
+   */
+  password: string;
+  /**
+   * [required]
+   */
+  type: string;
+  /**
+   * [required]
+   */
+  fingerprint: string;
+  /**
+   * [required]
+   */
+  platform: string;
 };
-export type UserLoginProps = object;
 declare global {
   interface Apis {
     App: {
@@ -136,12 +155,12 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = unknown
+       * type Response = string
        * ```
        */
-      AppController_getHello<Config extends Alova2MethodConfig<unknown>>(
+      AppController_getHello<Config extends Alova2MethodConfig<string>>(
         config?: Config
-      ): Alova2Method<unknown, 'App.AppController_getHello', Config>;
+      ): Alova2Method<string, 'App.AppController_getHello', Config>;
     };
     User: {
       /**
@@ -180,11 +199,9 @@ declare global {
        *   // [required]
        *   pageSize: number
        *   // 账号名称参数
-       *   // [required]
-       *   name: string
+       *   name?: string
        *   // 邮箱名称参数
-       *   // [required]
-       *   email: string
+       *   email?: string
        * }
        * ```
        *
@@ -237,7 +254,18 @@ declare global {
        *
        * **RequestBody**
        * ```ts
-       * type RequestBody = object
+       * type RequestBody = {
+       *   // [required]
+       *   account: string
+       *   // [required]
+       *   password: string
+       *   // [required]
+       *   type: string
+       *   // [required]
+       *   fingerprint: string
+       *   // [required]
+       *   platform: string
+       * }
        * ```
        *
        * ---
