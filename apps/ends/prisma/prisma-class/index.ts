@@ -3,6 +3,7 @@ import { Account as _Account } from './account'
 import { Session as _Session } from './session'
 import { VerificationToken as _VerificationToken } from './verification_token'
 import { Authenticator as _Authenticator } from './authenticator'
+import { LoginHistory as _LoginHistory } from './login_history'
 
 export namespace PrismaModel {
 	export class User extends _User {}
@@ -10,6 +11,7 @@ export namespace PrismaModel {
 	export class Session extends _Session {}
 	export class VerificationToken extends _VerificationToken {}
 	export class Authenticator extends _Authenticator {}
+	export class LoginHistory extends _LoginHistory {}
 
 	export const extraModels = [
 		User,
@@ -17,5 +19,6 @@ export namespace PrismaModel {
 		Session,
 		VerificationToken,
 		Authenticator,
+		LoginHistory,
 	]
 }

@@ -1,6 +1,7 @@
 import { Account } from './account'
 import { Session } from './session'
 import { Authenticator } from './authenticator'
+import { LoginHistory } from './login_history'
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 export class User {
@@ -30,6 +31,9 @@ export class User {
 
 	@ApiProperty({ isArray: true, type: () => Authenticator })
 	Authenticator: Authenticator[]
+
+	@ApiProperty({ isArray: true, type: () => LoginHistory })
+	loginHistories: LoginHistory[]
 
 	@ApiProperty({ type: Date })
 	createdAt: Date

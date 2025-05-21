@@ -355,6 +355,9 @@ importers:
       ends:
         specifier: 'file:'
         version: 'link:'
+      ip2region:
+        specifier: ^2.3.0
+        version: 2.3.0(@types/node@20.17.47)
       passport:
         specifier: ^0.7.0
         version: 0.7.0
@@ -373,6 +376,9 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
+      ua-parser-js:
+        specifier: ^2.0.3
+        version: 2.0.3(encoding@0.1.13)
     devDependencies:
       '@nestjs/cli':
         specifier: ^10.0.0
@@ -7273,6 +7279,11 @@ packages:
   invert-kv@3.0.1:
     resolution: {integrity: sha512-CYdFeFexxhv/Bcny+Q0BfOV+ltRlJcd4BBZBYFX/O0u4npJrgZtIcjokegtiSMAvlMTJ+Koq0GBCc//3bueQxw==}
     engines: {node: '>=8'}
+
+  ip2region@2.3.0:
+    resolution: {integrity: sha512-zV5Xsadzrx9Ej6heoyhbXMsfGWWQ3C6bAIYStrHhw9kzLpGpVNlnAyRBxxPgxA1GNqr1Ti7oUxcWsMWNN3jZBg==}
+    peerDependencies:
+      '@types/node': '*'
 
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
@@ -19629,6 +19640,10 @@ snapshots:
       loose-envify: 1.4.0
 
   invert-kv@3.0.1: {}
+
+  ip2region@2.3.0(@types/node@20.17.47):
+    dependencies:
+      '@types/node': 20.17.47
 
   ipaddr.js@1.9.1: {}
 

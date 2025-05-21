@@ -172,6 +172,20 @@ exports.Prisma.AuthenticatorScalarFieldEnum = {
   transports: 'transports'
 };
 
+exports.Prisma.LoginHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  platform: 'platform',
+  device: 'device',
+  fingerprint: 'fingerprint',
+  userAgent: 'userAgent',
+  ip: 'ip',
+  success: 'success',
+  errorMsg: 'errorMsg',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -193,7 +207,8 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
-  Authenticator: 'Authenticator'
+  Authenticator: 'Authenticator',
+  LoginHistory: 'LoginHistory'
 };
 
 /**

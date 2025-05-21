@@ -21,16 +21,17 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(cuid())
-  name          String?
-  email         String          @unique
-  emailVerified DateTime?
-  image         String?
-  role          String?         @default("USER")
-  accounts      Account[]
-  sessions      Session[]
+  id             String          @id @default(cuid())
+  name           String?
+  email          String          @unique
+  emailVerified  DateTime?
+  image          String?
+  role           String?         @default("USER")
+  accounts       Account[]
+  sessions       Session[]
   // Optional for WebAuthn support
-  Authenticator Authenticator[]
+  Authenticator  Authenticator[]
+  loginHistories LoginHistory[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -89,4 +90,24 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+}
+
+model LoginHistory {
+  id          String   @id @default(uuid())
+  userId      String
+  platform    String // CMS / APP / MiniProgram 等
+  device      String? // 设备简要信息（如 iPhone 14 / Chrome 118）
+  fingerprint String?
+  userAgent   String?
+  ip          String   @db.VarChar(45) // IPv4 或 IPv6
+  success     Boolean
+  errorMsg    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@index([userId, device])
+  @@index([userId, fingerprint])
 }
