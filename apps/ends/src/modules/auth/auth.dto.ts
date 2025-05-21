@@ -11,7 +11,10 @@ export class UserLoginProps {
   type: string
 
   @IsNotEmpty()
-  device: string
+  fingerprint: string
+
+  @IsNotEmpty()
+  platform: string
 }
 
 export class UserRegisterProsp {

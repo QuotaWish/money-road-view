@@ -8,7 +8,8 @@ import { BusinessException } from 'src/filter/http-exception/internal/BusinessEx
 import { jwtConstants } from 'src/common/constants';
 import { GaUnauthorizedException } from 'src/filter/http-exception/internal/GaUnauthorizedException';
 import { prismaClient } from 'src/lib/database';
-import type { Account, User } from '@prisma/client';
+import type { Account, LoginHistory, User } from '@prisma/client';
+import { getUserAgentInfo } from 'src/utils';
 
 @Injectable()
 export class AuthService {
@@ -49,25 +50,55 @@ export class AuthService {
     return this.handleAuth(user, account)
   }
 
-  async handleLogin(entity: UserLoginProps) {
+  async handleLogin(entity: UserLoginProps, userAgent: string, ip: string) {
     const account = await this.userService.getAccount(entity.account, entity.password, entity.type)
     if (isEmpty(account)) {
       throw new ResourceNotFound()
     }
 
+    const info = getUserAgentInfo(userAgent)
+    const device = `${info.browser} ${info.os} ${info.device}`
+
     const isCorrect = await this.userService.comparePassword(entity.password, account.id_token)
-    if (!isCorrect) {
-      throw new BusinessException("Credential is incorrect")
+
+    const loginHistoryData = {
+      userId: account.userId,
+      ip,
+      device,
+      userAgent,
+      platform: entity.platform,
+      fingerprint: entity.fingerprint,
+      success: isCorrect,
+      errorMsg: ""
     }
 
-    const user = await this.userService.getUser(account.userId)
-    const token = await this.handleAuth(user, account)
+    try {
+      if (!isCorrect) {
+        loginHistoryData.errorMsg = "Credential is incorrect"
 
-    Logger.log(`User ${account.userId} login success`)
+        throw new BusinessException(loginHistoryData.errorMsg)
+      }
 
-    return {
-      user, token
+      const user = await this.userService.getUser(account.userId)
+      const token = await this.handleAuth(user, account)
+
+      Logger.log(`User ${account.userId} login success`)
+
+      return {
+        user, token
+      }
+    } catch (exception) {
+
+      throw exception
+
+    } finally {
+
+      await prismaClient.loginHistory.create({
+        data: loginHistoryData
+      })
+
     }
+
   }
 
   async handleAuth(user: User, account: Account) {

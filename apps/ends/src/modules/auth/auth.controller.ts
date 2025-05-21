@@ -1,8 +1,9 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Headers } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/common/decorator/public.decorator';
 import { UserLoginProps } from './auth.dto';
+import { IpAddress } from 'src/common/decorator/ip-address.decorator';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -12,8 +13,8 @@ export class AuthController {
   @Public()
   @Post("login")
   @ApiOperation({ summary: 'Login' })
-  async login(@Body() entity: UserLoginProps) {
-    return await this.authService.handleLogin(entity)
+  async login(@Body() entity: UserLoginProps, @Headers('user-agent') userAgent: string, @IpAddress() ip: string) {
+    return await this.authService.handleLogin(entity, userAgent, ip)
   }
 
   @Public()
