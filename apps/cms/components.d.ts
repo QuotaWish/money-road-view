@@ -37,7 +37,7 @@ declare module 'vue' {
     ATableColumn: typeof import('@arco-design/web-vue')['TableColumn']
     ATabPane: typeof import('@arco-design/web-vue')['TabPane']
     ATabs: typeof import('@arco-design/web-vue')['Tabs']
-    copy: typeof import('./src/components/button/IconButton copy.vue')['default']
+    ATag: typeof import('@arco-design/web-vue')['Tag']
     'GardientIcon ': typeof import('./src/components/display/GardientIcon .vue')['default']
     IconButton: typeof import('./src/components/button/IconButton.vue')['default']
     Logo: typeof import('./src/components/display/Logo.vue')['default']

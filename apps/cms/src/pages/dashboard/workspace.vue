@@ -112,10 +112,10 @@ const userStore = useUserStore()
         </div>
       </a-card>
       <a-card class="Workspace-Card flex-1">
-        <p class="titleright">
+        <p class="Workspace-Headline-Secondary">
           最近访问
         </p>
-        <div class="layoutright">
+        <div class="Layout-Right">
           <div class="flex gap-2 items-center">
             <IconButton icon="i-carbon-account">
               数据统计
@@ -134,10 +134,46 @@ const userStore = useUserStore()
         </div>
       </a-card>
       <a-card class="Workspace-Card flex-1">
-        公告
+        <p class="Workspace-Headline-Secondary">
+          公告
+        </p>
+        <a-link href="link" class="Workspace-Card-Link">查看更多</a-link>
+        <div class="Workspace-Tag-One">
+          <a-tag color="orangered">
+            活动
+          </a-tag>
+          <p>内容最新优惠活动</p>
+        </div>
+        <div class="Workspace-Tag-One">
+          <a-tag color="blue">
+            消息
+          </a-tag>
+          <p>当前产品试用期即将截止</p>
+        </div>
+        <div class="Workspace-Tag-One">
+          <a-tag color="pinkpurple">
+            通知
+          </a-tag>
+          <p>1月新系统升级计划通知</p>
+        </div>
+        <div class="Workspace-Tag-One">
+          <a-tag color="blue">
+            消息
+          </a-tag>
+          <p>新增内容已经通过审核</p>
+        </div>
       </a-card>
       <a-card class="Workspace-Card flex-1">
-        帮助文档
+        <p class="Workspace-Headline-Secondary">
+          帮助文档
+        </p>
+        <a-link href="link" class="Workspace-Card-Link">查看更多</a-link>
+        <div class="Workspace-Tag-Two">
+          <a-link href="link">产品概述</a-link>
+          <a-link href="link">使用指南</a-link>
+          <a-link href="link">接入流程</a-link>
+          <a-link href="link">接口文档</a-link>
+        </div>
       </a-card>
     </div>
   </div>
@@ -149,7 +185,27 @@ const userStore = useUserStore()
 }
 
 .Workspace-Headline-Secondary {
-  font-size: 20px;
+  font-size: 16px;
+}
+
+.Workspace-Tag-One {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 8px;
+}
+
+.Workspace-Tag-Two {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  gap: 8px;
+}
+
+.Workspace-Card-Link {
+  position: absolute;
+  right: 12px;
+  top: 12px;
 }
 
 .Layout-Right {
