@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import GardientIcon from '~/components/display/GardientIcon .vue';
 import { useUserStore } from '~/composables/store';
 
 defineOptions({
@@ -18,8 +19,8 @@ const userStore = useUserStore()
         <a-divider />
         <a-row class="Workspace-Grid-Demo" justify="space-between">
           <a-col :span="4">
-            <div class="Workspace-Card p-4 flex-1">
-              <IconButton class="text-black" icon="i-carbon:batch-job-step" />
+            <div class="Workspace-Card flex items-center gap-4">
+              <GardientIcon color="#5EAAB5" icon="i-carbon:batch-job-step" />
               <a-space size="large">
                 <a-statistic title="线上总内容" :value="125670" show-group-separator>
                   <template #suffix>
@@ -30,8 +31,8 @@ const userStore = useUserStore()
             </div>
           </a-col>
           <a-col :span="4">
-            <div class="Workspace-Card p-4 flex-1">
-              <IconButton class="text-black" icon="i-carbon:account" />
+            <div class="Workspace-Card flex items-center gap-4">
+              <GardientIcon color="#C44AFC" icon="i-carbon:account" />
               <a-space size="large">
                 <a-statistic title="投放中内容" :value="125670" show-group-separator>
                   <template #suffix>
@@ -42,8 +43,8 @@ const userStore = useUserStore()
             </div>
           </a-col>
           <a-col :span="4">
-            <div class="Workspace-Card p-4 flex-1">
-              <IconButton class="text-black" icon="i-carbon:add-comment " />
+            <div class="Workspace-Card flex items-center gap-4 flex-1">
+              <GardientIcon color="#FCA471" icon="i-carbon:add-comment " />
               <a-space size="large">
                 <a-statistic title="日增新评论" :value="125670" show-group-separator>
                   <template #suffix>
@@ -54,8 +55,8 @@ const userStore = useUserStore()
             </div>
           </a-col>
           <a-col :span="4">
-            <div class="Workspace-Card p-4 flex-1">
-              <IconButton class="text-black" icon="i-carbon:analytics " />
+            <div class="Workspace-Card flex items-center gap-4 flex-1">
+              <GardientIcon color="#03B3FB" icon="i-carbon:analytics " />
               <a-space size="large">
                 <a-statistic title="较昨日新增" :value="50.52" :precision="2" :value-style="{ color: '#0fbf60' }">
                   <template #prefix>
@@ -158,28 +159,11 @@ const userStore = useUserStore()
   justify-content: space-evenly;
 }
 
-.Workspace-Grid-Demo {
-  /* background-color: var(--color-fill-2); */
-  margin-bottom: 40px;
-}
-
-.Workspace-Grid-Demo:last-child {
-  margin-bottom: 0px;
-}
-
 .Workspace-Grid-Demo .arco-col {
   height: 48px;
   line-height: 48px;
   color: var(--color-white);
   text-align: center;
-}
-
-.Workspace-Grid-Demo .arco-col:nth-child(2n) {
-  background-color: rgba(var(--arcoblue-6), 0.9);
-}
-
-.Workspace-Grid-Demo .arco-col:nth-child(2n + 1) {
-  background-color: var(--color-primary-light-4);
 }
 
 .Workspace-Card {
