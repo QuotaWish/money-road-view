@@ -4,19 +4,19 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "启动 Money Road View 应用",
+      "name": "GaView (应用)",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": [
         "run-script",
         "dev:view"
       ],
       "cwd": "${workspaceFolder}",
-      "internalConsoleOptions": "neverOpen"
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "启动 Money Road CMS 应用",
+      "name": "GaCMS (管理)",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": [
         "run-script",
@@ -28,13 +28,13 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "启动 Money Road Ends 应用",
+      "name": "GaEnds (后端)",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": [
         "run-script",
         "dev:ends"
       ],
-      "internalConsoleOptions": "neverOpen"
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
