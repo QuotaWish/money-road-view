@@ -1,30 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateConfigDto } from './dto/create-config.dto';
-import { UpdateConfigDto } from './dto/update-config.dto';
 import { prismaClient } from 'src/lib/database';
+import { UpdateConfigDto, ConfigurationPagniationDto } from './config.dto';
+import type { Configuration } from '@prisma/client';
 
 @Injectable()
 export class ConfigService {
-  create(createConfigDto: CreateConfigDto) {
-    return 'This action adds a new config';
-  }
-
-  findAll() {
-    return `This action returns all config`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} config`;
-  }
-
-  update(id: number, updateConfigDto: UpdateConfigDto) {
-    return `This action updates a #${id} config`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} config`;
-  }
-
   async setConfig(namespace: string, key: string, value: any, type: string = 'string') {
     const raw = type === 'json' ? JSON.stringify(value) : String(value);
 
@@ -48,6 +28,16 @@ export class ConfigService {
     });
   }
 
+  async setConfigById(id: string, value: UpdateConfigDto) {
+    const config = await this.getConfigById(id)
+
+    if (!config) {
+      return null
+    }
+
+    return this.setConfig(config.namespace, config.key, value)
+  }
+
 
   async getConfig(key: string, namespace?: string) {
     const config = await prismaClient.configuration.findFirst({
@@ -66,5 +56,63 @@ export class ConfigService {
       default:
         return config.value;
     }
+  }
+
+
+  async getConfigById(id: string) {
+    const config = await prismaClient.configuration.findFirst({
+      where: { id },
+    });
+
+    if (!config) return null;
+
+    return this.getConfig(config.key, config.namespace);
+  }
+
+  async archive(key: string, namespace: string) {
+    const config = await this.getConfig(key, namespace);
+
+    if (!config) return null;
+
+    return this.archiveById(config.id);
+  }
+
+  async archiveById(id: string) {
+    return prismaClient.configuration.delete({ where: { id } })
+  }
+
+  async getAllConfigurations(entity: ConfigurationPagniationDto) {
+    const { skip, take } = entity.toSkipAndTake()
+
+    const whereQuery: any = {
+
+    }
+
+    if (entity.key) {
+      whereQuery.name = {
+        contains: entity.key
+      }
+    }
+    if (entity.namespace) {
+      whereQuery.name = {
+        contains: entity.namespace
+      }
+    }
+    if (entity.valueType) {
+      whereQuery.name = {
+        contains: entity.valueType
+      }
+    }
+
+    const total = await prismaClient.user.count()
+    const result = (await prismaClient.user.findMany({
+      skip,
+      take,
+      where: {
+        ...whereQuery
+      }
+    })) as unknown as Configuration[]
+
+    return entity.buildResponse<Configuration>(result, total)
   }
 }
