@@ -117,10 +117,10 @@ function handlePasskeysLogin() {
       </a-form>
 
       <div class="Login-Button-Second">
-        <a-button type="text" @click="handleForgetPassword()">
+        <a-button type="text" @click="handleForgetPassword">
           忘记密码
         </a-button>
-        <a-button type="text" @click="handleRegister()">
+        <a-button type="text" @click="handleRegister">
           立即注册
         </a-button>
       </div>
@@ -129,10 +129,10 @@ function handlePasskeysLogin() {
         或者
       </a-divider>
 
-      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleAlipayLogin()">
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handleAlipayLogin">
         支付宝扫码登录
       </a-button>
-      <a-button size="large" type="outline" class="Login-Button w-full" @click="handlePasskeysLogin()">
+      <a-button size="large" type="outline" class="Login-Button w-full" @click="handlePasskeysLogin">
         PASSKEYS 登录
       </a-button>
     </div>
