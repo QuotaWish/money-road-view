@@ -10,7 +10,7 @@ defineOptions({
       <div class="p-6 Workspace-Card" flex-1>
         <p class="Workspace-Headline-Primary">欢迎回来，MONEYROAD</P>
         <a-divider />
-        <a-row class="grid-demo" justify="space-between">
+        <a-row class="Workspace-Grid-Demo" justify="space-between">
           <a-col :span="4">
             <div class="p-4 flex-1 Workspace-Card">
               <IconButton class="text-black" icon="i-carbon:batch-job-step" />
@@ -142,27 +142,27 @@ defineOptions({
   justify-content: space-evenly;
 }
 
-.grid-demo {
+.Workspace-Grid-Demo {
   /* background-color: var(--color-fill-2); */
   margin-bottom: 40px;
 }
 
-.grid-demo:last-child {
+.Workspace-Grid-Demo:last-child {
   margin-bottom: 0px;
 }
 
-.grid-demo .arco-col {
+.Workspace-Grid-Demo .arco-col {
   height: 48px;
   line-height: 48px;
   color: var(--color-white);
   text-align: center;
 }
 
-.grid-demo .arco-col:nth-child(2n) {
+.Workspace-Grid-Demo .arco-col:nth-child(2n) {
   background-color: rgba(var(--arcoblue-6), 0.9);
 }
 
-.grid-demo .arco-col:nth-child(2n + 1) {
+.Workspace-Grid-Demo .arco-col:nth-child(2n + 1) {
   background-color: var(--color-primary-light-4);
 }
 
