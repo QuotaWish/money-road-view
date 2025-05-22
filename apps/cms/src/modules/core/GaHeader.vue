@@ -11,29 +11,17 @@ function handleLogout() {
 }
 
 const visible = ref(false)
-// const type = ref('')
 const personData = ref({})
 
 function handleClick() {
   visible.value = true
-  personData.value = (userStore.userInfo)
+  personData.value = userStore.userInfo
 }
 function handleOk() {
   visible.value = false
 }
 function handleCancel() {
   visible.value = false
-}
-
-function handleView(data) {
-  personData.value = data
-
-  visible.value = true
-}
-function handleEdit(data) {
-  personData.value = data
-
-  visible.value = true
 }
 </script>
 
