@@ -11,7 +11,7 @@ const userStore = useUserStore()
 <template>
   <div class="p-4 flex gap-4 h-full relative">
     <div class="flex flex-1 flex-col" gap-4>
-      <a-card class="Workspace-Card p-6" flex-1>
+      <a-card class="Workspace-Card" flex-1>
         <p class="Workspace-Headline-Primary">
           欢迎回来，{{ userStore.userInfo.name }}
         </P>
@@ -71,16 +71,16 @@ const userStore = useUserStore()
         </a-row>
       </a-card>
       <div class="flex gap-6 h-[40%] w-full justify-between">
-        <a-card class="Workspace-Card p-4 flex-1">
+        <a-card class="Workspace-Card flex-1">
           2
         </a-card>
-        <a-card class="Workspace-Card p-4 flex-1">
+        <a-card class="Workspace-Card flex-1">
           3
         </a-card>
       </div>
     </div>
     <div class="flex flex-col gap-4 max-w-[300px] w-[30%]">
-      <a-card class="Workspace-Card p-4 rounded-xl flex-1">
+      <a-card class="Workspace-Card flex-1">
         <p class="Workspace-Headline-Secondary">
           快捷入口
         </p>
@@ -110,7 +110,7 @@ const userStore = useUserStore()
           </div>
         </div>
       </a-card>
-      <a-card class="Workspace-Card p-4 rounded-xl flex-1">
+      <a-card class="Workspace-Card flex-1">
         <p class="titleright">
           最近访问
         </p>
@@ -132,10 +132,10 @@ const userStore = useUserStore()
           </div>
         </div>
       </a-card>
-      <a-card class="Workspace-Card p-4 rounded-xl flex-1">
+      <a-card class="Workspace-Card flex-1">
         公告
       </a-card>
-      <a-card class="Workspace-Card p-4 rounded-xl flex-1">
+      <a-card class="Workspace-Card flex-1">
         帮助文档
       </a-card>
     </div>
