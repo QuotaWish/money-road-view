@@ -50,6 +50,7 @@ function handleCancel() {
       </template>
     </a-dropdown>
     <a-drawer :footer="false" :width="340" :visible="visible" unmount-on-close @ok="handleOk" @cancel="handleCancel">
+      {{ userStore.userInfo }}
     </a-drawer>
   </div>
 </template>
