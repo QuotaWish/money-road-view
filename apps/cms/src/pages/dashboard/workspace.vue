@@ -1,12 +1,72 @@
 <script lang="ts" setup>
-import GardientIcon from '~/components/display/GardientIcon .vue';
-import { useUserStore } from '~/composables/store';
+import GardientIcon from '~/components/display/GardientIcon .vue'
+import { useUserStore } from '~/composables/store'
 
 defineOptions({
   name: 'Workspace',
 })
 
+const position = ref('top')
+
 const userStore = useUserStore()
+
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    ellipsis: true,
+    tooltip: true,
+    width: 100
+  },
+  {
+    title: 'Salary',
+    dataIndex: 'salary',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    ellipsis: true,
+    width: 150,
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    ellipsis: true,
+    tooltip: { position: 'left' },
+    width: 200,
+  },
+]
+const data = reactive([{
+  key: '1',
+  name: 'Jane Doe',
+  salary: 23000,
+  address: '32 Park Road, London',
+  email: 'jane.doe@example.com'
+}, {
+  key: '2',
+  name: 'Alisa Ross',
+  salary: 25000,
+  address: '35 Park Road, London',
+  email: 'alisa.ross@example.com'
+}, {
+  key: '3',
+  name: 'Kevin Sandra',
+  salary: 22000,
+  address: '31 Park Road, London',
+  email: 'kevin.sandra@example.com'
+}, {
+  key: '4',
+  name: 'Ed Hellen',
+  salary: 17000,
+  address: '42 Park Road, London',
+  email: 'ed.hellen@example.com'
+}, {
+  key: '5',
+  name: 'William Smith',
+  salary: 27000,
+  address: '62 Park Road, London',
+  email: 'william.smith@example.com'
+}])
 </script>
 
 <template>
@@ -19,7 +79,7 @@ const userStore = useUserStore()
         <a-divider />
         <a-row class="Workspace-Grid-Demo" justify="space-between">
           <a-col :span="4">
-            <div class="Workspace-Card flex items-center gap-4">
+            <div class="Workspace-Card flex gap-4 items-center">
               <GardientIcon color="#5EAAB5" icon="i-carbon:batch-job-step" />
               <a-space size="large">
                 <a-statistic title="线上总内容" :value="125670" show-group-separator>
@@ -31,7 +91,7 @@ const userStore = useUserStore()
             </div>
           </a-col>
           <a-col :span="4">
-            <div class="Workspace-Card flex items-center gap-4">
+            <div class="Workspace-Card flex gap-4 items-center">
               <GardientIcon color="#C44AFC" icon="i-carbon:account" />
               <a-space size="large">
                 <a-statistic title="投放中内容" :value="125670" show-group-separator>
@@ -43,7 +103,7 @@ const userStore = useUserStore()
             </div>
           </a-col>
           <a-col :span="4">
-            <div class="Workspace-Card flex items-center gap-4 flex-1">
+            <div class="Workspace-Card flex flex-1 gap-4 items-center">
               <GardientIcon color="#FCA471" icon="i-carbon:add-comment " />
               <a-space size="large">
                 <a-statistic title="日增新评论" :value="125670" show-group-separator>
@@ -55,7 +115,7 @@ const userStore = useUserStore()
             </div>
           </a-col>
           <a-col :span="4">
-            <div class="Workspace-Card flex items-center gap-4 flex-1">
+            <div class="Workspace-Card flex flex-1 gap-4 items-center">
               <GardientIcon color="#03B3FB" icon="i-carbon:analytics " />
               <a-space size="large">
                 <a-statistic title="较昨日新增" :value="50.52" :precision="2" :value-style="{ color: '#0fbf60' }">
@@ -73,7 +133,25 @@ const userStore = useUserStore()
       </a-card>
       <div class="flex gap-6 h-[40%] w-full justify-between">
         <a-card class="Workspace-Card flex-1">
-          2
+          <p>线上热门内容</p>
+          <a-link href="link" class="Workspace-Card-Link">
+            查看更多
+          </a-link>
+          <a-space direction="vertical" size="large">
+            <a-tabs :position="position">
+              <a-tab-pane key="1" title="文本">
+                <a-table :pagination="{ 'hide-on-single-page': true }" :columns="columns" :data="data" />
+              </a-tab-pane>
+              <a-tab-pane key="2" title="图文">
+                <a-table :pagination="{ 'hide-on-single-page': true }" :columns="columns" :data="data" />
+                Content of Tab Panel 2
+              </a-tab-pane>
+              <a-tab-pane key="3" title="视频">
+                <a-table :pagination="{ 'hide-on-single-page': true }" :columns="columns" :data="data" />
+                Content of Tab Panel 3
+              </a-tab-pane>
+            </a-tabs>
+          </a-space>
         </a-card>
         <a-card class="Workspace-Card flex-1">
           3
@@ -137,7 +215,9 @@ const userStore = useUserStore()
         <p class="Workspace-Headline-Secondary">
           公告
         </p>
-        <a-link href="link" class="Workspace-Card-Link">查看更多</a-link>
+        <a-link href="link" class="Workspace-Card-Link">
+          查看更多
+        </a-link>
         <div class="Workspace-Tag-One">
           <a-tag color="orangered">
             活动
@@ -167,12 +247,22 @@ const userStore = useUserStore()
         <p class="Workspace-Headline-Secondary">
           帮助文档
         </p>
-        <a-link href="link" class="Workspace-Card-Link">查看更多</a-link>
+        <a-link href="link" class="Workspace-Card-Link">
+          查看更多
+        </a-link>
         <div class="Workspace-Tag-Two">
-          <a-link href="link">产品概述</a-link>
-          <a-link href="link">使用指南</a-link>
-          <a-link href="link">接入流程</a-link>
-          <a-link href="link">接口文档</a-link>
+          <a-link href="link">
+            产品概述
+          </a-link>
+          <a-link href="link">
+            使用指南
+          </a-link>
+          <a-link href="link">
+            接入流程
+          </a-link>
+          <a-link href="link">
+            接口文档
+          </a-link>
         </div>
       </a-card>
     </div>
