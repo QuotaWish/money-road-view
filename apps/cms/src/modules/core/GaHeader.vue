@@ -56,7 +56,7 @@ function handleCancel() {
         </a-doption>
       </template>
     </a-dropdown>
-    <a-drawer :footer="false" :width="340" :visible="visible" unmount-on-close @ok="handleOk" @cancel="handleCancel">
+    <a-drawer :footer="false" :width="340" :visible="visible" unmount-on-close @ok="handleOk" @cancel="handleCancel" title="用户信息">
       <a-form disabled :model="personData" layout="vertical" @submit="handleSubmit">
         <a-form-item field="name" label="ID">
           <label>{{ personData.id }}</label>
@@ -71,7 +71,6 @@ function handleCancel() {
           {{ formatDate(personData.emailVerified) }}
         </a-form-item>
         <a-form-item field="image" label="Image">
-          
           <a-input v-model="personData.image" placeholder="please enter your image" />
         </a-form-item>
         <a-form-item field="role" label="Role">
