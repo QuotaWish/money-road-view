@@ -144,11 +144,9 @@ const data = reactive([{
               </a-tab-pane>
               <a-tab-pane key="2" title="图文">
                 <a-table :pagination="{ 'hide-on-single-page': true }" :columns="columns" :data="data" />
-                Content of Tab Panel 2
               </a-tab-pane>
               <a-tab-pane key="3" title="视频">
                 <a-table :pagination="{ 'hide-on-single-page': true }" :columns="columns" :data="data" />
-                Content of Tab Panel 3
               </a-tab-pane>
             </a-tabs>
           </a-space>
