@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { usePagination } from 'alova/client'
 import { ref } from 'vue'
-import { viewDepthKey } from 'vue-router'
 
 defineOptions({
   name: 'Users',

@@ -23,5 +23,10 @@ export default {
   'User.UserController_register': ['POST', '/user/register'],
   'Auth.AuthController_login': ['POST', '/auth/login'],
   'Auth.AuthController_refresh': ['POST', '/auth/refresh'],
-  'Auth.AuthController_getHistory': ['POST', '/auth/history']
+  'Auth.AuthController_getHistory': ['POST', '/auth/history'],
+  'Config.ConfigController_create': ['POST', '/config'],
+  'Config.ConfigController_getConfigurations': ['POST', '/config/list'],
+  'Config.ConfigController_findOne': ['GET', '/config/{id}'],
+  'Config.ConfigController_update': ['PATCH', '/config/{id}'],
+  'Config.ConfigController_remove': ['DELETE', '/config/{id}']
 };
