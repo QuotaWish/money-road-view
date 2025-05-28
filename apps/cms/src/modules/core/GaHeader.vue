@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
 import { useUserStore } from '~/composables/store/user'
-import { IconEdit, IconPlus } from '@arco-design/web-vue/es/icon';
-import { ref } from 'vue';
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -19,11 +17,8 @@ function handleLogout() {
 
 const type = ref('')
 const visible = ref(false)
-const personData = ref<any>({})
-
 function handleClick() {
   visible.value = true
-  personData.value = userStore.userInfo
 }
 function handleOk() {
   visible.value = false
@@ -32,18 +27,15 @@ function handleCancel() {
   visible.value = false
 }
 
-components: { IconPlus, IconEdit } {
-  const file = ref()
-}
+function handleView() {
+  type.value = 'view'
 
-const onChange = (_, currentFile) => {
-  file.value = {
-    ...currentFile,
-    // url: URL.createObjectURL(currentFile.file),
-  }
+  visible.value = true
 }
-const onProgress = (currentFile) => {
-  file.value = currentFile
+function handleEdit() {
+  type.value = 'edit'
+
+  visible.value = true
 }
 </script>
 
@@ -73,78 +65,82 @@ const onProgress = (currentFile) => {
         </a-doption>
       </template>
     </a-dropdown>
-    <a-drawer :width="340" :visible="visible" unmount-on-close @ok="handleOk" @cancel="handleCancel" title="用户信息">
+    <a-drawer :width="340" :visible="visible" unmount-on-close title="用户信息" @ok="handleOk" @cancel="handleCancel">
       <template #title>
         {{ type === 'view' ? '查看' : '编辑' }}
       </template>
       <template #footer>
-        <div v-if="type === 'edit'" flex gap-2 justify-end>
-          <a-button @click="handleCancel">
-            取消
+        <div flex items-center justify-end>
+          <a-button v-show="type === 'edit'" status="normal" type="primary" @click="handleView">
+            详情
           </a-button>
-          <a-button :disabled="true" status="warning" @click="handleOk">
+          <a-button v-show="type === 'view'" status="warning" @click="handleEdit">
             编辑
           </a-button>
         </div>
-        <div v-if="type === 'view'">
-          <a-button @click="handleCancel">
-            关闭
-          </a-button>
-        </div>
       </template>
-      <a-form :disabled="type === 'view'" :model="personData" layout="vertical" @submit="handleSubmit">
+      <!-- @submit="handleSubmit" -->
+      <a-form :disabled="type === 'view'" :model="userStore.userInfo" layout="vertical">
         <a-form-item field="image" label="头像">
+          -
           <a-space direction="vertical" :style="{ width: '100%' }">
-            <a-upload action="/" :fileList="file ? [file] : []" :show-file-list="false" @change="onChange"
-              @progress="onProgress">
+            <!-- <a-upload
+              action="/" :file-list="file ? [file] : []" :show-file-list="false" @change="onChange"
+              @progress="onProgress"
+            >
               <template #upload-button>
                 <div
-                  :class="`arco-upload-list-item${file && file.status === 'error' ? ' arco-upload-list-item-error' : ''}`">
-                  <div class="arco-upload-list-picture custom-upload-avatar" v-if="file && file.url">
-                    <img :src="file.url" />
+                  :class="`arco-upload-list-item${file && file.status === 'error' ? ' arco-upload-list-item-error' : ''}`"
+                >
+                  <div v-if="file && file.url" class="arco-upload-list-picture custom-upload-avatar">
+                    <img :src="file.url">
                     <div class="arco-upload-list-picture-mask">
                       <IconEdit />
                     </div>
-                    <a-progress v-if="file.status === 'uploading' && file.percent < 100" :percent="file.percent"
+                    <a-progress
+                      v-if="file.status === 'uploading' && file.percent < 100" :percent="file.percent"
                       type="circle" size="mini" :style="{
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
-                        transform: 'translateX(-50%) translateY(-50%)'
-                      }" />
+                        transform: 'translateX(-50%) translateY(-50%)',
+                      }"
+                    />
                   </div>
-                  <div class="arco-upload-picture-card" v-else>
+                  <div v-else class="arco-upload-picture-card">
                     <div class="arco-upload-picture-card-text">
                       <IconPlus />
-                      <div style="margin-top: 10px; font-weight: 600">Upload</div>
+                      <div style="margin-top: 10px; font-weight: 600">
+                        Upload
+                      </div>
                     </div>
                   </div>
                 </div>
               </template>
-            </a-upload>
+            </a-upload> -->
           </a-space>
           <!-- <a-input v-model="personData.image" placeholder="please enter your image" /> -->
         </a-form-item>
         <a-form-item field="name" label="ID">
-          <label>{{ personData.id }}</label>
+          <label>{{ userStore.userInfo.id }}</label>
         </a-form-item>
         <a-form-item field="name" label="用户名">
-          <a-input v-model="personData.name" placeholder="please enter your username" />
+          <a-input v-model="userStore.userInfo.name" placeholder="please enter your username" />
         </a-form-item>
         <a-form-item field="email" label="邮箱">
-          <a-input v-model="personData.email" placeholder="please enter your email" />
+          <a-input v-model="userStore.userInfo.email" placeholder="please enter your email" />
         </a-form-item>
         <a-form-item field="emailVerified" label="EmailVerified">
-          {{ formatDate(personData.emailVerified) }}
+          {{ formatDate(userStore.userInfo.emailVerified) }}
         </a-form-item>
         <a-form-item field="role" label="角色">
-          <a-input v-model="personData.role" placeholder="please enter your role" />
+          <a-input v-model="userStore.userInfo.role" placeholder="please enter your role" />
         </a-form-item>
         <a-form-item field="createAt" label="创造时间">
-          {{ formatDate(personData.createAt) }}
+          {{ formatDate(userStore.userInfo.createAt) }}
         </a-form-item>
         <a-form-item field="updateAt" label="更新时间">
-          {{ formatDate(personData.updateAt) }}
+          {{ formatDate(userStore.userInfo.updateAt) }}
         </a-form-item>
       </a-form>
     </a-drawer>
