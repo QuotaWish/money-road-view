@@ -26,5 +26,6 @@ declare module 'vue-router/auto-routes' {
     '/dashboard/workspace': RouteRecordInfo<'/dashboard/workspace', '/dashboard/workspace', Record<never, never>, Record<never, never>>,
     '/manage/configurations': RouteRecordInfo<'/manage/configurations', '/manage/configurations', Record<never, never>, Record<never, never>>,
     '/manage/users': RouteRecordInfo<'/manage/users', '/manage/users', Record<never, never>, Record<never, never>>,
+    '/test/chart': RouteRecordInfo<'/test/chart', '/test/chart', Record<never, never>, Record<never, never>>,
   }
 }
