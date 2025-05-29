@@ -23,7 +23,7 @@ const {
   send,
 } = usePagination(
   // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
-  (page, pageSize) => EndApis.User.UserController_getUsers({
+  (page, pageSize) => EndApis.Config.ConfigController_getConfigurations({
     data: { page, pageSize, name: form.name.length ? form.name : undefined, email: form.email.length ? form.email : undefined },
   }),
   {

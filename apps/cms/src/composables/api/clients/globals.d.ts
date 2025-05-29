@@ -112,34 +112,100 @@ export type UserPagniationDto = {
   pageSize: number;
   /**
    * 账号名称参数
+   * [required]
    */
-  name?: string;
+  name: string;
   /**
    * 邮箱名称参数
+   * [required]
    */
-  email?: string;
+  email: string;
 };
-export type UserLoginProps = {
+export type UserLoginProps = object;
+export type CreateConfigurationDto = {
   /**
+   * 命名空间
    * [required]
    */
-  account: string;
+  namespace: string;
   /**
+   * 键名
    * [required]
    */
-  password: string;
+  key: string;
   /**
+   * 键值
    * [required]
    */
-  type: string;
+  value: string;
   /**
+   * 键值类型
    * [required]
    */
-  fingerprint: string;
+  valueType: string;
   /**
+   * 键描述
    * [required]
    */
-  platform: string;
+  description: string;
+  /**
+   * 是否公开
+   * [required]
+   */
+  isPublic: boolean;
+};
+export type ConfigurationPagniationDto = {
+  /**
+   * 分页页码
+   * [required]
+   */
+  page: number;
+  /**
+   * 分页大小(5, 10, 20, 50, 100)
+   * [required]
+   */
+  pageSize: number;
+  /**
+   * 命名空间
+   * [required]
+   */
+  namespace: string;
+  /**
+   * 键名
+   * [required]
+   */
+  key: string;
+  /**
+   * 键值类型
+   * [required]
+   */
+  valueType: string;
+};
+export type UpdateConfigDto = {
+  /**
+   * 命名空间
+   */
+  namespace?: string;
+  /**
+   * 键名
+   */
+  key?: string;
+  /**
+   * 键值
+   */
+  value?: string;
+  /**
+   * 键值类型
+   */
+  valueType?: string;
+  /**
+   * 键描述
+   */
+  description?: string;
+  /**
+   * 是否公开
+   */
+  isPublic?: boolean;
 };
 declare global {
   interface EndApis {
@@ -155,12 +221,12 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = string
+       * type Response = unknown
        * ```
        */
-      AppController_getHello<Config extends Alova2MethodConfig<string>>(
+      AppController_getHello<Config extends Alova2MethodConfig<unknown>>(
         config?: Config
-      ): Alova2Method<string, 'App.AppController_getHello', Config>;
+      ): Alova2Method<unknown, 'App.AppController_getHello', Config>;
     };
     User: {
       /**
@@ -199,9 +265,11 @@ declare global {
        *   // [required]
        *   pageSize: number
        *   // 账号名称参数
-       *   name?: string
+       *   // [required]
+       *   name: string
        *   // 邮箱名称参数
-       *   email?: string
+       *   // [required]
+       *   email: string
        * }
        * ```
        *
@@ -254,18 +322,7 @@ declare global {
        *
        * **RequestBody**
        * ```ts
-       * type RequestBody = {
-       *   // [required]
-       *   account: string
-       *   // [required]
-       *   password: string
-       *   // [required]
-       *   type: string
-       *   // [required]
-       *   fingerprint: string
-       *   // [required]
-       *   platform: string
-       * }
+       * type RequestBody = object
        * ```
        *
        * ---
@@ -316,6 +373,233 @@ declare global {
       AuthController_getHistory<Config extends Alova2MethodConfig<unknown>>(
         config?: Config
       ): Alova2Method<unknown, 'Auth.AuthController_getHistory', Config>;
+    };
+    Config: {
+      /**
+       * ---
+       *
+       * [POST] Create a new configuration
+       *
+       * **path:** /config
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 命名空间
+       *   // [required]
+       *   namespace: string
+       *   // 键名
+       *   // [required]
+       *   key: string
+       *   // 键值
+       *   // [required]
+       *   value: string
+       *   // 键值类型
+       *   // [required]
+       *   valueType: string
+       *   // 键描述
+       *   // [required]
+       *   description: string
+       *   // 是否公开
+       *   // [required]
+       *   isPublic: boolean
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      ConfigController_create<
+        Config extends Alova2MethodConfig<unknown> & {
+          data: CreateConfigurationDto;
+        }
+      >(
+        config: Config
+      ): Alova2Method<unknown, 'Config.ConfigController_create', Config>;
+      /**
+       * ---
+       *
+       * [POST] Get configuration list
+       *
+       * **path:** /config/list
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 分页页码
+       *   // [required]
+       *   page: number
+       *   // 分页大小(5, 10, 20, 50, 100)
+       *   // [required]
+       *   pageSize: number
+       *   // 命名空间
+       *   // [required]
+       *   namespace: string
+       *   // 键名
+       *   // [required]
+       *   key: string
+       *   // 键值类型
+       *   // [required]
+       *   valueType: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // [required]
+       *   code: number
+       *   // [required]
+       *   msg: string
+       * } & unknown
+       * ```
+       */
+      ConfigController_getConfigurations<
+        Config extends Alova2MethodConfig<ResultData & unknown> & {
+          data: ConfigurationPagniationDto;
+        }
+      >(
+        config: Config
+      ): Alova2Method<ResultData & unknown, 'Config.ConfigController_getConfigurations', Config>;
+      /**
+       * ---
+       *
+       * [GET] Get configuration by id
+       *
+       * **path:** /config/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // [required]
+       *   id: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      ConfigController_findOne<
+        Config extends Alova2MethodConfig<unknown> & {
+          pathParams: {
+            /**
+             * [required]
+             */
+            id: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<unknown, 'Config.ConfigController_findOne', Config>;
+      /**
+       * ---
+       *
+       * [PATCH] Update configuration
+       *
+       * **path:** /config/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // [required]
+       *   id: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 命名空间
+       *   namespace?: string
+       *   // 键名
+       *   key?: string
+       *   // 键值
+       *   value?: string
+       *   // 键值类型
+       *   valueType?: string
+       *   // 键描述
+       *   description?: string
+       *   // 是否公开
+       *   isPublic?: boolean
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      ConfigController_update<
+        Config extends Alova2MethodConfig<unknown> & {
+          pathParams: {
+            /**
+             * [required]
+             */
+            id: string;
+          };
+          data: UpdateConfigDto;
+        }
+      >(
+        config: Config
+      ): Alova2Method<unknown, 'Config.ConfigController_update', Config>;
+      /**
+       * ---
+       *
+       * [DELETE] Delete configuration
+       *
+       * **path:** /config/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // [required]
+       *   id: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      ConfigController_remove<
+        Config extends Alova2MethodConfig<unknown> & {
+          pathParams: {
+            /**
+             * [required]
+             */
+            id: string;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<unknown, 'Config.ConfigController_remove', Config>;
     };
   }
 
