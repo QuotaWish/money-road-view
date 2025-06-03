@@ -104,8 +104,8 @@ export class ConfigService {
       }
     }
 
-    const total = await prismaClient.user.count()
-    const result = (await prismaClient.user.findMany({
+    const total = await prismaClient.configuration.count()
+    const result = (await prismaClient.configuration.findMany({
       skip,
       take,
       where: {
