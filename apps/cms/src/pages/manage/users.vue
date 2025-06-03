@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePagination } from 'alova/client'
-import { ref } from 'vue'
+import { reactive } from 'vue'
 
 defineOptions({
   name: 'Users',
@@ -40,7 +40,15 @@ const {
 
 const visible = ref(false)
 const type = ref('')
-const rowData = ref({})
+
+const rowData = ref({
+  name: '',
+  role: '',
+  email: '',
+  emailVerified: '',
+  updatedAt: '',
+  createdAt: '',
+})
 
 function handleOk() {
   visible.value = false
@@ -49,14 +57,14 @@ function handleCancel() {
   visible.value = false
 }
 
-function handleView(data) {
+function handleView(data: any) {
   type.value = 'view'
 
   rowData.value = data
 
   visible.value = true
 }
-function handleEdit(data) {
+function handleEdit(data: any) {
   type.value = 'edit'
 
   rowData.value = data

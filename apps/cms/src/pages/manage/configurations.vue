@@ -12,8 +12,9 @@ function handleReset() {
 }
 
 const form = reactive({
-  name: '',
-  email: '',
+  namespace: '',
+  key: '',
+  valueType: '',
 })
 const {
   loading,
@@ -24,7 +25,7 @@ const {
 } = usePagination(
   // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
   (page, pageSize) => EndApis.Config.ConfigController_getConfigurations({
-    data: { page, pageSize, name: form.name.length ? form.name : undefined, email: form.email.length ? form.email : undefined },
+    data: { page, pageSize, namespace: form.namespace.length ? form.namespace : undefined, key: form.key.length ? form.key : undefined, valueType: form.valueType.length ? form.valueType : undefined },
   }),
   {
     initialData: {
@@ -39,7 +40,14 @@ const {
 
 const visible = ref(false)
 const type = ref('')
-const rowData = ref({})
+const rowData = ref({
+  name: '',
+  role: '',
+  email: '',
+  emailVerified: '',
+  updatedAt: '',
+  createdAt: '',
+})
 
 function handleOk() {
   visible.value = false
@@ -48,14 +56,14 @@ function handleCancel() {
   visible.value = false
 }
 
-function handleView(data) {
+function handleView(data: any) {
   type.value = 'view'
 
   rowData.value = data
 
   visible.value = true
 }
-function handleEdit(data) {
+function handleEdit(data: any) {
   type.value = 'edit'
 
   rowData.value = data
@@ -69,10 +77,10 @@ function handleEdit(data) {
     <a-card w-full>
       <a-form ref="searchForm" :model="form" layout="inline">
         <a-form-item field="name" label="账号">
-          <a-input v-model="form.name" placeholder="按账号名称筛选" />
+          <a-input v-model="form.namespace" placeholder="按账号名称筛选" />
         </a-form-item>
         <a-form-item field="email" label="邮箱">
-          <a-input v-model="form.email" placeholder="按邮箱地址筛选" />
+          <a-input v-model="form.key" placeholder="按邮箱地址筛选" />
         </a-form-item>
         <a-form-item>
           <div flex gap-2 items-center>
