@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePagination } from 'alova/client'
-import { ref } from 'vue'
+import { reactive } from 'vue'
 
 defineOptions({
   name: 'Users',
@@ -25,7 +25,7 @@ const {
 } = usePagination(
   // Method实例获取函数，它将接收page和pageSize，并返回一个Method实例
   (page, pageSize) => EndApis.User.UserController_getUsers({
-    data: { page, pageSize, name: form.name.length ? form.name : undefined, email: form.email.length ? form.email : undefined },
+    data: { page, pageSize, name: form.name.length ? form.name : '', email: form.email.length ? form.email : '' },
   }),
   {
     initialData: {
@@ -40,7 +40,15 @@ const {
 
 const visible = ref(false)
 const type = ref('')
-const rowData = ref({})
+
+const rowData = ref({
+  name: '',
+  role: '',
+  email: '',
+  emailVerified: '',
+  updatedAt: '',
+  createdAt: '',
+})
 
 function handleOk() {
   visible.value = false
@@ -49,14 +57,14 @@ function handleCancel() {
   visible.value = false
 }
 
-function handleView(data) {
+function handleView(data: any) {
   type.value = 'view'
 
   rowData.value = data
 
   visible.value = true
 }
-function handleEdit(data) {
+function handleEdit(data: any) {
   type.value = 'edit'
 
   rowData.value = data
