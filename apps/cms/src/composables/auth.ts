@@ -1,4 +1,3 @@
-
 export function useFingerprint() {
   const _fingerprint = ref('')
 
