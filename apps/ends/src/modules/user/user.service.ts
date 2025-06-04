@@ -1,8 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { prismaClient } from 'src/lib/database';
 import * as bcrypt from 'bcrypt'
-import type { User } from 'prisma/client';
+import type { Account, User } from 'prisma/client';
 import { UserPagniationDto } from './user.dto';
+import { UserRegisterProsp } from '../auth/auth.dto';
 
 @Injectable()
 export class UserService {
@@ -62,6 +63,49 @@ export class UserService {
     })) as unknown as User[]
 
     return entity.buildResponse<User>(result, total)
+  }
+
+  /**
+   * Hashes a plain-text password using bcrypt.
+   *
+   * @param password - The plain-text password to be hashed.
+   * @param saltRounds - Number of salt rounds to use for hashing (default: 10).
+   * @returns The hashed password as a string.
+   *
+   * @example
+   * ```ts
+   * const hashed = await hashPassword('mySecret123');
+   * console.log(hashed); // $2b$10$...
+   * ```
+   */
+  async hashPassword(password: string, saltRounds = 10): Promise<string> {
+    const salt = await bcrypt.genSalt(saltRounds);
+    return await bcrypt.hash(password, salt);
+  }
+
+
+  async createUser(entity: UserRegisterProsp): Promise<User> {
+    return await prismaClient.user.create({
+      data: {
+        name: entity.account,
+        email: entity.account,
+        role: 'USER',
+      },
+    });
+  }
+
+  async createAccount(userId: string, entity: UserRegisterProsp): Promise<Account> {
+    const hashedPassword = await this.hashPassword(entity.password); // 假设你已有这个方法
+
+    return await prismaClient.account.create({
+      data: {
+        userId,
+        type: entity.type,
+        provider: entity.type,
+        providerAccountId: entity.account,
+        id_token: hashedPassword,
+      },
+    });
   }
 
   comparePassword(password: string, hash: string) {

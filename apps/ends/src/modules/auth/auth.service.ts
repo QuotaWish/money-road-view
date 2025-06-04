@@ -3,14 +3,15 @@ import { isEmpty } from 'class-validator';
 import { ResourceNotFound } from 'src/filter/http-exception/internal/ResourceNotFound';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
-import { UserLoginProps } from './auth.dto';
+import { UserLoginProps, UserRegisterProsp } from './auth.dto';
 import { BusinessException } from 'src/filter/http-exception/internal/BusinessException';
 import { jwtConstants } from 'src/common/constants';
 import { GaUnauthorizedException } from 'src/filter/http-exception/internal/GaUnauthorizedException';
 import { prismaClient } from 'src/lib/database';
-import type { Account, LoginHistory, User } from '@prisma/client';
+import type { Account, User } from '@prisma/client';
 import { gaLocation, getUserAgentInfo } from 'src/utils';
 import type { IUserInfo } from '../user/user.dto';
+import { ResourceDuplicate } from 'src/filter/http-exception/internal/ResourceDuplicate';
 
 @Injectable()
 export class AuthService {
@@ -62,6 +63,62 @@ export class AuthService {
 
     return this.handleAuth(user, account)
   }
+
+
+
+
+  async handleRegister(entity: UserRegisterProsp, userAgent: string, ip: string) {
+    const existingAccount = await this.userService.getAccount(entity.account, entity.password, entity.type);
+    if (!isEmpty(existingAccount)) {
+      throw new ResourceDuplicate('Account already exists');
+    }
+
+    const userAgentInfo = getUserAgentInfo(userAgent);
+    const device = `${userAgentInfo.browser} ${userAgentInfo.os} ${userAgentInfo.device}`;
+    const where = gaLocation.getWhere(ip);
+
+    // 模拟注册过程（你可能需要调用创建账户的方法）
+    const newUser = await this.userService.createUser(entity);
+    const newAccount = await this.userService.createAccount(newUser.id, entity);
+
+    const isCorrect = await this.userService.comparePassword(entity.password, newAccount.id_token);
+
+    const loginHistoryData = {
+      userId: newAccount.userId,
+      ip,
+      where,
+      device,
+      userAgent,
+      platform: entity.platform,
+      fingerprint: entity.fingerprint,
+      success: isCorrect,
+      errorMsg: isCorrect ? '' : 'Credential is incorrect',
+    };
+
+    try {
+      if (!isCorrect) {
+        throw new BusinessException(loginHistoryData.errorMsg);
+      }
+
+      const token = await this.handleAuth(newUser, newAccount);
+
+      Logger.log(
+        `User ${newAccount.userId} registered & logged in on ${entity.platform}, IP: ${ip}, Agent: [${userAgent}]`
+      );
+
+      return {
+        user: newUser,
+        token,
+      };
+    } catch (error) {
+      throw error;
+    } finally {
+      await prismaClient.loginHistory.create({
+        data: loginHistoryData,
+      });
+    }
+  }
+
 
   async handleLogin(entity: UserLoginProps, userAgent: string, ip: string) {
     const account = await this.userService.getAccount(entity.account, entity.password, entity.type)

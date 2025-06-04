@@ -26,4 +26,10 @@ export class UserRegisterProsp {
 
   @IsNotEmpty()
   type: string
+
+  @IsNotEmpty()
+  fingerprint: string
+
+  @IsNotEmpty()
+  platform: string
 }

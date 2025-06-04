@@ -20,6 +20,13 @@ export class AuthController {
   }
 
   @Public()
+  @Post("register")
+  @ApiOperation({ summary: 'Register' })
+  async register(@Body() entity: UserLoginProps, @Headers('user-agent') userAgent: string, @IpAddress() ip: string) {
+    return await this.authService.handleLogin(entity, userAgent, ip)
+  }
+
+  @Public()
   @Post("refresh")
   @ApiOperation({ summary: 'Refresh token' })
   async refresh(@Body() body: { token: string }) {
