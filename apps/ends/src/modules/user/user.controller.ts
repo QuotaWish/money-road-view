@@ -29,11 +29,4 @@ export class UserController {
     return this.userService.getAllUsers(new PaginationDto(entity));
   }
 
-  @Public()
-  @Post("register")
-  @ApiOperation({ summary: 'Register' })
-  register() {
-
-  }
-
 }
