@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import WorkspaceContentDataLine from '~/components/display/chart/workspace-content-data-line.vue'
+// import * as echarts from 'echarts'
+// import VueEchart from 'vue-echarts'
+import WorkspaceContentTypePie from '~/components/display/chart/workspace-content-type-pie.vue'
 import GardientIcon from '~/components/display/GardientIcon .vue'
 import { useUserStore } from '~/composables/store'
 
@@ -16,7 +20,7 @@ const columns = [
     dataIndex: 'name',
     ellipsis: true,
     tooltip: true,
-    width: 100
+    width: 100,
   },
   {
     title: 'Salary',
@@ -41,31 +45,31 @@ const data = reactive([{
   name: 'Jane Doe',
   salary: 23000,
   address: '32 Park Road, London',
-  email: 'jane.doe@example.com'
+  email: 'jane.doe@example.com',
 }, {
   key: '2',
   name: 'Alisa Ross',
   salary: 25000,
   address: '35 Park Road, London',
-  email: 'alisa.ross@example.com'
+  email: 'alisa.ross@example.com',
 }, {
   key: '3',
   name: 'Kevin Sandra',
   salary: 22000,
   address: '31 Park Road, London',
-  email: 'kevin.sandra@example.com'
+  email: 'kevin.sandra@example.com',
 }, {
   key: '4',
   name: 'Ed Hellen',
   salary: 17000,
   address: '42 Park Road, London',
-  email: 'ed.hellen@example.com'
+  email: 'ed.hellen@example.com',
 }, {
   key: '5',
   name: 'William Smith',
   salary: 27000,
   address: '62 Park Road, London',
-  email: 'william.smith@example.com'
+  email: 'william.smith@example.com',
 }])
 </script>
 
@@ -130,6 +134,8 @@ const data = reactive([{
             </div>
           </a-col>
         </a-row>
+        <WorkspaceContentDataLine />
+        <!-- <VueEchart w-full h-full :option="option2" /> -->
       </a-card>
       <div class="flex gap-6 h-[40%] w-full justify-between">
         <a-card class="Workspace-Card flex-1">
@@ -152,7 +158,8 @@ const data = reactive([{
           </a-space>
         </a-card>
         <a-card class="Workspace-Card flex-1">
-          3
+          <WorkspaceContentTypePie />
+          <!-- <VueEchart w-full h-full :option="option" /> -->
         </a-card>
       </div>
     </div>
@@ -313,6 +320,13 @@ const data = reactive([{
 .Workspace-Card {
   user-select: none;
   border-radius: 12px;
+}
+
+:deep(.arco-card-body) {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
 }
 </style>
 
