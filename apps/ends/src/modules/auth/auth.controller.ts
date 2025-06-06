@@ -23,7 +23,7 @@ export class AuthController {
   @Post("register")
   @ApiOperation({ summary: 'Register' })
   async register(@Body() entity: UserLoginProps, @Headers('user-agent') userAgent: string, @IpAddress() ip: string) {
-    return await this.authService.handleLogin(entity, userAgent, ip)
+    return await this.authService.handleRegister(entity, userAgent, ip)
   }
 
   @Public()
