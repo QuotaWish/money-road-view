@@ -40,10 +40,10 @@ function handleForgetPassword({ errors }: any) {
       </h1>
       <a-form :model="form" layout="vertical" @submit="handleForgetPassword">
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
-          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear />
+          <a-input v-model="form.account" class="w-[100%]" size="large" placeholder="账号" allow-clear />
         </a-form-item>
         <a-form-item :rules="[{ required: true, message: '类型' }]" field="genre" tooltip="请选择类型" label="类型">
-          <a-input class="w-[80%]" size="large" placeholder="类型" allow-clear />
+          <a-input class="w-[100%]" size="large" placeholder="类型" allow-clear />
         </a-form-item>
         <a-form-item field="isRead">
           <a-checkbox v-model="agreement">
@@ -87,6 +87,45 @@ function handleForgetPassword({ errors }: any) {
 </template>
 
 <style lang="less" scoped>
+@media (prefers-color-scheme: dark) {
+  .ForgetPassword-Form {
+    background: rgba(24, 24, 24, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+    color: #f0f0f0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 20px;
+    filter: brightness(80%);
+  }
+
+  h1 {
+    color: #000000;
+  }
+
+  .arco-input-wrapper,
+  .arco-input {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #f5f5f5;
+
+    &::placeholder {
+      color: #888;
+    }
+  }
+
+  .arco-btn-primary {
+    background-color: #4d90fe;
+    border-color: #4d90fe;
+    color: #fff;
+
+    &:hover {
+      background-color: #2962ff;
+      border-color: #2962ff;
+    }
+  }
+}
+
 .ForgetPassword-Brand {
   z-index: 1;
   position: absolute;

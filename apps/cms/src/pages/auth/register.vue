@@ -77,15 +77,15 @@ onSuccess((data: any) => {
       <a-form autocomplete="off" :disabled="loading" :model="form" layout="vertical" @submit="handleRegister">
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]"
           field="account" tooltip="请输入账号" label="账号">
-          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+          <a-input v-model="form.account" class="w-[100%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
         <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]"
           field="password" tooltip="请输入密码" label="密码">
-          <a-input autocomplete="new-password" v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
+          <a-input autocomplete="new-password" v-model="form.password" class="w-[100%]" size="large" placeholder="密码" allow-clear type="password" />
         </a-form-item>
         <a-form-item :rules="[{ required: true, message: '确认密码必须存在' }, { minLength: 5, message: '确认密码最短需要是5位' }]"
           field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
-          <a-input v-model="form.confirmPassword" class="w-[80%]" size="large" placeholder="重复密码" allow-clear
+          <a-input v-model="form.confirmPassword" class="w-[100%]" size="large" placeholder="重复密码" allow-clear
             type="Password" />
         </a-form-item>
         <a-form-item field="isRead">
@@ -131,6 +131,54 @@ onSuccess((data: any) => {
 </template>
 
 <style lang="less" scoped>
+@media (prefers-color-scheme: dark) {
+  .Login-Form {
+    background: rgba(24, 24, 24, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+    color: #f0f0f0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 20px;
+    filter: brightness(80%);
+  }
+
+  .Login h1 {
+    color: #000000;
+  }
+
+  .arco-input-wrapper,
+  .arco-input {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #f5f5f5;
+
+    &::placeholder {
+      color: #888;
+    }
+  }
+
+  .arco-btn-primary {
+    background-color: #4d90fe;
+    border-color: #4d90fe;
+    color: #fff;
+
+    &:hover {
+      background-color: #2962ff;
+      border-color: #2962ff;
+    }
+  }
+}
+
+.Login {
+  background-color: #f0f2f5;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Login-Brand {
   z-index: 1;
   position: absolute;
