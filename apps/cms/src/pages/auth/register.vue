@@ -1,15 +1,36 @@
 <script lang="ts" setup>
+import { useForm } from 'alova/client'
+import { ref } from 'vue'
 import { toast } from 'vue-sonner'
 import Logo from '~/components/display/Logo.vue'
+import { useSharedFingerprint } from '~/composables/auth'
+import { useAuthStore, useUserStore } from '~/composables/store'
 
-const form = reactive({
-  account: '',
-  password: '',
-  confirmPassword: '',
+const router = useRouter()
+const fp = useSharedFingerprint()
+const agreement = ref(false)
+
+const userStore = useUserStore()
+const authStore = useAuthStore()
+
+const { form, loading, send, onSuccess } = useForm(formData => EndApis.Auth.AuthController_register({
+  data: {
+    fingerprint: fp.value,
+    platform: 'CMS',
+    ...formData,
+  },
+  meta: {
+    authRole: 'login',
+  },
+}), {
+  initialForm: {
+    account: '',
+    password: '',
+    confirmPassword: '',
+    type: 'password',
+  },
 })
 
-const agreement = ref(false)
-const router = useRouter()
 function handleClick() {
   router.push('/auth/login')
 }
@@ -19,17 +40,30 @@ function handleForgetPassword() {
 }
 
 function handleRegister({ errors }: any) {
-  if (Object.values(errors).length) {
+  if (Object.values(errors ?? {}).length) {
     return
   }
 
-  if (form.password !== form.confirmPassword) {
+  if (form.value.password !== form.value.confirmPassword) {
     toast.error('两次密码不一致')
     return
   }
-  toast.error('注册成功')
-  router.push('/auth/login')
+
+  send()
 }
+
+onSuccess((data: any) => {
+  const token = data.data.token
+  authStore.value.accessToken = token.access_token
+  authStore.value.refreshToken = token.refresh_token
+  authStore.value.expiredTime = Date.now() + token.expire_time
+
+  userStore.setLogin(data.data.user)
+
+  toast.success('登录成功')
+
+  router.push('/')
+})
 </script>
 
 <template>
@@ -40,15 +74,19 @@ function handleRegister({ errors }: any) {
       <h1 text-3xl font-bold text-left w-full>
         注册账号
       </h1>
-      <a-form :model="form" layout="vertical" @submit="handleRegister">
-        <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]" field="account" tooltip="请输入账号" label="账号">
-          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+      <a-form autocomplete="off" :disabled="loading" :model="form" layout="vertical" @submit="handleRegister">
+        <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]"
+          field="account" tooltip="请输入账号" label="账号">
+          <a-input v-model="form.account" class="w-[100%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="password" tooltip="请输入密码" label="密码">
-          <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
+        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]"
+          field="password" tooltip="请输入密码" label="密码">
+          <a-input autocomplete="new-password" v-model="form.password" class="w-[100%]" size="large" placeholder="密码" allow-clear type="password" />
         </a-form-item>
-        <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]" field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
-          <a-input v-model="form.confirmPassword" class="w-[80%]" size="large" placeholder="重复密码" allow-clear type="Password" />
+        <a-form-item :rules="[{ required: true, message: '确认密码必须存在' }, { minLength: 5, message: '确认密码最短需要是5位' }]"
+          field="confirmPassword" tooltip="请再次输入密码" label="确认密码">
+          <a-input v-model="form.confirmPassword" class="w-[100%]" size="large" placeholder="重复密码" allow-clear
+            type="Password" />
         </a-form-item>
         <a-form-item field="isRead">
           <a-checkbox v-model="agreement">
@@ -65,7 +103,8 @@ function handleRegister({ errors }: any) {
           </a-checkbox>
         </a-form-item>
         <a-form-item>
-          <a-button html-type="submit" size="large" type="primary" class="Login-Button w-full" :disabled="!agreement">
+          <a-button :loading html-type="submit" size="large" type="primary" class="Login-Button w-full"
+            :disabled="!agreement">
             注册
           </a-button>
         </a-form-item>
@@ -92,6 +131,54 @@ function handleRegister({ errors }: any) {
 </template>
 
 <style lang="less" scoped>
+@media (prefers-color-scheme: dark) {
+  .Login-Form {
+    background: rgba(24, 24, 24, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+    color: #f0f0f0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 20px;
+    filter: brightness(80%);
+  }
+
+  .Login h1 {
+    color: #000000;
+  }
+
+  .arco-input-wrapper,
+  .arco-input {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #f5f5f5;
+
+    &::placeholder {
+      color: #888;
+    }
+  }
+
+  .arco-btn-primary {
+    background-color: #4d90fe;
+    border-color: #4d90fe;
+    color: #fff;
+
+    &:hover {
+      background-color: #2962ff;
+      border-color: #2962ff;
+    }
+  }
+}
+
+.Login {
+  background-color: #f0f2f5;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Login-Brand {
   z-index: 1;
   position: absolute;

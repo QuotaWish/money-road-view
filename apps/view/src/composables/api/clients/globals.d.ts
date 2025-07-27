@@ -292,23 +292,6 @@ declare global {
       >(
         config: Config
       ): Alova2Method<ResultData & unknown, 'User.UserController_getUsers', Config>;
-      /**
-       * ---
-       *
-       * [POST] Register
-       *
-       * **path:** /user/register
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = unknown
-       * ```
-       */
-      UserController_register<Config extends Alova2MethodConfig<unknown>>(
-        config?: Config
-      ): Alova2Method<unknown, 'User.UserController_register', Config>;
     };
     Auth: {
       /**
@@ -339,6 +322,34 @@ declare global {
       >(
         config: Config
       ): Alova2Method<unknown, 'Auth.AuthController_login', Config>;
+      /**
+       * ---
+       *
+       * [POST] Register
+       *
+       * **path:** /auth/register
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = object
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = unknown
+       * ```
+       */
+      AuthController_register<
+        Config extends Alova2MethodConfig<unknown> & {
+          data: UserLoginProps;
+        }
+      >(
+        config: Config
+      ): Alova2Method<unknown, 'Auth.AuthController_register', Config>;
       /**
        * ---
        *
