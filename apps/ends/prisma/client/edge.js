@@ -207,7 +207,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Workspace\\money-road-view\\apps\\ends\\prisma\\client",
+      "value": "/Users/talexdreamsoul/Workspace/Research/money-road-view/apps/ends/prisma/client",
       "fromEnvVar": null
     },
     "config": {
@@ -216,17 +216,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Workspace\\money-road-view\\apps\\ends\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/talexdreamsoul/Workspace/Research/money-road-view/apps/ends/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "..",
   "clientVersion": "6.8.2",

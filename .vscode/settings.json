@@ -9,5 +9,9 @@
   "cSpell.words": [
     "sider"
   ],
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "java.jdt.ls.java.home": "/Users/talexdreamsoul/.local/share/mise/installs/java/21.0.2",
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "/Users/talexdreamsoul/.local/share/mise/shims/node"
+  }
 }
