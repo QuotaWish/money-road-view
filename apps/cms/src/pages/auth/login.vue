@@ -54,6 +54,11 @@ async function handleLogin({ errors }: any) {
   send()
 }
 
+onMounted(() => {
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  document.body.classList.toggle('arco-theme-dark', isDark)
+})
+
 onSuccess((data: any) => {
   const token = data.data.token
   authStore.value.accessToken = token.access_token
@@ -88,11 +93,11 @@ function handlePasskeysLogin() {
       <a-form :disabled="loading" layout="vertical" :model="form" @submit="handleLogin">
         <a-form-item :rules="[{ required: true, message: '账号必须存在' }, { minLength: 5, message: '账号最短需要是5位' }]"
           field="account" tooltip="请输入账号" label="账号">
-          <a-input v-model="form.account" class="w-[80%]" size="large" placeholder="账号" allow-clear type="username" />
+          <a-input v-model="form.account" class="w-[100%]" size="large" placeholder="账号" allow-clear type="username" />
         </a-form-item>
         <a-form-item :rules="[{ required: true, message: '密码必须存在' }, { minLength: 5, message: '密码最短需要是5位' }]"
           field="password" tooltip="请输入密码" label="密码">
-          <a-input v-model="form.password" class="w-[80%]" size="large" placeholder="密码" allow-clear type="password" />
+          <a-input v-model="form.password" class="w-[100%]" size="large" placeholder="密码" allow-clear type="password" />
         </a-form-item>
         <a-form-item field="isRead">
           <a-checkbox v-model="agreement">
@@ -148,6 +153,83 @@ function handlePasskeysLogin() {
 </template>
 
 <style lang="less" scoped>
+.Login {
+  // background-color: #f0f2f5;
+  // color: #000;
+  // min-height: 100vh;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  background-color: #f0f2f5;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+  .Login {
+    background-color: #0e0e0e;
+    color: #e0e0e0;
+  }
+
+  .Login-Form {
+    background: rgba(32, 32, 32, 0.95);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #f1f1f1;
+    backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 20px;
+    filter: brightness(80%);
+  }
+
+  .Login h1 {
+    color: #0e0e0e;
+  }
+
+  .Login-Copyright {
+    color: #888;
+  }
+
+  .arco-input,
+  .arco-input-wrapper {
+    background-color: #0f0f0f !important;
+    color: #fff;
+    border-color: #444;
+  }
+
+  .arco-input::placeholder {
+    color: #888;
+  }
+
+  .arco-btn-primary {
+    background-color: #2962ff;
+    border-color: #2962ff;
+    color: #fff;
+
+    &:hover {
+      background-color: #0039cb;
+    }
+  }
+
+  .arco-btn-outline {
+    background-color: #666;
+    border: 1px solid #666;
+    color: #fff;
+
+    &:hover {
+      background-color: #2a2a2a;
+    }
+  }
+}
+
 .Login-Brand {
   z-index: 1;
   position: absolute;
